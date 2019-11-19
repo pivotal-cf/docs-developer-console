@@ -9,72 +9,88 @@ This topic describes how to install and configure <%= vars.product_full %>.
 
 ## <a id='overview'></a> Overview
 
-## <a id='requirements'></a> Prerequisites
+## <a id='prereqs'></a> Prerequisites
 
-##<a id='install'></a> Install and Configure <%= vars.product_short %>
+* Private internal registry, such as Harbor
+* Docker
 
-## Installing Developer Console
+## <a id='install'></a> Install and Configure <%= vars.product_short %>
 
-### Install Duffle
+### <a id='install-pdc'></a> Installing Developer Console
 
-1. Download the duffle binary from https://github.com/deislabs/duffle/releases
+### <a id='install-duffle'></a> Install Duffle
+
+1. Download the most recent Duffle binary from https://github.com/deislabs/duffle/releases
 1. Make the binary executable `chmod +x ~/Downloads/duffle-darwin`
 1. Move the binary to your path `mv ~/Downloads/duffle-darwin /usr/local/bin/duffle`
-1. Verify duffle works by running `duffle --help`
+1. Verify that Duffle works by running `duffle --help`
 
-### Relocate images
-Login to your private registry
-```
-docker login harbor.example.com
-```
+### <a id='relocate'></a> Relocate images
 
-Relocate your images, storing the mapping output in a file called `/tmp/mapping.json`
-```
-duffle relocate developer-console-<VERSION>.tgz \
-    --bundle-is-file  \
-    --relocation-mapping /tmp/mapping.json \
-    --repository-prefix harbor.example.com/your-project
-```
-Note: the registry project needs to have been created previously
+To relocate images:
 
-### Install the CNAB bundle
+1. Log in to your private registry by running:
 
-Create a credentials file called `developer-console-creds.yaml` with the contents below, substituting in your the path tor your kubeconfig and your registry credentials.
-```
-name: developer-console-creds
-credentials:
-- name: kubeconfig
-  source:
-    path: PATH_TO_KUBECONFIG (e.g. /Users/pivotal/.kube/config)
-- name: registry_url
-  source:
-    value: REGISTRY_URL
-- name: registry_email
-  source:
-    value: REGISTRY_ACCOUNT_EMAIL
-- name: registry_username
-  source:
-    value: REGISTRY_USERNAME
-- name: registry_password
-  source:
-    value: REGISTRY_PASSWORD
-```
+    ```
+    docker login harbor.example.com
+    ```
 
-Install the bundle, passing in the mapping file from the relocation step.
-```
-duffle install developer-console developer-console-<VERSION>.tgz \
-    --bundle-is-file \
-    --credentials developer-console-creds.yaml \
-    --relocation-mapping /tmp/mapping.json
-```
+1. Relocate your images, storing the mapping output in a file called `/tmp/mapping.json`
 
-Uninstall, passing in the mapping file from the relocation step.
-```
-duffle uninstall developer-console \
-    --credentials developer-console-creds.yaml \
-    --relocation-mapping /tmp/mapping.json
-```
+    ```
+    duffle relocate developer-console-<VERSION>.tgz \
+        --bundle-is-file  \
+        --relocation-mapping /tmp/mapping.json \
+        --repository-prefix harbor.example.com/your-project
+    ```
 
-### Interact with the Developer Console
+    <p class="note">
+      <strong>Note:</strong> The registry project needs to have been created previously.
+    </p>
 
-Download and use the `pdc` CLI tool, see [marketplace](https://github.com/pivotal/marketplace) for more details.
+### <a id='install-cnab'></a> Install the CNAB Bundle
+
+1. Create a credentials file called `developer-console-creds.yaml` with the contents below, replacing the
+placeholders with your values.
+
+    ```
+    name: developer-console-creds
+    credentials:
+    - name: kubeconfig
+      source:
+        path: PATH-TO-KUBECONFIG # for example: /Users/pivotal/.kube/config
+    - name: registry_url
+      source:
+        value: REGISTRY-URL # for example: <%# give an example %>
+    - name: registry_email
+      source:
+        value: REGISTRY-ACCOUNT-EMAIL
+    - name: registry_username
+      source:
+        value: REGISTRY-USERNAME
+    - name: registry_password
+      source:
+        value: REGISTRY-PASSWORD
+    ```
+
+1. Install the bundle, passing in the mapping file from the relocation step.
+
+    ```
+    duffle install developer-console developer-console-<VERSION>.tgz \
+        --bundle-is-file \
+        --credentials developer-console-creds.yaml \
+        --relocation-mapping /tmp/mapping.json
+    ```
+
+1. Uninstall, passing in the mapping file from the relocation step.
+
+    ```
+    duffle uninstall developer-console \
+        --credentials developer-console-creds.yaml \
+        --relocation-mapping /tmp/mapping.json
+    ```
+
+### <a id='interact'></a> Interact with the Developer Console <%# Is this really part of installation? %>
+
+1. Download and use the `pdc` CLI tool. For more information about it, see
+[marketplace](https://github.com/pivotal/marketplace) in GitHub.
