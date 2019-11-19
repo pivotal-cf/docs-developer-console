@@ -20,12 +20,28 @@ This topic describes how to install and configure <%= vars.product_full %>.
 
 ### <a id='install-duffle'></a> Install Duffle
 
-1. Download the most recent Duffle binary from https://github.com/deislabs/duffle/releases
-1. Make the binary executable `chmod +x ~/Downloads/duffle-darwin`
-1. Move the binary to your path `mv ~/Downloads/duffle-darwin /usr/local/bin/duffle`
-1. Verify that Duffle works by running `duffle --help`
+1. Download the most recent Duffle binary from [duffle](https://github.com/deislabs/duffle/releases) in
+GitHub.
 
-### <a id='relocate'></a> Relocate images
+1. Make the binary executable by running:
+
+    ```
+    chmod +x ~/Downloads/duffle-darwin
+    ```
+
+1. Move the binary to your path by running:
+
+    ```
+    mv ~/Downloads/duffle-darwin /usr/local/bin/duffle
+    ```
+
+1. Verify that Duffle works by running:
+
+    ```
+    duffle --help
+    ```
+
+### <a id='relocate'></a> Relocate Images
 
 To relocate images:
 
@@ -35,23 +51,24 @@ To relocate images:
     docker login harbor.example.com
     ```
 
-1. Relocate your images, storing the mapping output in a file called `/tmp/mapping.json`
+1. Relocate the images by running:
 
     ```
-    duffle relocate developer-console-<VERSION>.tgz \
+    duffle relocate developer-console-VERSION.tgz \ <%# Where does the reader get this tarball? %>
         --bundle-is-file  \
         --relocation-mapping /tmp/mapping.json \
         --repository-prefix harbor.example.com/your-project
     ```
 
-    <p class="note">
-      <strong>Note:</strong> The registry project needs to have been created previously.
-    </p>
+    Where `VERSION` is the number in the file name.
+
+    This stores the mapping output in a file called `/tmp/mapping.json`.
 
 ### <a id='install-cnab'></a> Install the CNAB Bundle
 
-1. Create a credentials file called `developer-console-creds.yaml` with the contents below, replacing the
-placeholders with your values.
+To install the CNAB bundle:
+
+1. Create a credentials file called `developer-console-creds.yaml` with the contents below.
 
     ```
     name: developer-console-creds
@@ -73,14 +90,18 @@ placeholders with your values.
         value: REGISTRY-PASSWORD
     ```
 
-1. Install the bundle, passing in the mapping file from the relocation step.
+1. Install the bundle, referencing the mapping file created in [Relocate Images](#relocate).
 
     ```
-    duffle install developer-console developer-console-<VERSION>.tgz \
+    duffle install developer-console developer-console-VERSION.tgz \
         --bundle-is-file \
         --credentials developer-console-creds.yaml \
         --relocation-mapping /tmp/mapping.json
     ```
+
+    Where `VERSION` is the number in the file name.
+
+<%# Should the step below really be here? %>
 
 1. Uninstall, passing in the mapping file from the relocation step.
 
@@ -90,7 +111,7 @@ placeholders with your values.
         --relocation-mapping /tmp/mapping.json
     ```
 
-### <a id='interact'></a> Interact with the Developer Console <%# Is this really part of installation? %>
+### <a id='download-pdc'></a> Download the Developer Console CLI <%# Is this really part of installation? %>
 
-1. Download and use the `pdc` CLI tool. For more information about it, see
+1. Download the `pdc` CLI tool. For more information about it, see
 [marketplace](https://github.com/pivotal/marketplace) in GitHub.
