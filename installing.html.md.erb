@@ -11,28 +11,70 @@ This topic describes how to install and configure <%= vars.product_full %>.
 
 ## <a id='requirements'></a> Prerequisites
 
-##<a id='install'></a> Install and Configure YOUR-PRODUCT-NAME
+##<a id='install'></a> Install and Configure <%= vars.product_short %>
 
-To install the YOUR-PRODUCT-NAME file on the Ops Manager Installation Dashboard, do the following:
+## Installing Developer Console
 
-1. Download the product file from Pivotal Network.
+### Install Duffle
 
-1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file.
+1. Download the duffle binary from https://github.com/deislabs/duffle/releases
+1. Make the binary executable `chmod +x ~/Downloads/duffle-darwin`
+1. Move the binary to your path `mv ~/Downloads/duffle-darwin /usr/local/bin/duffle`
+1. Verify duffle works by running `duffle --help`
 
-1. Under **Import a Product**, click **+** next to the version number of YOUR-PRODUCT-NAME.
-This adds the tile to your staging area.
+### Relocate images
+Login to your private registry
+```
+docker login harbor.example.com
+```
 
-1. Click the newly added **YOUR-PRODUCT-NAME** tile.
+Relocate your images, storing the mapping output in a file called `/tmp/mapping.json`
+```
+duffle relocate developer-console-<VERSION>.tgz \
+    --bundle-is-file  \
+    --relocation-mapping /tmp/mapping.json \
+    --repository-prefix harbor.example.com/your-project
+```
+Note: the registry project needs to have been created previously
 
-1. **This portion of the procedure should tell the users how to configure the newly added tile by
-walking them through the sections. Which fields should they fill out? What are the different
-checkboxes? Include relevant screenshots here.**
+### Install the CNAB bundle
 
-1. Click **Save**.
+Create a credentials file called `developer-console-creds.yaml` with the contents below, substituting in your the path tor your kubeconfig and your registry credentials.
+```
+name: developer-console-creds
+credentials:
+- name: kubeconfig
+  source:
+    path: PATH_TO_KUBECONFIG (e.g. /Users/pivotal/.kube/config)
+- name: registry_url
+  source:
+    value: REGISTRY_URL
+- name: registry_email
+  source:
+    value: REGISTRY_ACCOUNT_EMAIL
+- name: registry_username
+  source:
+    value: REGISTRY_USERNAME
+- name: registry_password
+  source:
+    value: REGISTRY_PASSWORD
+```
 
-1. Return to the Ops Manager Installation Dashboard and click **Apply changes** to install YOUR-PRODUCT-NAME tile.
+Install the bundle, passing in the mapping file from the relocation step.
+```
+duffle install developer-console developer-console-<VERSION>.tgz \
+    --bundle-is-file \
+    --credentials developer-console-creds.yaml \
+    --relocation-mapping /tmp/mapping.json
+```
 
-**If needed, include additional configuration information below. For example, maybe there are
-configuration options not required for installation but which could be useful for certain users. Typical topics include:**
-1. **Self-service**--Do you have recommendations on how to configure/design plans in the tile so that users can choose the best options for themselves?
-1. **High availability**--How do you configure/deploy X Service tile to be highly available?
+Uninstall, passing in the mapping file from the relocation step.
+```
+duffle uninstall developer-console \
+    --credentials developer-console-creds.yaml \
+    --relocation-mapping /tmp/mapping.json
+```
+
+### Interact with the Developer Console
+
+Download and use the `pdc` CLI tool, see [marketplace](https://github.com/pivotal/marketplace) for more details.
