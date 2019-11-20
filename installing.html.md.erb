@@ -9,6 +9,9 @@ This topic describes how to install and configure <%= vars.product_full %>.
 
 ## <a id='overview'></a> Overview
 
+<%= vars.product_short %> consists of a front end command line interface (CLI) named `pdc` and a backing set
+of custom resource definitions (CRDs) and custom controllers.
+
 ## <a id='prereqs'></a> Prerequisites
 
 * Private internal registry, such as Harbor
@@ -101,7 +104,7 @@ To install the CNAB bundle:
 
     Where `VERSION` is the number in the file name.
 
-<%# Should the step below really be here? %>
+<%# Should the below step really be here? %>
 
 1. Uninstall, passing in the mapping file from the relocation step.
 
