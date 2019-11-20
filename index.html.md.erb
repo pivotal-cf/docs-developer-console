@@ -6,28 +6,33 @@ owner: Marketplace
 <strong><%= modified_date %></strong>
 
 <p class="note warning">
-<strong>Warning: </strong>
-The <%= vars.product_full %> is currently in alpha and is intended for evaluation and test purposes only.
-Do not use this product in a PCF production environment.
+  <strong>Warning:</strong>
+  <%= vars.product_full %> is currently in alpha and is intended for evaluation and test purposes only.
+  Do not use this product in a <%= vars.platform_old %> production environment.
 </p>
 
-This documentation describes the Pivotal Developer Console (PDC). The Pivotal Developer Console enables platform teams to curate a set of brokered services for use by application teams across many platforms (such as Kubernetes and PAS.)
+This documentation describes <%= vars.product_full %> (<%= vars.product_abbr %>).
+<%= vars.product_short %> enables platform teams to curate a set of brokered services for use by app teams across many platforms, such as Kubernetes and <%= vars.app_runtime_abbr %>.
 
-## <a id='overview'></a>Overview
+## <a id='overview'></a> Overview
 
-PDC allows platform teams to curate and register Open Service Broker API (OSBAPI) compliant service brokers, which can be running anywhere as long as they are accessible by PDC, to a single centralised location.
+<%= vars.product_abbr %> allows platform teams to curate and register Open Service Broker API (OSBAPI)
+compliant service brokers running anywhere, as long as they are accessible by <%= vars.product_abbr %>, to a
+single centralized location.
 
-These brokers can then be used by application teams to provision services and retrieve credentials, via the `pdc` command line tool. Their applications, which could be living across multiple platforms, can then use these credentials to access the service instances.
+These brokers can then be used by app teams to provision services and retrieve credentials, through the
+`pdc` command line tool (CLI). Their apps, which could exist across multiple platforms, can then use
+these credentials to access the service instances.
 
-## <a id='features'></a>Key Features
+## <a id='features'></a> Key Features
 
-<%= vars.product_full %> includes the following key features:
+<%= vars.product_full %> can:
 
 * Register OSBAPI compliant brokers
-* Create and access services on applications running across multiple platforms
-* Have a docker image registry that images can be relocated to.
+* Create and access services on apps running across multiple platforms
+* Have a Docker image registry that images can be relocated to.
 
-## <a id="snapshot"></a>Product Snapshot
+## <a id="snapshot"></a> Product Snapshot
 
 The following table provides version and version-support information about <%= vars.product_short %>.
 
@@ -43,38 +48,39 @@ The following table provides version and version-support information about <%= v
         <td>Christmas</td>
     </tr>
     <tr>
-        <td>Service Catalog Helm Chart version</td>
+        <td>Service Catalog Helm chart version</td>
         <td>v0.3.0-beta.1</td>
     </tr>
     <tr>
-        <td>Projects Operator Helm Chart version</td>
+        <td>Projects Operator Helm chart version</td>
         <td>v0.4.2</td>
     </tr>
     <tr>
-        <td>PDC CLI version</td>
+        <td><%= vars.product_abbr %> CLI version</td>
         <td>v0.1.3</td>
     </tr>
 </table>
 
-## <a id="reqs"></a>Requirements
+## <a id="reqs"></a> Requirements
 
 <%= vars.product_short %> has the following requirements:
 
-* You must be signed up to and share Telemetry with Pivotal
-* A Kubernetes cluster configured in [OIDC mode](https://docs.pivotal.io/pks/manage-cluster-permissions.html#cluster-access-user)
+* You must be signed up to and share Telemetry with Pivotal <%# Needs re-wording %>
+* A Kubernetes cluster configured in
+[OIDC mode](https://docs.pivotal.io/pks/manage-cluster-permissions.html#cluster-access-user)
 * A sandbox environment for testing
 
-## <a id="limitations"></a>Limitations
+## <a id="limitations"></a> Limitations
 
-### General Limitations
+### <a id="gen-lim"></a> General Limitations
 
-* This product is currently in alpha.
-  * The structure of the product is fully subject to change in further alphas or later releases.
-  * Pivotal does not provide commercial support for its alpha products.
-* This product is intended to be used with any Kubernetes distribution. However, given the number of Kubernetes vendors, versions, and configurations, not all of them have been tested with PDC.
-* Product upgrades are not supported. If you want to test a newer version, delete the previous version first.
+* This product is in alpha. The structure of the product is fully subject to change in further alphas or later releases. Pivotal does not provide commercial support for its alpha products.
+* This product is intended to be used with any Kubernetes distribution. However, given the number of
+Kubernetes vendors, versions, and configurations, not all of them have been tested with
+<%= vars.product_abbr %>.
+* Product upgrades are not supported. To test a newer version, delete the previous version first.
 
-## <a id="feedback"></a>Feedback
+## <a id="feedback"></a> Feedback
 
 If you have a feature request, questions, or information about an issue, please email
 [PDC Feedback](mailto:marketplace@pivotal.io).
