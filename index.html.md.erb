@@ -1,58 +1,31 @@
 ---
-title: Pivotal Developer Console (Beta)
-owner: Partners
+title: Pivotal Developer Console (Alpha)
+owner: Marketplace
 ---
 
 <strong><%= modified_date %></strong>
 
-**If this product is in beta, keep and edit the warning note below.**
 <p class="note warning">
 <strong>Warning: </strong>
-The <%= vars.product_full %> is currently in beta and is intended for evaluation and test purposes only.
+The <%= vars.product_full %> is currently in alpha and is intended for evaluation and test purposes only.
 Do not use this product in a PCF production environment.
 </p>
 
-**This topic begins with a brief description of what the product tile (e.g. Apigee Edge Service Broker for PCF) does,
-whereas the Overview section below describes what the service itself (e.g. Apigee Edge) does. See below for an example.**
-
-This documentation describes the Apigee Edge Service Broker for Pivotal Cloud Foundry (PCF). The Apigee Edge Service
-Broker for PCF enables developers to manage APIs for their PCF apps through the Apigee Edge management console.
-
-**Note**: This description appears under **OVERVIEW** in the tile's listing on
-[Pivotal Network](http://network.pivotal.io).
+This documentation describes the Pivotal Developer Console (PDC). The Pivotal Developer Console enables platform teams to curate a set of brokered services for use by application teams across many platforms (such as Kubernetes and PAS.)
 
 ## <a id='overview'></a>Overview
 
-**The overview describes the service that your product offers to PCF developers.
-Make sure to overview the features of the integration.
-Don't focus only on the overview of your product that is being integrated.
-See below for an example.**
+PDC allows platform teams to curate and register Open Service Broker API (OSBAPI) compliant service brokers, which can be running anywhere as long as they are accessible by PDC, to a single centralised location.
 
-The Apigee Edge Service Broker for PCF registers a service broker with PCF and exposes its service plans on the
-Marketplace. Developers can then create service plan instances using Apps Manager or the Cloud Foundry Command
-Line Interface (cf CLI) and bind them to their apps.
-
-Creating an Apigee Edge for PCF service instance and binding it to an app creates an Apigee Edge API proxy that
-handles requests for the app. This lets developers use the Apigee Edge management console to manage API request
-handling between clients and the app.
-
-**Note**: This overview appears under **OVERVIEW**, combined with the description above in the tile's listing on
-[Pivotal Network](http://network.pivotal.io).
+These brokers can then be used by application teams to provision services and retrieve credentials, via the `pdc` command line tool. Their applications, which could be living across multiple platforms, can then use these credentials to access the service instances.
 
 ## <a id='features'></a>Key Features
 
-**Note**: This feature list appears under **FEATURES** in the tile's listing on
-[Pivotal Network](http://network.pivotal.io).
-Make sure you list the key features of the tile (the integration).
-We cannot accept a list of the key features of your product that we are integrating.
-
 <%= vars.product_full %> includes the following key features:
 
-* Feature one
-* Feature two
-* Feature three
-
-
+* Register OSBAPI compliant brokers
+* Create and access services on applications running across multiple platforms
+* Have a docker image registry that images can be relocated to.
 
 ## <a id="snapshot"></a>Product Snapshot
 
@@ -62,57 +35,46 @@ The following table provides version and version-support information about <%= v
     <th>Element</th>
     <th>Details</th>
     <tr>
-        <td>Tile version</td>
-        <td>vYOUR-VERSION-NUMBER</td>
+        <td>CNAB version</td>
+        <td>v0.1.0-alpha.1</td>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>YOUR-RELEASE-DATE (Ex: July 1, 2019)</td>
+        <td>Christmas</td>
     </tr>
     <tr>
-        <td>Software component version</td>
-        <td>YOUR-SOFTWARE-COMPONENT-VERSION-NUMBER</td>
+        <td>Service Catalog Helm Chart version</td>
+        <td>v0.3.0-beta.1</td>
     </tr>
     <tr>
-        <td>Compatible <%= vars.ops_manager %> version(s)</td>
-        <td>YOUR-COMPATIBLE-OPS-MAN-VERSION (Ex. 2.2, 2.3, and 2.4)</td>
+        <td>Projects Operator Helm Chart version</td>
+        <td>v0.4.2</td>
     </tr>
     <tr>
-        <td>Compatible <%= vars.app_runtime_full %> version(s)</td>
-        <td>YOUR-COMPATIBLE-PIVOTAL-APPLICATION-SERVICE-VERSION (Ex. 2.2, 2.3, and 2.4)</td>
-    </tr>
-    <tr>
-       <td>BOSH stemcell version</td>
-       <td>Ubuntu Xenial</td>
-    </tr>
-    <tr>
-        <td>IaaS support</td>
-        <td>AWS?, Azure?, GCP?, OpenStack?, and vSphere?</td>
+        <td>PDC CLI version</td>
+        <td>v0.1.3</td>
     </tr>
 </table>
 
-
 ## <a id="reqs"></a>Requirements
-
-**Provide any general or specific requirements, prerequisites, or dependencies here.
-A general requirement might be something like, "An AppDynamics account."
-A specific requirement might be something like, "Packaging Dependencies for Offline Buildpacks."**
 
 <%= vars.product_short %> has the following requirements:
 
-+ PREREQUISITE-1
-
-+ PREREQUISITE-2
+* You must be signed up to and share Telemetry with Pivotal
+* A Kubernetes cluster configured in [OIDC mode](https://docs.pivotal.io/pks/manage-cluster-permissions.html#cluster-access-user)
+* A sandbox environment for testing
 
 ## <a id="limitations"></a>Limitations
 
-**List any known limitations.**
+### General Limitations
+
+* This product is currently in alpha.
+  * The structure of the product is fully subject to change in further alphas or later releases.
+  * Pivotal does not provide commercial support for its alpha products.
+* This product is intended to be used with any Kubernetes distribution. However, given the number of Kubernetes vendors, versions, and configurations, not all of them have been tested with PDC.
+* Product upgrades are not supported. If you want to test a newer version, delete the previous version first.
 
 ## <a id="feedback"></a>Feedback
 
 If you have a feature request, questions, or information about an issue, please email
-[Pivotal Cloud Foundry Feedback](mailto:cf-feedback@pivotal.io) or send an email to YOUR-SUPPORT-EMAIL.
-
-## <a id='license'></a>License
-
-**List any license information here.**
+[PDC Feedback](mailto:marketplace@pivotal.io).

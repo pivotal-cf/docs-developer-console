@@ -1,0 +1,81 @@
+---
+title: Using Pivotal Developer Console to Provide Services
+owner: Marketplace
+---
+
+<strong><%= modified_date %></strong>
+
+This topic describes how to use <%= vars.product_full %> (PDC) to provide services to application teams and provide some degree of isolation between different projects.
+
+## <a id='projects'></a> Projects
+
+### <a id='project-definition'></a> What is a Project?
+
+A `Project` is a Kubernetes Customer Resource Definition (CRD) that is used to manage the isolation of PDC services and entities in a Kubernetes cluster. The entities in a `Project` map can be any of the base Kubernetes entities: `Users`, `Groups` and `ServiceAccounts`.
+
+### <a id='configuring-projects'></a> Configuring Projects
+
+You can configure a projects by posting yaml to the Kubernetes API of your cluster. This documentation will demonstrate this via the `kubectl` CLI however any other means of communicating with the API should work too.
+
+To create a new `Project` you can create a yaml file of the form:
+
+```yaml
+apiVersion: developerconsole.pivotal.io/v1
+kind: Project
+metadata:
+  name: PROJECT-NAME
+spec:
+  access:
+  - kind: ENTITY-TYPE
+    name: ENTITY-NAME
+    namespace: ENTITY-NAMESPACE
+```
+
+Where:
+
+* `PROJECT-NAME` is the name of the new project, this should not match an existing Kubernetes `namespace`
+* `ENTITY-TYPE` is one of `User`, `Group` and `ServiceAccount`
+* `ENTITY-NAME` is the name of the entity which you want to be able to access PDC resources within the new project
+* `ENTITY-NAMESPACE` is the `namespace` of the `ServiceAccount` being granted access
+  * This is only required for entities of type `ServiceAccount`
+
+<p class="note"><b>Note</b>: In the Project yaml format <code>spec.access</code> is an array and can therefore include multiple entity entries.</p>
+
+Given the project yaml file has been saved to project.yaml then this can then be applied with:
+<p class="terminal">
+$ kubectl create -f project.yaml
+</p>
+
+## <a id='registering-brokers'></a> Registering Brokers
+
+You can register any Open Service Broker API (OSBAPI) compliant brokers with the PDC CLI tool. This can be done in the following way:
+
+<p class="terminal">
+$ pdc broker register --name=BROKER-NAME --url=BROKER-URL --username=BROKER-USERNAME--password=BROKER-PASSWORD
+</p>
+
+Where:
+
+* `BROKER-NAME` is the name of the newly registered broker
+* `BROKER-URL` is the location of the broker API endpoint
+* `BROKER-USERNAME` is the username by which PDC will authenticate with the broker
+* `BROKER-PASSWORD` is the password by which PDC will authenticate with the broker
+
+You can examine the currently registered broker by using the command `pdc broker list` which will return a list of the currently registered brokers and their registration status, in the form:
+
+<p class="terminal">
+$ pdc broker list
+NAME          URL          STATUS    CREATED AT
+BROKER-NAME   BROKER-URL   created   2019-02-31 12:00:00 +0000 GMT
+</p>
+
+Individual brokers can then be further examined with:
+
+<p class="terminal">
+$ pdc broker get --name=BROKER-NAME
+createdAt: 2019-02-31 12:00:00 +0000 GMT
+name: BROKER-NAME
+status:
+  message: Successfully fetched catalog entries from broker.
+  state: created
+</p>
