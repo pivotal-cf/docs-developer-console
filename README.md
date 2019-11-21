@@ -25,9 +25,9 @@ Always make changes you want carried forward in the master branch. This includes
 | master     | v0.1 (staged here: http://docs-pcf-staging.cfapps.io/pivotal-developer-console/0-n/) |
 
 
-[//]: # (1. Always cherry-pick any changes to live branches into **master** if you want those changes carried forward.
+[//]: # "1. Always cherry-pick any changes to live branches into **master** if you want those changes carried forward.
 
-2. If necessary, immediately cherry-pick/copy changes from **master** that you want to push immediately to production into the appropriate live branch above.)
+2. If necessary, immediately cherry-pick/copy changes from **master** that you want to push immediately to production into the appropriate live branch above."
 
 ### Style Sheet
 
@@ -37,8 +37,8 @@ We need to decide on product name short forms:
 
 ## Pipelines
 
-[//]: # (**Edge Pipeline**<br>
-The `master` branch builds to the <br> <strong>cf-services-edge > developer-console-edge</strong> pipeline, and does not go to production until release time: [Edge pipeline](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services-edge?group=developer-console-edge). <br>)
+[//]: # "**Edge Pipeline**<br>
+The `master` branch builds to the <br> <strong>cf-services-edge > developer-console-edge</strong> pipeline, and does not go to production until release time: [Edge pipeline](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services-edge?group=developer-console-edge). <br>"
 
 **Production Pipeline**<br>
 All live branches build to the <strong>cf-services > developer-console</strong> pipeline,
