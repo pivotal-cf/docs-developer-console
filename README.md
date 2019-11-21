@@ -26,7 +26,6 @@ Always make changes you want carried forward in the master branch. This includes
 
 
 [//]: # "1. Always cherry-pick any changes to live branches into **master** if you want those changes carried forward.
-
 2. If necessary, immediately cherry-pick/copy changes from **master** that you want to push immediately to production into the appropriate live branch above."
 
 ### Style Sheet
