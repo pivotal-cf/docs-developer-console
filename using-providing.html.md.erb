@@ -6,90 +6,104 @@ owner: Marketplace
 <strong><%= modified_date %></strong>
 
 This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>) to provide services to app
-teams and isolate different `Projects`.
+teams <%# Must we say "app team" instead of "developers"? %> and isolate different `Projects`.
 
 ## <a id='overview'></a> Overview
 
-A `Project` is a Kubernetes customer resource definition (CRD) that is used to manage the isolation of
-<%= vars.product_abbr %> services and entities in a Kubernetes cluster.
+A `Project` is a Kubernetes custom resource definition (CRD) that is used to manage the isolation <%# Can we be more specific than "manage"? %>
+of <%= vars.product_abbr %> services and entities in a Kubernetes cluster.
 The entities in a `Project` map can be any of the base Kubernetes entities -- `Users`, `Groups`, and
 `ServiceAccounts`.
 
-## <a id='configuring-projects'></a> Configuring Projects
+## <a id='config-projects'></a> Configuring Projects
 
 You can configure `Projects` by posting YAML to the Kubernetes API of your cluster.
-This topic demonstrates this through using the `kubectl` CLI, which is one of several means of communicating
-with the API.
+This topic demonstrates this through using the Kubernetes command line tool (kubectl), which is one of several
+means of communicating with the API.
 To create a new `Project`:
 
-1. Create a YAML file <%# Anywhere on the local machine? Named what? %>
-1. Enter the contents below into the file and save it.
+1. Create a file called `project.yaml` anywhere on your local machine. <%# Check the file name and location -- these are Richard's educated guesses. %>
+1. Copy and paste the contents below into the file.
+1. Replace the placeholders with real values and save the file.
 
-```yaml
-apiVersion: developerconsole.pivotal.io/v1
-kind: Project
-metadata:
-  name: PROJECT-NAME
-spec:
-  access:
-  - kind: ENTITY-TYPE
-    name: ENTITY-NAME
-    namespace: ENTITY-NAMESPACE
-```
+    ```yaml
+    apiVersion: developerconsole.pivotal.io/v1
+    kind: Project
+    metadata:
+      name: PROJECT-NAME
+    spec:
+      access:
+      - kind: ENTITY-TYPE
+        name: ENTITY-NAME
+        namespace: ENTITY-NAMESPACE
+    ```
 
-Where:
+    Where:
+    * `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes `namespace`.
+    * `ENTITY-TYPE` is a `User`, `Group`, or `ServiceAccount`.
+    * `ENTITY-NAME` is the name of the entity that you want to access <%= vars.product_abbr %> resources
+    within the new project. <%# What's "within the new project"? The entity, the resources, or both? %>
+    * `ENTITY-NAMESPACE` is the `namespace` of the `ServiceAccount` being granted access. This is only required for
+    `ServiceAccount` type entities.
 
-* `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes `namespace`.
-* `ENTITY-TYPE` is a `User`, `Group`, or `ServiceAccount`.
-* `ENTITY-NAME` is the name of the entity that you want to have access to <%= vars.product_abbr %> resources
-within the new project.
-* `ENTITY-NAMESPACE` is the `namespace` of the `ServiceAccount` being granted access. This is only required for
-entities of the type `ServiceAccount`.
+    <p class="note">
+      <strong>Note:</strong>
+      In the <code>Project</code> YAML format, <code>spec.access</code> is an array and can therefore include
+      multiple entity entries. <%# Can we shorten "entity entries" to just "entities?" %>
+    </p>
 
-<p class="note">
-  <strong>Note:</strong>
-  In the Project YAML format <code>spec.access</code> is an array and can therefore include multiple entity
-  entries.
-</p>
+1. Apply the configuration by running:
 
-Given the project YAML file has been saved to `project.yaml`, the configuration can be applied with:
-<p class="terminal">
-  $ kubectl create -f project.yaml
-</p>
+    ```
+      kubectl create -f project.yaml
+    ```
 
-## <a id='registering-brokers'></a> Registering Brokers
+## <a id='register-broker'></a> Register a Broker
 
-You can register any Open Service Broker API (OSBAPI) compliant brokers with the <%= vars.product_abbr %> CLI
+You can register any Open Service Broker API (OSBAPI)-compliant brokers with the <%= vars.product_abbr %> CLI
 tool.
-This can be done in the following way:
 
-<p class="terminal">
-  $ pdc broker register --name=BROKER-NAME --url=BROKER-URL --username=BROKER-USERNAME--password=BROKER-PASSWORD
-</p>
+1. Register the broker by running:
 
-Where:
+    ```
+      pdc broker register --name=BROKER-NAME --url=BROKER-URL --username=BROKER-USERNAME--password=BROKER-PASSWORD
+    ```
 
-* `BROKER-NAME` is the name of the newly registered broker
-* `BROKER-URL` is the location of the broker API endpoint
-* `BROKER-USERNAME` is the username by which <%= vars.product_abbr %> authenticates with the broker
-* `BROKER-PASSWORD` is the password by which <%= vars.product_abbr %> authenticates with the broker
+    Where:
+    * `BROKER-NAME` is the name of the newly registered broker
+    * `BROKER-URL` is the location of the broker API endpoint
+    * `BROKER-USERNAME` is the username by which <%= vars.product_abbr %> authenticates with the broker
+    * `BROKER-PASSWORD` is the password by which <%= vars.product_abbr %> authenticates with the broker
 
-You can examine the currently registered broker by running `pdc broker list` which returns a list of the
-currently registered brokers and their registration status, in the form:
+1. Check that the broker was registered by running:
 
-<p class="terminal">
-  $ pdc broker list
-  NAME          URL          STATUS    CREATED AT
-  BROKER-NAME   BROKER-URL   created   2019-02-31 12:00:00 +0000 GMT
-</p>
+    ```
+      pdc broker list
+    ```
 
-Individual brokers can then be further examined with:
+    This returns a list of registered brokers, as in the example below:
 
-<p class="terminal">
-  $ pdc broker get --name=BROKER-NAME
-  createdAt: 2019-02-31 12:00:00 +0000 GMT
-  name: BROKER-NAME
-  status:
-    message: Successfully fetched catalog entries from broker.
-    state: created
-</p>
+    <pre class="terminal">
+      $ pdc broker list
+      NAME          URL          STATUS    CREATED AT
+      BROKER-NAME   BROKER-URL   created   2019-02-31 12:00:00 +0000 GMT
+    </pre>
+
+## <a id='examine-broker'></a> (Optional) Examine a Broker <%# Is this within scope? Is it just "nice to know"? %>
+
+1. Examine a specific broker by running:
+
+    ```
+    pdc broker get --name=BROKER-NAME
+    ```
+
+    See an example below:
+
+<pre class="terminal">
+$ pdc broker get --name=BROKER-NAME
+createdAt: 2019-02-31 12:00:00 +0000 GMT
+name: BROKER-NAME
+status:
+  message: Successfully fetched catalog entries from broker.
+  state: created
+</pre>
