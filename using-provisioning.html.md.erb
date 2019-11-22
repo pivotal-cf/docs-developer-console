@@ -5,18 +5,19 @@ owner: Marketplace
 
 <strong><%= modified_date %></strong>
 
-<%# is the purpose of this topic to provide info for Codys on how to use PDC? %>
+<%# Is the purpose of this topic to provide info for Codys on how to use PDC? %>
 This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>)
 to provision services within a `Project` for use with apps deployed on multiple platforms.
 
 ## <a id='selecting-project'></a> Select a Project
 
-Before provisioning or accessing details for any <%= vars.product_abbr %> service instances you must
-select a `Project` that you have access to.
+Before provisioning or accessing details for any <%= vars.product_abbr %> service instances you must select a
+`Project` that you can access.
 For more information about `Projects`, see [Overview](using-providing.html#overview).
 
-<p class="note"><strong>Note</strong>:
-  Instances and bindings that you create when using one <code>Project</code> are not visible when using another <code>Project</code>.
+<p class="note">
+  <strong>Note:</strong> Instances and bindings that you create when using one <code>Project</code> are not
+  visible when using another <code>Project</code>.
 </p>
 
 To select a `Project`:
@@ -27,10 +28,10 @@ To select a `Project`:
     pdc project use
     ```
 
-    <p class="terminal">
+    <pre class="terminal">
     $ pdc project use --name=PROJECT-NAME
     Using project 'PROJECT-NAME'.
-    </p>
+    </pre>
 
     Where `PROJECT-NAME` is the name of your `Project`.
 
@@ -40,7 +41,7 @@ You can create a service instance if there is an appropriate broker present that
 
 To create a service instance:
 
-1. List the available services by running:
+1. Find the necessary service and broker by running:
 
     ```
     pdc service list
@@ -48,15 +49,13 @@ To create a service instance:
 
     For example:
 
-    <%# need a realistic example without placeholder for snippet below %>
-    <p class="terminal">
+    <pre class="terminal"> <%# Replace the placeholders in this snippet with realistic values %>
     $ pdc service list
     SERVICE        PLANS          BROKER             DESCRIPTION
     SERVICE-NAME   large, small   SERVICE-BROKER     Some description about the service provided.
-    </p>
+    </pre>
 
-    * `SERVICE-NAME` is the name of the service
-    * `SERVICE-BROKER` is the name of the broker which provides the service
+    This command lists all available services with their brokers.
 
 1. Create an instance of a service by running:
 
@@ -71,7 +70,6 @@ To create a service instance:
     * `SERVICE-PLAN` is the plan that you use to configure your instance
     * `BROKER-NAME` is the name of the broker that provides the service
 
-    <%# need a realistic example without placeholder here %>
 
 1. (Optional) You can see the current service instances by running:
 
@@ -81,11 +79,11 @@ To create a service instance:
 
     For example:
 
-    <p class="terminal">
+    <pre class="terminal"> <%# Replace the placeholders in this snippet with realistic values %>
     $ pdc instance list
     NAME            SERVICE        PLAN           BROKER          STATUS    CREATED AT
     INSTANCE-NAME   SERVICE-NAME   SERVICE-PLAN   BROKER-NAME     created   2019-02-31 12:00:00 +0000 GMT
-    </p>
+    </pre>
 
 ## <a id='examine-broker'></a> Examine an Instance
 
@@ -99,8 +97,7 @@ To examine a specific instance:
 
     For example:
 
-    <%# need example without placeholders %>
-    <p class="terminal">
+    <pre class="terminal"> <%# Replace placeholders with realistic values %>
     $ pdc instance get --name=INSTANCE-NAME
     broker: BROKER-NAME
     createdAt: 2019-02-31 12:00:00 +0000 GMT
@@ -110,16 +107,15 @@ To examine a specific instance:
     status:
       message: The instance was provisioned successfully
       state: created
-    </p>
+    </pre>
 
-## <a id='getting-access-instance'></a> Access a Service Instance
+## <a id='access-instance'></a> Access a Service Instance
 
-<%# needs a few sentences to describe what the user is doing here.
-What does accessing an instance mean? What is the service instance binding to? %>
+<%# This needs a few sentences to describe what the user is doing here. What does accessing an instance mean? What is the service instance binding to? %>
 
 To access a service instance:
 
-1. Create a binding for the instance, by running:
+1. Create a binding for the instance by running:
 
     ```
     pdc binding create --name=BINDING-NAME --instance=INSTANCE-NAME
@@ -138,12 +134,11 @@ To access a service instance:
 
     For example:
 
-    <%# need example without placeholders %>
-    <p class="terminal">
+    <pre class="terminal"> <%# Replace placeholders with realistic values %>
     $ pdc binding list
     NAME           INSTANCE            STATUS    CREATED AT
     BINDING-NAME  INSTANCE-NAME       created   2019-02-31 12:00:00 +0000 GMT
-    </p>
+    </pre>
 
 1. Get the credentials needed to access the service instance:
 
@@ -153,8 +148,7 @@ To access a service instance:
 
     For example:
 
-    <%# need example without placeholders %>
-    <p class="terminal">
+    <pre class="terminal"> <%# Replace placeholders with realistic values %>
     $ pdc binding get --name=BINDING-NAME
     broker: BROKER-NAME
     createdAt: 2019-11-20 15:57:00 +0000 GMT
@@ -168,14 +162,14 @@ To access a service instance:
     status:
       message: Injected bind result
       state: created
+    </pre>
+
+    <p class="note">
+      <strong>Note:</strong> The exact form of the <code>credentials</code> block varies from service to
+      service depending on what is required to access the service.
     </p>
 
-    <p class="note"><strong>Note</strong>:
-      The exact form of the <code>credentials</code> block varies
-      from service to service depending on what is required to access the service.
-    </p>
-
-    <p class="note"><strong>Note</strong>:
-      Currently binding details are stored as Kubernetes secrets so you can also
-      access them through the Kubernetes API and kubectl.
+    <p class="note"><strong>Note:</strong>
+      Currently binding details are stored as Kubernetes secrets so that you can also access them through the
+      Kubernetes API and kubectl.
     </p>

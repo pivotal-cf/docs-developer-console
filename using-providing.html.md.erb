@@ -11,7 +11,7 @@ teams <%# Must we say "app team" instead of "developers"? %> and isolate differe
 
 ## <a id='overview'></a> Overview
 
-A `Project` is a Kubernetes custom resource definition (CRD) that is used to manage the isolation <%# Can we be more specific than "manage"? %>
+A `Project` is a Kubernetes custom resource definition (CRD) that is used to manage the isolation <%# Can we be more specific? Maybe bullet point all the things? %>
 of <%= vars.product_abbr %> services and entities in a Kubernetes cluster.
 The entities in a `Project` map can be any of the base Kubernetes entities -- `Users`, `Groups`, and
 `ServiceAccounts`.
@@ -19,11 +19,11 @@ The entities in a `Project` map can be any of the base Kubernetes entities -- `U
 ## <a id='config-projects'></a> Configuring Projects
 
 You can configure `Projects` by posting YAML to the Kubernetes API of your cluster.
-This topic demonstrates this through using the Kubernetes command line tool (kubectl), which is one of several
+This topic demonstrates this with the Kubernetes command line tool, kubectl, which is one of several
 means of communicating with the API.
 To create a new `Project`:
 
-1. Create a file called `project.yaml` anywhere on your local machine. <%# Check the file name and location -- these are Richard's educated guesses. %>
+1. Create a file called `project.yaml` anywhere on your local machine. <%# Check the file name and location -- these are Richard's guesses. %>
 1. Copy and paste the contents below into the file.
 1. Replace the placeholders with real values and save the file.
 
@@ -48,9 +48,8 @@ To create a new `Project`:
     `ServiceAccount` type entities.
 
     <p class="note">
-      <strong>Note:</strong>
-      In the <code>Project</code> YAML format, <code>spec.access</code> is an array and can therefore include
-      multiple entity entries. <%# Can we shorten "entity entries" to just "entities?" %>
+      <strong>Note:</strong> In the <code>Project</code> YAML format, <code>spec.access</code> is an array and
+      can therefore include multiple entity entries. <%# Can we shorten "entity entries" to just "entities?" %>
     </p>
 
 1. Apply the configuration by running:
