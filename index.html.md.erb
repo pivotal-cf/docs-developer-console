@@ -7,12 +7,12 @@ owner: Marketplace
 
 <p class="note warning">
   <strong>Warning:</strong>
-  <%= vars.product_full %> is currently in alpha and is intended for evaluation and test purposes only.
-  Do not use this product in a <%= vars.platform_old %> production environment.
+  <%= vars.product_full %> is currently in alpha and is intended for evaluation and test purposes only. The product is only available to early adopters, please get in touch with the <a href="mailto:pdc-feedback@pivotal.io"><%= vars.product_full %> team</a>, if you would like to know more.
+  This product is not currently intended for production environments. Please do not use this product in a <%= vars.platform_old %> production environment.
 </p>
 
 This documentation describes <%= vars.product_full %> (<%= vars.product_abbr %>).
-<%= vars.product_short %> enables platform teams to curate a set of brokered services for use by app teams across many platforms, such as Kubernetes and <%= vars.app_runtime_abbr %>.
+<%= vars.product_short %> currently enables platform teams to curate a single set of brokered services for use by app teams.
 
 ## <a id='overview'></a> Overview
 
@@ -20,21 +20,25 @@ This documentation describes <%= vars.product_full %> (<%= vars.product_abbr %>)
 compliant service brokers running anywhere, as long as they are accessible by <%= vars.product_abbr %>, to a
 single centralized location.
 
-These brokers can then be used by app teams to provision services and retrieve credentials, through the
-`pdc` command line tool (CLI). Their apps, which could exist across multiple platforms, can then use
+These brokers can then be used by app teams to provision services and retrieve credentials, through the `pdc` command line tool (CLI). Their apps, which could exist across multiple runtimes, such as Pivotal Platform and Pivotal Container Service, can then use
 these credentials to access the service instances.
+
+<p class="note">
+    <b>Note:</b>
+    The use of credentials by applications is in the early stages of development, and we are seeking feedback on the user experience of this in particular as a high priority.
+</p>
 
 ## <a id='features'></a> Key Features
 
 <%= vars.product_full %> can:
 
 * Register OSBAPI compliant brokers
-* Create and access services on apps running across multiple platforms
-* Have a Docker image registry that images can be relocated to.
+* Provide isolation for services within different application projects
+* Create services and access them across multiple runtimes
 
 ## <a id="snapshot"></a> Product Snapshot
 
-The following table provides version and version-support information about <%= vars.product_short %>.
+The following table provides version information about <%= vars.product_short %>.
 
 <table class="nice">
     <th>Element</th>
@@ -65,10 +69,11 @@ The following table provides version and version-support information about <%= v
 
 <%= vars.product_short %> has the following requirements:
 
-* You must be signed up to and share Telemetry with Pivotal <%# Needs re-wording %>
+* You must be signed up to the <%= vars.product_short %> Early Adopter Programme
 * A Kubernetes cluster configured in
 [OIDC mode](https://docs.pivotal.io/pks/manage-cluster-permissions.html#cluster-access-user)
 * A sandbox environment for testing
+* A Docker image registry that images can be relocated to
 
 ## <a id="limitations"></a> Limitations
 
@@ -78,9 +83,10 @@ The following table provides version and version-support information about <%= v
 * This product is intended to be used with any Kubernetes distribution. However, given the number of
 Kubernetes vendors, versions, and configurations, not all of them have been tested with
 <%= vars.product_abbr %>.
-* Product upgrades are not supported. To test a newer version, delete the previous version first.
+* Product upgrades are currently not supported. To test a newer version, delete the previous version first.
 
 ## <a id="feedback"></a> Feedback
 
 If you have a feature request, questions, or information about an issue, please email
-[PDC Feedback](mailto:marketplace@pivotal.io).
+[PDC Feedback](mailto:pdc-feedback@pivotal.io).
+Please note that limited support is currently provided to <%= vars.product_short %> Early Adopters by the PDC team directly, not by Pivotal Support.
