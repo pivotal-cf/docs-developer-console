@@ -6,35 +6,47 @@ owner: Marketplace
 <strong><%= modified_date %></strong>
 
 <p class="note warning">
-  <strong>Warning:</strong>
-  <%= vars.product_full %> is currently in alpha and is intended for evaluation and test purposes only. The product is only available to early adopters, please get in touch with the <a href="mailto:pdc-feedback@pivotal.io"><%= vars.product_full %> team</a>, if you would like to know more.
-  This product is not currently intended for production environments. Please do not use this product in a <%= vars.platform_old %> production environment.
+  <strong>Warning:</strong> <%= vars.product_full %> is currently in alpha and is intended for evaluation and
+  test purposes only.
+  This product is not currently intended for production environments.
+  Do not use this product in a <%= vars.platform_old %> production environment.
+</p>
+
+<p class="note">
+  <strong>Note:</strong> This product is only available to members of the <%= vars.product_short %> Early
+  Adopter Program.
+  For more information, please email <a href="mailto:pdc-feedback@pivotal.io"><%= vars.product_abbr %> Feedback</a>.
 </p>
 
 This documentation describes <%= vars.product_full %> (<%= vars.product_abbr %>).
-<%= vars.product_short %> currently enables platform teams to curate a single set of brokered services for use by app teams.
+<%= vars.product_short %> currently enables platform teams to curate <%# maintain? %> a single set of brokered
+services for use by app teams <%# Can we just say "developers"? %>.
 
 ## <a id='overview'></a> Overview
 
 <%= vars.product_abbr %> allows platform teams to curate and register Open Service Broker API (OSBAPI)
 compliant service brokers running anywhere, as long as they are accessible by <%= vars.product_abbr %>, to a
 single centralized location.
+<%# Needs re-wording. Probably to: "PDC enables platform teams to register and maintain Open Service Broker API (OSBAPI)
+compliant service brokers, running anywhere, from a single centralized location." %>
 
-These brokers can then be used by app teams to provision services and retrieve credentials, through the `pdc` command line tool (CLI). Their apps, which could exist across multiple runtimes, such as Pivotal Platform and Pivotal Container Service, can then use
-these credentials to access the service instances.
+App teams can then use these brokers to provision services and retrieve credentials through the `pdc` command
+line tool (CLI).
+The apps can then use these credentials to access the service instances, even if the apps exist across multiple
+runtime environments, such as <%= vars.platform_name %> and <%= vars.k8s_runtime_full %>.
 
 <p class="note">
-    <b>Note:</b>
-    The use of credentials by applications is in the early stages of development, and we are seeking feedback on the user experience of this in particular as a high priority.
+    <strong>Note:</strong> The <%= vars.product_full %> team is especially keen for user feedback on this.
+    The use of credentials by apps is still in early development and
 </p>
 
 ## <a id='features'></a> Key Features
 
 <%= vars.product_full %> can:
 
-* Register OSBAPI compliant brokers
-* Provide isolation for services within different application projects
-* Create services and access them across multiple runtimes
+* Register OSBAPI-compliant brokers
+* Provide isolation for services within different app projects
+* Create services and access them across multiple runtime environments
 
 ## <a id="snapshot"></a> Product Snapshot
 
@@ -67,26 +79,30 @@ The following table provides version information about <%= vars.product_short %>
 
 ## <a id="reqs"></a> Requirements
 
-<%= vars.product_short %> has the following requirements:
+To use <%= vars.product_short %> you must:
 
-* You must be signed up to the <%= vars.product_short %> Early Adopter Programme
-* A Kubernetes cluster configured in
+* Be signed up to the <%= vars.product_short %> Early Adopter Program
+* Have a Kubernetes cluster configured in
 [OIDC mode](https://docs.pivotal.io/pks/manage-cluster-permissions.html#cluster-access-user)
-* A sandbox environment for testing
-* A Docker image registry that images can be relocated to
+* Have a sandbox environment for testing
+* Have a Docker image registry that images can be relocated to
 
 ## <a id="limitations"></a> Limitations
 
 ### <a id="gen-lim"></a> General Limitations
 
-* This product is in alpha. The structure of the product is fully subject to change in further alphas or later releases. Pivotal does not provide commercial support for its alpha products.
-* This product is intended to be used with any Kubernetes distribution. However, given the number of
-Kubernetes vendors, versions, and configurations, not all of them have been tested with
-<%= vars.product_abbr %>.
+* This product is in alpha. The structure of the product is subject to change in later versions.
+* Pivotal does not provide commercial support for its alpha products.
+* This product is intended to be used with any Kubernetes distribution. However, given the number of Kubernetes
+vendors, versions, and configurations, not all of them have been tested with <%= vars.product_abbr %>.
 * Product upgrades are currently not supported. To test a newer version, delete the previous version first.
 
 ## <a id="feedback"></a> Feedback
 
 If you have a feature request, questions, or information about an issue, please email
-[PDC Feedback](mailto:pdc-feedback@pivotal.io).
-Please note that limited support is currently provided to <%= vars.product_short %> Early Adopters by the PDC team directly, not by Pivotal Support.
+[<%= vars.product_abbr %> Feedback](mailto:pdc-feedback@pivotal.io).
+
+<p class="note">
+  <strong>Note:</strong> Support for <%= vars.product_short %> is limited, currently, because it is directly
+  supported by the <%= vars.product_abbr %> engineers, not Pivotal Support.
+</p>
