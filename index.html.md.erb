@@ -9,7 +9,7 @@ owner: Marketplace
   <strong>Warning:</strong> <%= vars.product_full %> is currently in alpha and is intended for evaluation and
   test purposes only.
   This product is not currently intended for production environments.
-  Do not use this product in a <%= vars.platform_old %> production environment.
+  Do not use this product in any production environment.
 </p>
 
 <p class="note">
@@ -19,12 +19,12 @@ owner: Marketplace
 </p>
 
 This documentation describes <%= vars.product_full %> (<%= vars.product_abbr %>).
-<%= vars.product_short %> currently enables platform teams to maintain a single set of brokered services for
-use by developers.
+<%= vars.product_short %> currently enables platform teams to curate a single set of brokered services for
+use by app teams.
 
 ## <a id='overview'></a> Overview
 
-<%= vars.product_abbr %> enables platform teams to register and maintain Open Service Broker API (OSBAPI)
+As of the current Alpha, <%= vars.product_abbr %> enables platform teams to register and curate Open Service Broker API (OSBAPI)
 compliant service brokers, running anywhere, from a single centralized location.
 
 App teams can then use these brokers to provision services and retrieve credentials through the `pdc` command
@@ -43,7 +43,7 @@ runtime environments, such as <%= vars.platform_name %> and <%= vars.k8s_runtime
 
 * Register OSBAPI-compliant brokers
 * Provide isolation for services within different app projects
-* Create services and access them across multiple runtime environments
+* Create services and access them across multiple runtimes
 
 ## <a id="snapshot"></a> Product Snapshot
 

@@ -6,13 +6,13 @@ owner: Marketplace
 <strong><%= modified_date %></strong>
 
 This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>) to provide services to
-developers and isolate different `Projects`.
+app teams and isolate different `Projects`.
 
 ## <a id='overview'></a> Overview
 
-A `Project` is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_abbr %> service
-instances and bindings within a Kubernetes cluster.
-Operators are then able to add or remove developers to and from these projects as required.
+A `Project` is a Kubernetes custom resource definition (CRD) that is used to manage the isolation
+of <%= vars.product_abbr %> services and entities in a Kubernetes cluster.
+Operators are then able to add or remove app team members to and from these projects as required.
 
 The entities in a `Project` map can be any of the base Kubernetes entities -- `Users`, `Groups`, and
 `ServiceAccounts`.
@@ -107,3 +107,13 @@ To examine a specific broker:
       message: Successfully fetched catalog entries from broker.
       state: created
     </pre>
+
+## <a id="feedback"></a> Feedback
+
+If you have a feature request, questions, or information about an issue, please email
+[<%= vars.product_abbr %> Feedback](mailto:pdc-feedback@pivotal.io).
+
+<p class="note">
+  <strong>Note:</strong> Support for <%= vars.product_short %> is limited, currently, because it is directly
+  supported by the <%= vars.product_abbr %> engineers, not Pivotal Support.
+</p>
