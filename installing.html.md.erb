@@ -43,7 +43,12 @@ of custom resource definitions (CRDs) and custom controllers.
     duffle --help
     ```
 
-<%# Insert a warning here about holding on to the YAML file for the sake of uninstallation %>
+    <p class="note">
+      <strong>Note:</strong> By default, duffle stores state on your local machine in the
+      <code>$HOME/.duffle</code> directory.
+      This means that any later duffle commands, such as <code>uninstall</code> should be run from the same
+      developer machine.
+    </p>
 
 ### <a id='relocate'></a> Relocate Images
 
@@ -70,15 +75,14 @@ To relocate images:
 
     This stores the mapping output in a file called `/tmp/mapping.json`.
 
-    <p class="note">By default, duffle will store state on your local machine in the `$HOME/.duffle` directory. This means that any future duffle commands (e.g. uninstalling) should be run from the same developer machine. </p>
-    
-    <p class="note">The output file `/tmp/mapping.json` should also be saved somewhere safe as it is required to uninstall PDC.</p>
+1. Store `/tmp/mapping.json` somewhere safe: it is required to uninstall <%= vars.product_abbr %>.
 
 ### <a id='install-cnab'></a> Install the CNAB Bundle
 
 To install the CNAB bundle:
 
-1. Create a credentials file called `developer-console-creds.yaml` with the contents below.
+1. Create a credentials file called `developer-console-creds.yaml` anywhere on your local machine <%# check this location is correct %>
+with the contents below.
 
     ```
     name: developer-console-creds
@@ -100,7 +104,7 @@ To install the CNAB bundle:
         value: REGISTRY-PASSWORD
     ```
 
-1. Install the bundle, referencing the mapping file created in [Relocate Images](#relocate).
+1. Install the bundle, referencing the mapping file created in [Relocate Images](#relocate), by running:
 
     ```
     duffle install developer-console developer-console-VERSION.tgz \
