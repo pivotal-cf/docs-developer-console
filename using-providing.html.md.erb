@@ -5,14 +5,15 @@ owner: Marketplace
 
 <strong><%= modified_date %></strong>
 
-<%# is the purpose of this topic to provide info for Alanas on how to use PDC? %>
-This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>) to provide services to app
-teams <%# Must we say "app team" instead of "developers"? %> and isolate different `Projects`.
+This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>) to provide services to
+developers and isolate different `Projects`.
 
 ## <a id='overview'></a> Overview
 
-A `Project` is a Kubernetes custom resource definition (CRD) that is used to manage the isolation <%# Can we be more specific? Maybe bullet point all the things? %>
-of <%= vars.product_abbr %> services and entities in a Kubernetes cluster.
+A `Project` is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_abbr %> service
+instances and bindings within a Kubernetes cluster. Operators are then able to add or remove developers to and
+from these projects as required.
+
 The entities in a `Project` map can be any of the base Kubernetes entities -- `Users`, `Groups`, and
 `ServiceAccounts`.
 
@@ -23,7 +24,7 @@ This topic demonstrates this with the Kubernetes command line tool, kubectl, whi
 means of communicating with the API.
 To create a new `Project`:
 
-1. Create a file called `project.yaml` anywhere on your local machine. <%# Check the file name and location -- these are Richard's guesses. %>
+1. Create a file called `project.yaml` anywhere on your local machine.
 1. Copy and paste the contents below into the file.
 1. Replace the placeholders with real values and save the file.
 
@@ -34,22 +35,19 @@ To create a new `Project`:
       name: PROJECT-NAME
     spec:
       access:
-      - kind: ENTITY-TYPE
-        name: ENTITY-NAME
-        namespace: ENTITY-NAMESPACE
+      - kind: TYPE
+        name: NAME
     ```
 
     Where:
     * `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes `namespace`.
-    * `ENTITY-TYPE` is a `User`, `Group`, or `ServiceAccount`.
-    * `ENTITY-NAME` is the name of the entity that you want to access <%= vars.product_abbr %> resources
-    within the new project. <%# What's "within the new project"? The entity, the resources, or both? %>
-    * `ENTITY-NAMESPACE` is the `namespace` of the `ServiceAccount` being granted access. This is only required for
-    `ServiceAccount` type entities.
+    * `TYPE` is a `User` or `Group`.
+    * `NAME` is the name of the user or group that you want to give access to <%= vars.product_abbr %> resources
+    within the new `Project`.
 
     <p class="note">
       <strong>Note:</strong> In the <code>Project</code> YAML format, <code>spec.access</code> is an array and
-      can therefore include multiple entity entries. <%# Can we shorten "entity entries" to just "entities?" %>
+      can therefore include multiple users or groups.
     </p>
 
 1. Apply the configuration by running:
@@ -89,7 +87,7 @@ tool.
       BROKER-NAME   BROKER-URL   created   2019-02-31 12:00:00 +0000 GMT
     </pre>
 
-## <a id='examine-broker'></a> (Optional) Examine a Broker <%# Is this within scope? Is it just "nice to know"? %>
+## <a id='examine-broker'></a> (Optional) Examine a Broker
 
 To examine a specific broker:
 
@@ -101,11 +99,10 @@ To examine a specific broker:
 
     For example:
 
-    <%# need example without placeholder %>
     <pre class="terminal">
-    $ pdc broker get --name=BROKER-NAME
+    $ pdc broker get --name=my-broker
     createdAt: 2019-02-31 12:00:00 +0000 GMT
-    name: BROKER-NAME
+    name: my-broker
     status:
       message: Successfully fetched catalog entries from broker.
       state: created

@@ -5,7 +5,6 @@ owner: Marketplace
 
 <strong><%= modified_date %></strong>
 
-<%# Is the purpose of this topic to provide info for Codys on how to use PDC? %>
 This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>)
 to provision services within a `Project` for use with apps deployed on multiple platforms.
 
@@ -25,15 +24,17 @@ To select a `Project`:
 1. Run:
 
     ```
-    pdc project use
+    pdc project use --name=PROJECT-NAME
     ```
 
-    <pre class="terminal">
-    $ pdc project use --name=PROJECT-NAME
-    Using project 'PROJECT-NAME'.
-    </pre>
+    Where `PROJECT-NAME` is the name of your project.
 
-    Where `PROJECT-NAME` is the name of your `Project`.
+    For example:
+
+    <pre class="terminal">
+    $ pdc project use --name=my-project
+    Using project 'my-project'.
+    </pre>
 
 ## <a id='creating-instance'></a> Create a Service Instance
 
@@ -49,10 +50,10 @@ To create a service instance:
 
     For example:
 
-    <pre class="terminal"> <%# Replace the placeholders in this snippet with realistic values %>
+    <pre class="terminal">
     $ pdc service list
     SERVICE        PLANS          BROKER             DESCRIPTION
-    SERVICE-NAME   large, small   SERVICE-BROKER     Some description about the service provided.
+    mysql   large, small   my-broker     Production grade MySQL service
     </pre>
 
     This command lists all available services with their brokers.
@@ -79,10 +80,10 @@ To create a service instance:
 
     For example:
 
-    <pre class="terminal"> <%# Replace the placeholders in this snippet with realistic values %>
+    <pre class="terminal">
     $ pdc instance list
     NAME            SERVICE        PLAN           BROKER          STATUS    CREATED AT
-    INSTANCE-NAME   SERVICE-NAME   SERVICE-PLAN   BROKER-NAME     created   2019-02-31 12:00:00 +0000 GMT
+    my-instance   mysql   small   my-broker     created   2019-02-31 12:00:00 +0000 GMT
     </pre>
 
 ## <a id='examine-broker'></a> Examine an Instance
@@ -97,13 +98,13 @@ To examine a specific instance:
 
     For example:
 
-    <pre class="terminal"> <%# Replace placeholders with realistic values %>
-    $ pdc instance get --name=INSTANCE-NAME
-    broker: BROKER-NAME
+    <pre class="terminal">
+    $ pdc instance get --name=my-instance
+    broker: my-broker
     createdAt: 2019-02-31 12:00:00 +0000 GMT
-    name: INSTANCE-NAME
-    plan: SERVICE-PLAN
-    service: SERVICE-NAME
+    name: my-instance
+    plan: small
+    service: mysql
     status:
       message: The instance was provisioned successfully
       state: created
@@ -111,7 +112,7 @@ To examine a specific instance:
 
 ## <a id='access-instance'></a> Access a Service Instance
 
-<%# This needs a few sentences to describe what the user is doing here. What does accessing an instance mean? What is the service instance binding to? %>
+This procedure explains how to obtain credentials and connection information for a service instance in to use it.
 
 To access a service instance:
 
@@ -134,13 +135,13 @@ To access a service instance:
 
     For example:
 
-    <pre class="terminal"> <%# Replace placeholders with realistic values %>
+    <pre class="terminal">
     $ pdc binding list
     NAME           INSTANCE            STATUS    CREATED AT
-    BINDING-NAME  INSTANCE-NAME       created   2019-02-31 12:00:00 +0000 GMT
+    my-binding  my-instance      created   2019-02-31 12:00:00 +0000 GMT
     </pre>
 
-1. Get the credentials needed to access the service instance:
+1. Get the credentials from the binding that are needed to access the service instance:
 
     ```
     pdc binding get --name=BINDING-NAME
@@ -148,17 +149,19 @@ To access a service instance:
 
     For example:
 
-    <pre class="terminal"> <%# Replace placeholders with realistic values %>
-    $ pdc binding get --name=BINDING-NAME
-    broker: BROKER-NAME
+    <pre class="terminal">
+    $ pdc binding get --name=my-binding
+    broker: my-broker
     createdAt: 2019-11-20 15:57:00 +0000 GMT
     credentials:
-      password: PASSWORD
-      username: USERNAME
-    instance: INSTANCE-NAME
-    name: BINDING-NAME
-    plan: SERIVCE-PLAN
-    service: SERVICE-NAME
+      password: my-password
+      username: my-username
+      host: example.com
+      port: 3306
+    instance: my-instance
+    name: my-binding
+    plan: small
+    service: mysql
     status:
       message: Injected bind result
       state: created

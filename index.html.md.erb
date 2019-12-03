@@ -19,16 +19,13 @@ owner: Marketplace
 </p>
 
 This documentation describes <%= vars.product_full %> (<%= vars.product_abbr %>).
-<%= vars.product_short %> currently enables platform teams to curate <%# maintain? %> a single set of brokered
-services for use by app teams <%# Can we just say "developers"? %>.
+<%= vars.product_short %> currently enables platform teams to maintain a single set of brokered services for
+use by developers.
 
 ## <a id='overview'></a> Overview
 
-<%= vars.product_abbr %> allows platform teams to curate and register Open Service Broker API (OSBAPI)
-compliant service brokers running anywhere, as long as they are accessible by <%= vars.product_abbr %>, to a
-single centralized location.
-<%# Needs re-wording. Probably to: "PDC enables platform teams to register and maintain Open Service Broker API (OSBAPI)
-compliant service brokers, running anywhere, from a single centralized location." %>
+<%= vars.product_abbr %> enables platform teams to register and maintain Open Service Broker API (OSBAPI)
+compliant service brokers, running anywhere, from a single centralized location.
 
 App teams can then use these brokers to provision services and retrieve credentials through the `pdc` command
 line tool (CLI).
@@ -36,8 +33,8 @@ The apps can then use these credentials to access the service instances, even if
 runtime environments, such as <%= vars.platform_name %> and <%= vars.k8s_runtime_full %>.
 
 <p class="note">
-    <strong>Note:</strong> The <%= vars.product_full %> team is especially keen for user feedback on this.
-    The use of credentials by apps is still in early development and
+    <strong>Note:</strong> The <%= vars.product_full %> team is especially keen for user feedback on the use of
+    credentials by apps.
 </p>
 
 ## <a id='features'></a> Key Features
@@ -82,8 +79,8 @@ The following table provides version information about <%= vars.product_short %>
 To use <%= vars.product_short %> you must:
 
 * Be signed up to the <%= vars.product_short %> Early Adopter Program
-* Have a Kubernetes cluster configured in
-[OIDC mode](https://docs.pivotal.io/pks/manage-cluster-permissions.html#cluster-access-user)
+* Have a <%= vars.k8s_runtime_full %> Kubernetes cluster configured in OpenID Connect (OIDC).
+For more information, see [Grant Cluster Access to a User](https://docs.pivotal.io/pks/manage-cluster-permissions.html#cluster-access-user).
 * Have a sandbox environment for testing
 * Have a Docker image registry that images can be relocated to
 

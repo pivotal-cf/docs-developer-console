@@ -19,7 +19,7 @@ of custom resource definitions (CRDs) and custom controllers.
 
 ## <a id='install'></a> Install and Configure <%= vars.product_short %>
 
-### <a id='install-pdc'></a> Installing Developer Console
+### <a id='install-pdc'></a> Installing <%= vars.product_short %>
 
 ### <a id='install-duffle'></a> Install Duffle
 
@@ -44,6 +44,8 @@ GitHub.
     duffle --help
     ```
 
+<%# Insert a warning here about holding on to the YAML file for the sake of uninstallation %>
+
 ### <a id='relocate'></a> Relocate Images
 
 To relocate images:
@@ -54,10 +56,12 @@ To relocate images:
     docker login harbor.example.com
     ```
 
+1. From Pivotal Network, download the <%= vars.product_short %> tarballs and the `pdc` CLI tool <%# Ask for details later. %>
+
 1. Relocate the images by running:
 
     ```
-    duffle relocate developer-console-VERSION.tgz \ <%# Where does the reader get this tarball? %>
+    duffle relocate developer-console-VERSION.tgz \
         --bundle-is-file  \
         --relocation-mapping /tmp/mapping.json \
         --repository-prefix harbor.example.com/your-project
@@ -81,7 +85,7 @@ To install the CNAB bundle:
         path: PATH-TO-KUBECONFIG # for example: /Users/pivotal/.kube/config
     - name: registry_url
       source:
-        value: REGISTRY-URL # for example: <%# give an example %>
+        value: REGISTRY-URL # for example: https://harbor.example.com/my-project
     - name: registry_email
       source:
         value: REGISTRY-ACCOUNT-EMAIL
@@ -103,18 +107,3 @@ To install the CNAB bundle:
     ```
 
     Where `VERSION` is the number in the filename.
-
-<%# Should the below step really be here? %>
-
-1. Uninstall, passing in the mapping file from the relocation step.
-
-    ```
-    duffle uninstall developer-console \
-        --credentials developer-console-creds.yaml \
-        --relocation-mapping /tmp/mapping.json
-    ```
-
-### <a id='download-pdc'></a> Download the Developer Console CLI <%# Is this really part of installation? %>
-
-1. Download the `pdc` CLI tool. For more information about it, see
-[marketplace](https://github.com/pivotal/marketplace) in GitHub.

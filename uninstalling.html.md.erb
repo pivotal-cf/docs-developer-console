@@ -1,0 +1,9 @@
+<%# Add step about getting necessary information from YAML file that should have been kept after installation. %>
+
+1. Uninstall, passing in the mapping file from the relocation step.
+
+    ```
+    duffle uninstall developer-console \
+        --credentials developer-console-creds.yaml \
+        --relocation-mapping /tmp/mapping.json
+    ```
