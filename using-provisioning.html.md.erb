@@ -27,7 +27,7 @@ To select a `Project`:
     pdc project use --name=PROJECT-NAME
     ```
 
-    Where `PROJECT-NAME` is the name of your project.
+    Where `PROJECT-NAME` is the name of your project.<br><br>
 
     For example:
 
@@ -53,7 +53,7 @@ To create a service instance:
     <pre class="terminal">
     $ pdc service list
     SERVICE        PLANS          BROKER             DESCRIPTION
-    mysql   large, small   my-broker     Production grade MySQL service
+    mysql          large, small   my-broker          Production grade MySQL service
     </pre>
 
     This command lists all available services with their brokers.
@@ -65,7 +65,6 @@ To create a service instance:
     ```
 
     Where:
-
     * `INSTANCE-NAME` is the name of the service instance to be created
     * `SERVICE-NAME` is the name of the service
     * `SERVICE-PLAN` is the plan that you use to configure your instance
@@ -83,7 +82,7 @@ To create a service instance:
     <pre class="terminal">
     $ pdc instance list
     NAME            SERVICE        PLAN           BROKER          STATUS    CREATED AT
-    my-instance   mysql   small   my-broker     created   2019-02-31 12:00:00 +0000 GMT
+    my-instance     mysql          small          my-broker       created   2019-02-31 12:00:00 +0000 GMT
     </pre>
 
 ## <a id='examine-broker'></a> Examine an Instance
@@ -123,7 +122,6 @@ To access a service instance:
     ```
 
     Where:
-
     * `BINDING-NAME` is the name you give the binding
     * `INSTANCE-NAME` is the name of the service instance you are binding
 
@@ -138,7 +136,7 @@ To access a service instance:
     <pre class="terminal">
     $ pdc binding list
     NAME           INSTANCE            STATUS    CREATED AT
-    my-binding  my-instance      created   2019-02-31 12:00:00 +0000 GMT
+    my-binding     my-instance         created   2019-02-31 12:00:00 +0000 GMT
     </pre>
 
 1. Get the credentials from the binding that are needed to access the service instance:
