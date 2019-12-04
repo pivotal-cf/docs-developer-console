@@ -60,7 +60,7 @@ To relocate images:
     docker login harbor.example.com
     ```
 
-1. From Pivotal Network, download the <%= vars.product_short %> tarballs and the `pdc` CLI tool <%# Ask for details later. %>
+1. Download the <%= vars.product_short %> tarballs from [Pivotal Network](https://network.pivotal.io/products/pivotal-developer-console/) to your working directory.
 
 1. Relocate the images by running:
 
@@ -81,7 +81,7 @@ To relocate images:
 
 To install the CNAB bundle:
 
-1. Create a credentials file called `developer-console-creds.yaml` anywhere on your local machine <%# check this location is correct %>
+1. Create a credentials file called `developer-console-creds.yaml` anywhere on your local machine
 with the contents below.
 
     ```
@@ -114,6 +114,17 @@ with the contents below.
     ```
 
     Where `VERSION` is the number in the filename.
+
+### <a id="install-cli"></a> Install the <%= vars.product_short %> CLI tool
+
+1. Download the `pdc` CLI tool from [Pivotal Network](https://network.pivotal.io/products/pivotal-developer-console/)
+and save it to `/usr/local/bin/`.
+
+1. Make the `pdc` CLI tool executable by running:
+
+    ```
+    chmod +x pdc
+    ```
 
 ## <a id="feedback"></a> Feedback
 
