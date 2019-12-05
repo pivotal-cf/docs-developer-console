@@ -31,8 +31,13 @@ Always make changes you want carried forward in the master branch. This includes
 ### Style Sheet
 
 We need to decide on product name short forms:
-+ Longest name = **Pivotal Developer Console**
-+ Short name, use on the page after the long name has been used = **Developer Console**
+
+| Term or product name | Notes |
+|----------------------|-------|
+|Pivotal Developer Console | `product_full`, the longest name |
+|Developer Console     | `product_short`, the short name, use on the page after the long name has been used |
+|PDC                   | `product_abbr`, use only where really necessary |
+|PDC CLI tool          | Name of the CLI tool, use instead of "`pdc` CLI tool"|
 
 ## Pipelines
 
@@ -43,7 +48,7 @@ The `master` branch builds to the <br> <strong>cf-services-edge > developer-cons
 All live branches build to the <strong>cf-services > developer-console</strong> pipeline,
 and are manually pushed to production as needed: [Production pipeline](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services?group=developer-console).
 
-## How to Cherry-pick from one Branch to Another
+## How to Cherry-Pick from one Branch to Another
 1. Make changes in the first branch (usually `master`), commit them, and then push them to the repo.
 2. Copy part of the SHA for the above commit. To find this, you can do a `git log`, or look at the list of commits in the github repo.
 3. Checkout the second branch, where you want to copy the changes you made in the first branch.
