@@ -8,7 +8,6 @@ owner: Marketplace
 <p class="note warning">
   <strong>Warning:</strong> <%= vars.product_full %> is currently in alpha and is intended for evaluation and
   test purposes only.
-  This product is not currently intended for production environments.
   Do not use this product in any production environment.
 </p>
 
@@ -27,9 +26,9 @@ use by app teams.
 This alpha version of <%= vars.product_abbr %> enables platform teams to register and curate Open Service
 Broker API (OSBAPI) compliant service brokers, running anywhere, from a single centralized location.
 
-App teams can then use these brokers to provision services and retrieve credentials through the `pdc` command
-line tool (CLI).
-The apps can then use these credentials to access the service instances, even if the apps exist across multiple
+App teams can then use these brokers to provision services and retrieve credentials
+through the <%= vars.product_abbr %> command line interface (CLI) tool.
+The apps use these credentials to access the service instances, even if the apps exist across multiple
 runtime environments, such as <%= vars.platform_name %> and <%= vars.k8s_runtime_full %>.
 
 <p class="note">
@@ -58,7 +57,7 @@ The following table provides version information about <%= vars.product_short %>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>5 December, 2019</td>
+        <td>December 6, 2019</td>
     </tr>
     <tr>
         <td>Service Catalog Helm chart version</td>
@@ -76,17 +75,17 @@ The following table provides version information about <%= vars.product_short %>
 
 ## <a id="reqs"></a> Requirements
 
-To use <%= vars.product_short %> you must:
+To use <%= vars.product_short %>, you must:
 
 * Be signed up to the <%= vars.product_short %> Early Adopter Program
-* Have a <%= vars.k8s_runtime_full %> Kubernetes cluster configured in OpenID Connect (OIDC).
+* Have an <%= vars.k8s_runtime_full %> Kubernetes cluster configured in OpenID Connect (OIDC).
 For more information, see [Grant Cluster Access to a User](https://docs.pivotal.io/pks/manage-cluster-permissions.html#cluster-access-user).
 * Have a sandbox environment for testing
 * Have a Docker image registry that images can be relocated to
 
 ## <a id="limitations"></a> Limitations
 
-### <a id="gen-lim"></a> General Limitations
+<%= vars.product_short %> has the following general limitations:
 
 * This product is in alpha. The structure of the product is subject to change in later versions.
 * Pivotal does not provide commercial support for its alpha products.
