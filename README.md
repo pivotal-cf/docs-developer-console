@@ -22,7 +22,7 @@ Always make changes you want carried forward in the master branch. This includes
 
 | Branch Name| Use for… |
 |------------| ---------|
-| master     | v0.1 (staged here: http://docs.pivotal.io/developer-console/0-1/) |
+| master     | v0.1 (staged here: http://docs.pivotal.io/developer-console/0-1/ and staged here: http://docs-pcf-staging.cfapps.io/developer-console/0-n/|
 
 
 [//]: # "1. Always cherry-pick any changes to live branches into **master** if you want those changes carried forward.
