@@ -10,7 +10,7 @@ app teams and isolate different `Projects`.
 
 ## <a id='overview'></a> Overview
 
-A `Project` is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_abbr %> service
+A `Project` is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_short %> service
 instances and bindings within a Kubernetes cluster.
 Operators are then able to add or remove app team members to and from these projects as required.
 
@@ -41,8 +41,8 @@ To create a new `Project`:
     Where:
     * `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes `namespace`.
     * `TYPE` is a `User` or `Group`.
-    * `NAME` is the name of the user or group that you want to give access to <%= vars.product_abbr %> resources
-    within the new `Project`.
+    * `NAME` is the name of the user or group that you want to give access to <%= vars.product_short %>
+    resources within the new `Project`.
 
 1. Replace the placeholders with real values and save the file.
 
@@ -71,8 +71,8 @@ tool.
     Where:
     * `BROKER-NAME` is the name of the newly registered broker
     * `BROKER-URL` is the location of the broker API endpoint
-    * `BROKER-USERNAME` is the username by which <%= vars.product_abbr %> authenticates with the broker
-    * `BROKER-PASSWORD` is the password by which <%= vars.product_abbr %> authenticates with the broker
+    * `BROKER-USERNAME` is the username by which <%= vars.product_short %> authenticates with the broker
+    * `BROKER-PASSWORD` is the password by which <%= vars.product_short %> authenticates with the broker
 
 1. Check that the broker was registered by running:
 
