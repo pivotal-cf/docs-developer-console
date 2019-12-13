@@ -9,8 +9,8 @@ This topic describes how to install and configure <%= vars.product_full %>.
 
 ## <a id='overview'></a> Overview
 
-<%= vars.product_short %> consists of a front end command line interface (CLI) named `pdc` and a backing set
-of custom resource definitions (CRDs) and custom controllers.
+<%= vars.product_short %> consists of a front end command line interface (CLI) named <%= vars.product_abbr %>
+and a backing set of custom resource definitions (CRDs) and custom controllers.
 
 ## <a id='prereqs'></a> Prerequisites
 
@@ -19,7 +19,22 @@ of custom resource definitions (CRDs) and custom controllers.
 
 ## <a id='install'></a> Install and Configure <%= vars.product_short %>
 
+To install and configure <%= vars.product_short %>:
+
+* [Install Duffle](#install-duffle)
+* [Relocate images](#relocate)
+* [Install the CNAB](#install-cnab)
+* [Install the <%= vars.product_abbr %> CLI tool](#install-cli), which is needed for operating <%= vars.product_short %>.
+
 ### <a id='install-duffle'></a> Install Duffle
+
+Duffle is a CLI that interacts with Cloud Native Application Bundles (CNABs) to package and unpackage
+distributed apps for deployment on cloud platforms and services.
+Duffle is used to install the <%= vars.product_short %> CNAB and relocate images.
+
+<%# Do you ever use Duffle directly or is it just something that PDC needs and you never interact with again? %>
+
+To install Duffle:
 
 1. Download the most recent Duffle binary from [duffle](https://github.com/deislabs/duffle/releases) in GitHub.
 
@@ -42,13 +57,15 @@ of custom resource definitions (CRDs) and custom controllers.
     ```
 
     <p class="note">
-      <strong>Note:</strong> By default, duffle stores state on your local machine in the
+      <strong>Note:</strong> By default, Duffle stores state on your local machine in the
       <code>$HOME/.duffle</code> directory.
-      This means that any later duffle commands, such as <code>uninstall</code> should be run from the same
+      This means that any later Duffle commands, such as <code>uninstall</code> should be run from the same
       developer machine.
     </p>
 
 ### <a id='relocate'></a> Relocate Images
+
+<%# What images does Alana relocate? From where and to where do they get relocated? Why is it necessary? %>
 
 To relocate images:
 
@@ -73,9 +90,11 @@ To relocate images:
 
 1. Store `/tmp/mapping.json` somewhere safe: it is required to uninstall <%= vars.product_short %>.
 
-### <a id='install-cnab'></a> Install the CNAB Bundle
+### <a id='install-cnab'></a> Install the CNAB
 
-To install the CNAB bundle:
+<%# What is in the CNAB bundle and what does it do? %>
+
+To install the CNAB:
 
 1. Create a credentials file called `developer-console-creds.yaml` anywhere on your local machine
 with the contents below.
@@ -112,6 +131,13 @@ with the contents below.
     Where `VERSION` is the number in the filename.
 
 ### <a id="install-cli"></a> Install the <%= vars.product_abbr %> CLI Tool
+
+To install the <%= vars.product_abbr %> CLI tool:
+
+1. Log in to your Early Access user account on [Pivotal Network](https://login.run.pivotal.io/login).
+If you do not have an Early Access account, please email
+<a href="mailto:pdc-feedback@pivotal.io"><%= vars.product_abbr %> Feedback</a> to request one.
+<%= vars.product_short %> is currently only available to Early Access users.
 
 1. Download the <%= vars.product_short %> tarball files from [Pivotal Network](https://network.pivotal.io/products/pivotal-developer-console/) to your working directory.
 
