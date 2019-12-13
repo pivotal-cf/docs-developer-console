@@ -6,23 +6,23 @@ owner: Marketplace
 <strong><%= modified_date %></strong>
 
 This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>) to provide services to
-app teams and isolate different `Projects`.
+app teams and isolate different projects.
 
 ## <a id='overview'></a> Overview
 
-A `Project` is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_short %> service
+A project is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_short %> service
 instances and bindings within a Kubernetes cluster.
 Operators are then able to add or remove app team members to and from these projects as required.
 
-The entities in a `Project` map can be any of the base Kubernetes entities -- `Users`, `Groups`, and
-`ServiceAccounts`.
+The entities in a project map can be any of the base Kubernetes entities -- users, groups, and
+ServiceAccounts.
 
 ## <a id='config-projects'></a> Configuring Projects
 
-You can configure `Projects` by posting YAML to the Kubernetes API of your cluster.
-This topic demonstrates this with the Kubernetes command line tool, kubectl, which is one of several
-means of communicating with the API.
-To create a new `Project`:
+You can configure projects by posting YAML to the Kubernetes API of your cluster.
+This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is one of
+several means of communicating with the API.
+To create a new project:
 
 1. Create a file called `project.yaml` anywhere on your local machine.
 1. Copy and paste the contents below into the file.
@@ -39,15 +39,15 @@ To create a new `Project`:
     ```
 
     Where:
-    * `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes `namespace`.
-    * `TYPE` is a `User` or `Group`.
+    * `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes namespace.
+    * `TYPE` is a user or group.
     * `NAME` is the name of the user or group that you want to give access to <%= vars.product_short %>
-    resources within the new `Project`.
+    resources within the new project.
 
 1. Replace the placeholders with real values and save the file.
 
     <p class="note">
-      <strong>Note:</strong> In the <code>Project</code> YAML format, <code>spec.access</code> is an array and
+      <strong>Note:</strong> In the project YAML format, <code>spec.access</code> is an array and
       can therefore include multiple users or groups.
     </p>
 
