@@ -5,10 +5,10 @@ https://github.com/pivotal-cf/docs-book-developer-console
 
 The book repo uses these branches:
 
-* **master** builds from the **master** content branch in this repo.
+* **edge** builds from the **master** content branch in this repo.
 Pipeline [here](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services-edge?group=developer-console-edge).
 
-[//]: # "* **Master** builds from the published content branches in this repo. Pipeline [here](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services?group=developer-console)."
+* **master** builds from the published content branches in this repo. Pipeline [here](https://concourse.run.pivotal.io/teams/cf-docs/pipelines/cf-services?group=developer-console).
 
 ## Branches in this (content) repo
 
@@ -22,10 +22,13 @@ Always make changes you want carried forward in the master branch. This includes
 
 | Branch Name| Use for… |
 |------------| ---------|
-| master     | v0.1 (staged here: http://docs.pivotal.io/developer-console/0-1/ and staged here: http://docs-pcf-staging.cfapps.io/developer-console/0-n/|
+| master     | v0.2 (staged here: http://docs-pcf-staging.cfapps.io/developer-console/0-n/|
+| alpha     | v0.1 (staged here: http://docs.pivotal.io/developer-console/0-alpha/|
 
+When the v0.2 alpha version is ready to publish, merge the master branch into the alpha branch.
+Keep all the alpha versions of the release notes stacked in the [Release Notes for Pivotal Developer Console](https://docs.pivotal.io/developer-console/0-alpha/release-notes.html) page.
 
-[//]: # "1. Always cherry-pick any changes to live branches into **master** if you want those changes carried forward.
+1. Always cherry-pick any changes to live branches into **master** if you want those changes carried forward.
 2. If necessary, immediately cherry-pick/copy changes from **master** that you want to push immediately to production into the appropriate live branch above."
 
 ### Style Sheet
