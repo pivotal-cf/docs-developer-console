@@ -15,31 +15,23 @@ These are release notes for <%= vars.product_full %>.
 
 New features and changes in this release:
 
-*
+* Added `pdc project list` command to allow application developers to view the projects that they have access to.
 
-*
-[//]: # (if there are no new features - only fixes - omit features section.)
+* Prevent creation of projects with the same name as an existing namespace.
 
-### Security Fixes
+* Validate that the project exists when a user runs `pdc project use`.
 
-This release includes the following security fixes:
-
-*
-*
+* Renamed `pdc broker delete` to `pdc broker deregister` to have more consistency in cli command names.
 
 ### Resolved Issues
 
 This release has the following fix:
 
-*
-
+* Updated the Kubernetes API version for Project CRD (custom resource definition) to v1alpha1 to reflect its alpha status.
 
 ### Known Issues
 
 This release has the following issues:
-
-* The Kubernetes API version for the Project CRD (custom resource definition) is v1.
-  However, the API might still be unstable.
 
 * The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a `$` character.
 
