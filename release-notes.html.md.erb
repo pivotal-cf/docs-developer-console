@@ -29,10 +29,13 @@ This release has the following issues:
 
 * The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a `$` character.
 
-* Due to a bug in UAA, removing the last group from a user in the backing identity provider, such as LDAP, is not reflected in UAA.
-  This can result in tokens being generated for users which grant them permissions for groups that they are no longer
-  members of. In order to circumvent this issue, UAA suggests creating a group that grants no permissions and to
-  assign users to that group when removing from all other groups.
+* If you remove a user's last remaining group membership in a backing identity provider, such as Lightweight
+Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does not reflect this change.
+This can result in the UAA server generating tokens for users that grant permissions for groups that the users
+are not in anymore.
+This is a UAA issue.
+To prevent this issue, create a group that grants no permissions and assign a user to that group before
+removing the rest of that user's group memberships.
 
 ## <a id="view"></a> View Release Notes for Another Version
 
