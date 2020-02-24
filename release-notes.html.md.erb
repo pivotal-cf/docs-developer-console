@@ -16,7 +16,8 @@ These are release notes for <%= vars.product_full %>.
 
 New features and changes in this release:
 
-* Adds the `pdc project list` command to enable app developers to view the projects that they have access to
+* Adds the `pdc project list` command to enable app developers to view the projects that they have
+access to
 
 * Prevents the creation of projects with the same name as an existing namespace
 
@@ -29,20 +30,22 @@ New features and changes in this release:
 
 This release has the following fix:
 
-* The Kubernetes API version for Project CRD (custom resource definition) is now correctly labelled v1alpha1,
-reflecting its alpha status.
+* The Kubernetes API version for Project CRD (custom resource definition) is now correctly labelled
+v1alpha1, reflecting its alpha status.
 
 
 ### Known Issues
 
 This release has the following issues:
 
-* The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a `$` character.
+* The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a
+`$` character.
 
-* If you remove a user's last remaining group membership in a backing identity provider, such as Lightweight
-Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does not reflect this change.
-This can result in the UAA server generating tokens for users that grant permissions for groups that the users
-are not in anymore.
+* If you remove a user's last remaining group membership in a backing identity provider, such as
+Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
+not reflect this change.
+This can result in the UAA server generating tokens for users that grant permissions for groups that
+the users are not in anymore.
 This is a UAA issue.
 To prevent this issue, create a group that grants no permissions and assign a user to that group before
 removing the rest of that user's group memberships.
@@ -50,5 +53,5 @@ removing the rest of that user's group memberships.
 
 ## <a id="view"></a> View Release Notes for Another Version
 
-To view the release notes for another product version, select the version from the dropdown at the top of this
-page.
+To view the release notes for another product version, select the version from the dropdown at the top
+of this page.
