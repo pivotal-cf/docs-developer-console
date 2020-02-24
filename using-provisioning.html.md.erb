@@ -10,8 +10,8 @@ to provision services within a project for use with apps deployed on multiple ru
 
 ## <a id='selecting-project'></a> Select a Project
 
-Before provisioning or accessing details for any <%= vars.product_short %> service instances you must select a
-project that you can access.
+Before provisioning or accessing details for any <%= vars.product_short %> service instances you must
+select a project that you can access.
 For more information about projects, see [Overview](using-providing.html#overview).
 
 <p class="note">
@@ -19,9 +19,13 @@ For more information about projects, see [Overview](using-providing.html#overvie
   visible when using another project.
 </p>
 
-To select a project:
+1. See the projects you have access to by running:
 
-1. Run:
+    ```
+    pdc project list
+    ```
+
+1. Select a project by running:
 
     ```
     pdc project use --name=PROJECT-NAME
@@ -111,7 +115,8 @@ To examine a specific instance:
 
 ## <a id='access-instance'></a> Access a Service Instance
 
-This procedure explains how to obtain credentials and connection information for a service instance in to use it.
+This procedure explains how to obtain credentials and connection information for a service instance
+in to use it.
 
 To access a service instance:
 
@@ -166,13 +171,13 @@ To access a service instance:
     </pre>
 
     <p class="note">
-      <strong>Note:</strong> The exact form of the <code>credentials</code> block varies from service to
-      service depending on what is required to access the service.
+      <strong>Note:</strong> The exact form of the <code>credentials</code> block varies from service
+      to service depending on what is required to access the service.
     </p>
 
     <p class="note"><strong>Note:</strong>
-      Currently binding details are stored as Kubernetes secrets so that you can also access them through the
-      Kubernetes API and kubectl.
+      Currently binding details are stored as Kubernetes secrets so that you can also access them
+      through the Kubernetes API and kubectl.
     </p>
 
 ## <a id="feedback"></a> Feedback
