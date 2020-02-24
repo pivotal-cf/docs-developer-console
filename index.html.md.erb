@@ -6,25 +6,27 @@ owner: Marketplace
 <strong><%= modified_date %></strong>
 
 <p class="note warning">
-  <strong>Warning:</strong> <%= vars.product_full %> is currently in alpha and is intended for evaluation and
-  test purposes only.
+  <strong>Warning:</strong> <%= vars.product_full %> is currently in alpha and is intended for
+  evaluation and test purposes only.
   Do not use this product in any production environment.
 </p>
 
 <p class="note">
-  <strong>Note:</strong> This product is only available to members of the <%= vars.product_short %> Early
-  Adopter Program.
-  For more information, please email <a href="mailto:pdc-feedback@pivotal.io"><%= vars.product_abbr %> Feedback</a>.
+  <strong>Note:</strong> This product is only available to members of the <%= vars.product_short %>
+  Early Adopter Program.
+  For more information, please email
+  <a href="mailto:pdc-feedback@pivotal.io"><%= vars.product_abbr %> Feedback</a>.
 </p>
 
 This documentation describes <%= vars.product_full %> (<%= vars.product_abbr %>).
-<%= vars.product_short %> currently enables platform teams to curate a single set of brokered services for
-use by app teams.
+<%= vars.product_short %> currently enables platform teams to curate a single set of brokered
+services for use by app teams.
 
 ## <a id='overview'></a> Overview
 
-This alpha version of <%= vars.product_short %> enables platform teams to register and curate Open Service
-Broker API (OSBAPI) compliant service brokers, running anywhere, from a single centralized location.
+This alpha version of <%= vars.product_short %> enables platform teams to register and curate Open
+Service Broker API (OSBAPI) compliant service brokers, running anywhere, from a single centralized
+location.
 
 App teams can then use these brokers to provision services and retrieve credentials
 through the <%= vars.product_abbr %> command line interface (CLI) tool.
@@ -32,8 +34,8 @@ The apps use these credentials to access the service instances, even if the apps
 runtime environments, such as <%= vars.platform_name %> and <%= vars.k8s_runtime_full %>.
 
 <p class="note">
-    <strong>Note:</strong> The <%= vars.product_short %> team is especially keen for user feedback on the use
-    of credentials by apps.
+    <strong>Note:</strong> The <%= vars.product_short %> team is especially keen for user feedback on
+    the use of credentials by apps.
 </p>
 
 ## <a id='features'></a> Key Features
@@ -52,24 +54,24 @@ The following table provides version information about <%= vars.product_short %>
     <th>Element</th>
     <th>Details</th>
     <tr>
-        <td>CNAB version</td>
-        <td>v0.1.0-alpha.1</td>
+        <td><%= vars.product_abbr %> CNAB bundle version</td>
+        <td>v0.2.0</td>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>December 6, 2019</td>
+        <td>February 21, 2020</td>
     </tr>
     <tr>
         <td>Service Catalog Helm chart version</td>
-        <td>v0.3.0-beta.1</td>
+        <td>v0.3.0-beta.2</td>
     </tr>
     <tr>
         <td>Projects Operator Helm chart version</td>
-        <td>v0.4.2</td>
+        <td>v0.6.2-build.6</td>
     </tr>
     <tr>
         <td><%= vars.product_abbr %> CLI version</td>
-        <td>v0.1.3</td>
+        <td>v0.2.0</td>
     </tr>
 </table>
 
@@ -89,9 +91,11 @@ For more information, see [Grant Cluster Access to a User](https://docs.pivotal.
 
 * This product is in alpha. The structure of the product is subject to change in later versions.
 * Pivotal does not provide commercial support for its alpha products.
-* This product is intended to be used with any Kubernetes distribution. However, given the number of Kubernetes
-vendors, versions, and configurations, not all of them have been tested with <%= vars.product_short %>.
-* Product upgrades are currently not supported. To test a newer version, delete the previous version first.
+* This product is intended to be used with any Kubernetes distribution. However, given the number of
+Kubernetes vendors, versions, and configurations, not all of them have been tested with
+<%= vars.product_short %>.
+* Product upgrades are currently not supported. To test a newer version, delete the previous version
+first.
 
 ## <a id="feedback"></a> Feedback
 
