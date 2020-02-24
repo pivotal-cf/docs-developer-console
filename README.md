@@ -22,10 +22,10 @@ Always make changes you want carried forward in the master branch. This includes
 
 | Branch Name| Use for… |
 |------------| ---------|
-| master     | v0.2 (staged here: http://docs-pcf-staging.cfapps.io/developer-console/0-n/|
-| alpha     | v0.1 (staged here: http://docs.pivotal.io/developer-console/0-alpha/|
+| master     | v0.3 (staged here: http://docs-pcf-staging.cfapps.io/developer-console/0-n/|
+| alpha     | v0.2 (staged here: http://docs.pivotal.io/developer-console/0-alpha/|
 
-When the v0.2 alpha version is ready to publish, merge the master branch into the alpha branch.
+When the latest alpha version is ready to publish, merge the master branch into the alpha branch.
 Keep all the alpha versions of the release notes stacked in the [Release Notes for Pivotal Developer Console](https://docs.pivotal.io/developer-console/0-alpha/release-notes.html) page.
 
 1. Always cherry-pick any changes to live branches into **master** if you want those changes carried forward.
