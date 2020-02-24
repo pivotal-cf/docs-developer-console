@@ -51,7 +51,31 @@ To prevent this issue, create a group that grants no permissions and assign a us
 removing the rest of that user's group memberships.
 
 
-## <a id="view"></a> View Release Notes for Another Version
+## <a id="0.1.0-alpha.1"></a> v0.1.0–alpha.1
 
-To view the release notes for another product version, select the version from the dropdown at the top
-of this page.
+**Release Date:** December 6, 2019
+
+### Features
+The initial alpha release enables:
+* Registering of Open Service Broker API (OSBAPI) compliant service brokers
+* Assignment of app teams to projects for isolation purposes
+* Provisioning of instances within a project
+* Creation of bindings for instances and retrieval of the credentials
+
+### Known Issues
+
+This release has the following issues:
+
+* The Kubernetes API version for the Project CRD (custom resource definition) is v1.
+  However, the API might still be unstable.
+
+* The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a `$` character.
+
+* If you remove a user's last remaining group membership in a backing identity provider, such as
+Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
+not reflect this change.
+This can result in the UAA server generating tokens for users that grant permissions for groups that
+the users are not in anymore.
+This is a UAA issue.
+To prevent this issue, create a group that grants no permissions and assign a user to that group before
+removing the rest of that user's group memberships.
