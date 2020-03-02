@@ -21,10 +21,59 @@ and a backing set of custom resource definitions (CRDs) and custom controllers.
 
 To install and configure <%= vars.product_short %>:
 
+* [Create Cloud Foundry UAA client](#create-cf-uaa-client)
 * [Install Duffle](#install-duffle)
 * [Relocate images](#relocate)
 * [Install the CNAB](#install-cnab)
 * [Install the <%= vars.product_abbr %> CLI tool](#install-cli), which is needed for operating <%= vars.product_short %>.
+
+### <a id='create-cf-uaa-client'></a> Create Cloud Foundry UAA Client
+
+Note: This step is only required if you wish to bind service instances to
+applications running in Cloud Foundry. It must be repeated for each Cloud
+Foundry you wish to make availble to <%= vars.product_short %>.
+
+To create the required UAA Client:
+
+<%# The following steps are generic and have been copied from https://docs.pivotal.io/pks/1-6/manage-users.html %>
+
+1. Retrieve the UAA management admin client secret:
+  a. In a web browser, navigate to the Ops Manager Installation Dashboard and click the Pivotal Application Service tile.
+  b. Click the Credentials tab.
+  c. Click Link to Credential next to Admin Client Credentials and copy the value of `password`
+
+2.Target the Cloud Foundry UAA server by running the following command:
+
+    ```
+    uaac target https://UAA-ENDPOINT --ca-cert CERTIFICATE-PATH
+    ```
+
+Where:
+
+* `UAA-ENDPOINT` is the URL of the Cloud Foundry UAA server.
+* `CERTIFICATE-PATH` is the path to your Ops Manager root CA certificate.
+  * If you are logged in to the Ops Manager VM, specify `/var/tempest/workspaces/default/root_ca_certificate` as the path.
+  * This is the default location of the root certificate on the Ops Manager VM.
+  * If you downloaded the Ops Manager root CA certificate to your machine, specify the path where you stored the certificate.
+
+3. Authenticate with UAA by running the following command:
+
+    ```
+    uaac token client get admin -s ADMIN-CLIENT-SECRET
+    ```
+
+Where `ADMIN-CLIENT-SECRET` is your UAA management admin client secret that you
+retrieved in a previous step. The client username is admin.
+
+<%# The following steps are specific %>
+
+4. Create an admin client for <%= vars.product_short %>
+
+    ```
+    uaac client add developerconsole -s CLIENT_SECRET --authorized_grant_types client_credentials --authorities cloud_controller.admin
+    ```
+
+Where `CLIENT_SECRET` is a password of your choosing. Keep this password safe as it will be required when installing <%= developerconsole %>.
 
 ### <a id='install-duffle'></a> Install Duffle
 
