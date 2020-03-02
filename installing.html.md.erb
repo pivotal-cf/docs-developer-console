@@ -166,6 +166,12 @@ with the contents below.
     - name: registry_password
       source:
         value: REGISTRY-PASSWORD
+    - name: cf_admin_client
+      source:
+        value: CF_ADMIN_CLIENT # for example: developerconsole
+    - name: cf_admin_client_secret
+      source:
+        value: CF_ADMIN_CLIENT_SECRET # the secret you configured in [Create Cloud Foundry UAA client](#create-cf-uaa-client)
     ```
 
 1. Install the bundle, referencing the mapping file created in [Relocate Images](#relocate), by running:
