@@ -180,6 +180,50 @@ To access a service instance:
       through the Kubernetes API and kubectl.
     </p>
 
+## <a id='bind-instance-to-cf'></a> Bind a Service Instance to an app running in Cloud Foundry
+
+This procedure explains how to bind credentials and connection information for a service instance to an app that is running in Cloud Foundry.
+
+1. Ensure the Cloud Foundry deployment has been registered with <%= vars.product_short  %>.
+
+    ```
+    pdc cloudfoundry list
+    ```
+
+    For example:
+
+    <pre class="terminal">
+    $ pdc cloudfoundry list
+    NAME           API
+    my-cf          https://api.sys.my-cf.example.com
+    </pre>
+
+    <p class="note">
+      <strong>Note:</strong> Take note of the `NAME` that corresponds to the
+      `API` of the Cloud Foundry in which your app is running. You will need it
+      when creating the binding.
+    </p>
+
+1. Create a binding for the instance to your Cloud Foundry app by running:
+
+    ```
+    pdc binding create --name=BINDING-NAME --instance=INSTANCE-NAME --app=APP-REFERENCE
+    ```
+
+    Where:
+    * `BINDING-NAME` is the name you give the binding
+    * `INSTANCE-NAME` is the name of the service instance you are binding
+    * `APP-REFERENCE` is a reference to a Cloud Foundry app with the format:
+    `CF-NAME/ORG-NAME/SPACE-NAME/APP-NAME`, where:
+      * `CF-NAME` is the name of the Cloud Foundry as identified in the previous step.
+      * `ORG-NAME` is the name of the Cloud Foundry Organization your app is running in.
+      * `SPACE-NAME` is the name of the Cloud Foundry Space your app is running in.
+      * `APP-NAME` is the name of your Cloud Foundry app.
+
+1. The binding credentials and connection information will now be available to
+your Cloud Foundry app via the `VCAP_SERVICES` environment variable,
+specifically as a `user-provided` service.
+
 ## <a id="feedback"></a> Feedback
 
 <%= partial vars.path_to_partials + '/developer-console/alpha-feedback' %>
