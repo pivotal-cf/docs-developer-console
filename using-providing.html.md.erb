@@ -5,27 +5,29 @@ owner: Marketplace
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>) to provide services to
-app teams, how to provide isolation of resources via projects and how to register Cloud Foundry instances.
+This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>) to provide
+services to app teams, how to provide isolation of resources through projects, and how to register
+Cloud Foundry instances.
 
 ## <a id='overview'></a> Overview
 
-A project is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_short %> service
-instances and bindings within a Kubernetes cluster.
+A project is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_short %>
+service instances and bindings within a Kubernetes cluster.
 Operators are then able to add or remove app team members to and from these projects as required.
 
 The entities in a project map can be any of the base Kubernetes entities -- users, groups, and
 ServiceAccounts.
 
-In order to allow app teams to bind service instances to their apps that are
+To allow app teams to bind service instances to their apps that are
 running in Cloud Foundry, you must first register the Cloud Foundry in <%=
 vars.product_short %>.
 
 ## <a id='config-projects'></a> Configuring Projects
 
 You can configure projects by posting YAML to the Kubernetes API of your cluster.
-This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is one of
-several means of communicating with the API.
+This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is
+one of several means of communicating with the API.
+
 To create a new project:
 
 1. Create a file called `project.yaml` anywhere on your local machine.
@@ -64,8 +66,9 @@ To create a new project:
 ## <a id='register-cfs'></a> Registering Cloud Foundries
 
 You can register Cloud Foundry deployments by posting YAML to the Kubernetes API of your cluster.
-This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is one of
-several means of communicating with the API.
+This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is
+one of several means of communicating with the API.
+
 To create register a new Cloud Foundry:
 
 1. Create a file called `cf.yaml` anywhere on your local machine.
@@ -75,19 +78,22 @@ To create register a new Cloud Foundry:
     apiVersion: developerconsole.pivotal.io/v1alpha1
     kind: CloudFoundry
     metadata:
-      name: CLOUDFOUNDRY-NAME
+      name: CLOUD-FOUNDRY-NAME
     spec:
       api: https://CLOUDFOUNDRY-API
     ```
 
     Where:
-    * `CLOUDFOUNDRY-NAME` is the name of the Cloud Foundry deployment you are registering. This can be anything you like.
-    * `CLOUDFOUNDRY-API` is the API endpoint of the Cloud Foundry. Note that the API endpoint must be accessible over the network from your cluster.
+    * `CLOUD-FOUNDRY-NAME` is the name of the Cloud Foundry deployment you are registering. This can
+    be anything you like.
+    * `CLOUD-FOUNDRY-API` is the API endpoint of the Cloud Foundry. The API endpoint must be
+    accessible over the network from your cluster.
 
 1. Replace the placeholders with real values and save the file.
 
     <p class="note">
-      <strong>Note:</strong> You must configure an admin client in the Cloud Foundry UAA, see [Create Cloud Foundry UAA client](#create-cf-uaa-client).
+      <strong>Note:</strong> You must configure an admin client in the Cloud Foundry UAA, see
+      <a href="./installing.html#create-cf-uaa-client">Create Cloud Foundry UAA client</a>.
     </p>
 
 1. Apply the configuration by running:
