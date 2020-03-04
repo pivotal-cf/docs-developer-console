@@ -8,7 +8,7 @@ owner: Marketplace
 This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>)
 to provision services within a project for use with apps deployed on multiple runtime environments.
 
-## <a id='selecting-project'></a> Select a Project
+## <a id='select-project'></a> Select a Project
 
 Before provisioning or accessing details for any <%= vars.product_short %> service instances you must
 select a project that you can access.
@@ -40,7 +40,7 @@ For more information about projects, see [Overview](using-providing.html#overvie
     Using project 'my-project'.
     </pre>
 
-## <a id='creating-instance'></a> Create a Service Instance
+## <a id='create-instance'></a> Create a Service Instance
 
 You can create a service instance if there is an appropriate broker present that provides the service.
 
@@ -175,10 +175,50 @@ To access a service instance:
       to service depending on what is required to access the service.
     </p>
 
-    <p class="note"><strong>Note:</strong>
-      Currently binding details are stored as Kubernetes secrets so that you can also access them
-      through the Kubernetes API and kubectl.
+    <p class="note">
+      <strong>Note:</strong> Currently binding details are stored as Kubernetes secrets so that you
+      can also access them through the Kubernetes API and kubectl.
     </p>
+
+## <a id='bind-instance-to-cf'></a> Bind a Service Instance to an App That Runs in Cloud Foundry
+
+To bind credentials and connection information for a service instance to an app that is running in
+Cloud Foundry:
+
+1. Check that the Cloud Foundry deployment has been registered with <%= vars.product_short %> by
+running:
+
+    ```
+    pdc cloudfoundry list
+    ```
+
+    For example:
+
+    <pre class="terminal">
+    $ pdc cloudfoundry list
+    NAME           API
+    my-cf          https://api.sys.my-cf.example.com
+    </pre>
+
+1. Record the <code>NAME</code> that corresponds to the <code>API</code> of the Cloud Foundry
+deployment in which your app is running. You need it when you create the binding.
+
+1. Create a binding between the instance and your Cloud Foundry app by running:
+
+    ```
+    pdc binding create --name=BINDING-NAME --instance=INSTANCE-NAME --app=CF-NAME/ORG-NAME/SPACE-NAME/APP-NAME
+    ```
+
+    Where:
+    * `BINDING-NAME` is the name you give the binding
+    * `INSTANCE-NAME` is the name of the service instance you are binding
+    * `CF-NAME` is the name of the Cloud Foundry deployment as identified earlier in the procedure
+    * `ORG-NAME` is the name of the Cloud Foundry org your app is running in
+    * `SPACE-NAME` is the name of the Cloud Foundry space your app is running in
+    * `APP-NAME` is the name of your Cloud Foundry app
+
+1. The binding credentials and connection information are now available to your Cloud Foundry app
+through the `VCAP_SERVICES` environment variable as a `user-provided` service.
 
 ## <a id="feedback"></a> Feedback
 
