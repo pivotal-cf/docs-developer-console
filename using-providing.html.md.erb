@@ -68,6 +68,13 @@ You can register a Cloud Foundry deployment by posting YAML to the Kubernetes AP
 This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is
 one of several means of communicating with the API.
 
+<p class="note">
+  <strong>Note:</strong> You must have an admin client configured in the Cloud Foundry UAA to give
+  <%= vars.product_short %> permission to create and bind services in your Cloud Foundry deployment.
+  For more information, see
+  <a href="./installing.html#create-cf-uaa-client">Create Cloud Foundry UAA client</a>.
+</p>
+
 To register a new Cloud Foundry deployment:
 
 1. Create a file called `cf.yaml` anywhere on your local machine.
@@ -89,11 +96,6 @@ To register a new Cloud Foundry deployment:
     be accessible over the network from your cluster.
 
 1. Replace the placeholders with real values and save the file.
-
-    <p class="note">
-      <strong>Note:</strong> You must configure an admin client in the Cloud Foundry UAA, see
-      <a href="./installing.html#create-cf-uaa-client">Create Cloud Foundry UAA client</a>.
-    </p>
 
 1. Apply the configuration by running:
 
