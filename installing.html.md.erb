@@ -50,13 +50,14 @@ To create the required UAA Client:
     uaac target https://UAA-ENDPOINT --ca-cert CERTIFICATE-PATH
     ```
 
-Where:
-
-* `UAA-ENDPOINT` is the URL of the Cloud Foundry UAA server.
-* `CERTIFICATE-PATH` is the path to your <%= vars.ops_manager %> root CA certificate.
-  * If you are logged in to the <%= vars.ops_manager %> VM, specify `/var/tempest/workspaces/default/root_ca_certificate` as the path.
-  * This is the default location of the root certificate on the <%= vars.ops_manager %> VM.
-  * If you downloaded the <%= vars.ops_manager %> root CA certificate to your local machine, specify the path where you stored the certificate.
+    Where:
+    * `UAA-ENDPOINT` is the URL of the Cloud Foundry UAA server.
+    * `CERTIFICATE-PATH` is the path to your <%= vars.ops_manager %> root Certificate Authority (CA)
+    certificate. If you are logged in to the <%= vars.ops_manager %> VM, specify
+    `/var/tempest/workspaces/default/root_ca_certificate` as the path. This is the default location of
+    the root certificate on the <%= vars.ops_manager %> VM. If you downloaded the
+    <%= vars.ops_manager %> root CA certificate to your local machine, specify the path where you
+    stored the certificate.
 
 3. Authenticate with UAA by running:
 
@@ -64,10 +65,10 @@ Where:
     uaac token client get admin -s ADMIN-CLIENT-SECRET
     ```
 
-Where `ADMIN-CLIENT-SECRET` is your UAA management admin client secret that you retrieved in a
-previous step. The client username is `admin`.
+    Where `ADMIN-CLIENT-SECRET` is your UAA management admin client secret that you retrieved earlier
+    in this procedure. `admin` is the client username.
 
-<%# The following steps are specific %>
+<%# The following steps  are specific %>
 
 4. Create an admin client for <%= vars.product_short %> by running:
 
@@ -75,8 +76,9 @@ previous step. The client username is `admin`.
     uaac client add developerconsole -s CLIENT_SECRET --authorized_grant_types client_credentials --authorities cloud_controller.admin
     ```
 
-Where `CLIENT_SECRET` is a password of your choice. Keep this password safe as it is required when
-installing <%= vars.product_short %>.
+    Where `CLIENT-PASSWORD` is a password of your choice. Keep this password safe: it is required
+    when installing <%= vars.product_short %>.
+
 
 ### <a id='install-duffle'></a> Install Duffle
 
@@ -112,8 +114,8 @@ in GitHub.
     <p class="note">
       <strong>Note:</strong> By default, Duffle stores state on your local machine in the
       <code>$HOME/.duffle</code> directory.
-      This means that any later Duffle commands, such as <code>uninstall</code> should be run from the same
-      developer machine.
+      This means that any later Duffle commands, such as <code>uninstall</code> should be run from
+      the same developer machine.
     </p>
 
 ### <a id='relocate'></a> Relocate Images
@@ -198,7 +200,8 @@ If you do not have an Early Access account, please email
 <a href="mailto:pdc-feedback@pivotal.io"><%= vars.product_abbr %> Feedback</a> to request one.
 <%= vars.product_short %> is currently only available to Early Access users.
 
-1. Download the <%= vars.product_short %> tarball files from [Pivotal Network](https://network.pivotal.io/products/pivotal-developer-console/) to your working directory.
+1. Download the <%= vars.product_short %> tarball files from
+[Pivotal Network](https://network.pivotal.io/products/developer-console/) to your working directory.
 
 1. Untar the `pdc` tarball and choose the appropriate binary CLI tool for your operating system.
 
@@ -208,7 +211,8 @@ If you do not have an Early Access account, please email
     chmod +x pdc
     ```
 
-1. Move this <%= vars.product_abbr %> CLI tool to somewhere within your system path such as `/usr/local/bin/pdc`.
+1. Move this <%= vars.product_abbr %> CLI tool to somewhere within your system path such as
+`/usr/local/bin/pdc`.
 
 ## <a id="feedback"></a> Feedback
 
