@@ -26,7 +26,7 @@ Always make changes you want carried forward in the master branch. This includes
 | alpha     | v0.2 (staged here: http://docs.pivotal.io/developer-console/0-alpha/|
 
 When the latest alpha version is ready to publish, merge the master branch into the alpha branch.
-Keep all the alpha versions of the release notes stacked in the [Release Notes for Pivotal Developer Console](https://docs.pivotal.io/developer-console/0-alpha/release-notes.html) page.
+Keep all the alpha versions of the release notes stacked in the [Release Notes for Developer Console](https://docs.pivotal.io/developer-console/0-alpha/release-notes.html) page.
 
 1. Always cherry-pick any changes to live branches into **master** if you want those changes carried forward.
 2. If necessary, immediately cherry-pick/copy changes from **master** that you want to push immediately to production into the appropriate live branch above."
@@ -37,7 +37,7 @@ We need to decide on product name short forms:
 
 | Term or product name | Notes |
 |----------------------|-------|
-|Pivotal Developer Console | `product_full`, the longest name |
+|Developer Console | `product_full`, the longest name |
 |Developer Console     | `product_short`, the short name, use on the page after the long name has been used |
 |PDC                   | `product_abbr`, use only where really necessary |
 |PDC CLI tool          | Name of the CLI tool, use instead of "`pdc` CLI tool"|
