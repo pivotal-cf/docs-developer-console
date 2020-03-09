@@ -54,14 +54,14 @@ To create the required User Account and Authentication (UAA) client:
     uaac target https://UAA-ENDPOINT --ca-cert CERTIFICATE-PATH
     ```
 
-Where:
-
-* `UAA-ENDPOINT` is the URL of the Cloud Foundry UAA server.
-* `CERTIFICATE-PATH` is the path to your <%= vars.ops_manager %> root Certificate Authority (CA)
-certificate. If you are logged in to the <%= vars.ops_manager %> VM, specify
-`/var/tempest/workspaces/default/root_ca_certificate` as the path. This is the default location of
-the root certificate on the <%= vars.ops_manager %> VM. If you downloaded the <%= vars.ops_manager %>
-root CA certificate to your local machine, specify the path where you stored the certificate.
+    Where:
+    * `UAA-ENDPOINT` is the URL of the Cloud Foundry UAA server.
+    * `CERTIFICATE-PATH` is the path to your <%= vars.ops_manager %> root Certificate Authority (CA)
+    certificate. If you are logged in to the <%= vars.ops_manager %> VM, specify
+    `/var/tempest/workspaces/default/root_ca_certificate` as the path. This is the default location of
+    the root certificate on the <%= vars.ops_manager %> VM. If you downloaded the
+    <%= vars.ops_manager %> root CA certificate to your local machine, specify the path where you
+    stored the certificate.
 
 1. Authenticate with UAA by running:
 
@@ -69,11 +69,10 @@ root CA certificate to your local machine, specify the path where you stored the
     uaac token client get admin -s ADMIN-CLIENT-SECRET
     ```
 
-Where `ADMIN-CLIENT-SECRET` is your UAA management admin client secret that you retrieved earlier in
-this procedure.
-`admin` is the client username.
+    Where `ADMIN-CLIENT-SECRET` is your UAA management admin client secret that you retrieved earlier
+    in this procedure. `admin` is the client username.
 
-<%# The following steps are specific %>
+<%# The following steps  are specific %>
 
 1. Create an admin client for <%= vars.product_short %> by running:
 
@@ -81,15 +80,15 @@ this procedure.
     uaac client add developerconsole -s CLIENT-PASSWORD --authorized_grant_types client_credentials --authorities cloud_controller.admin
     ```
 
-Where `CLIENT-PASSWORD` is a password of your choice. Keep this password safe: it is required
-when installing <%= vars.product_short %>.
+    Where `CLIENT-PASSWORD` is a password of your choice. Keep this password safe: it is required
+    when installing <%= vars.product_short %>.
 
 
 ### <a id='install-duffle'></a> Install Duffle
 
 Duffle is a CLI that interacts with Cloud Native Application Bundles (CNABs) to package and unpackage
 distributed apps for deployment on cloud platforms and services.
-Duffle is used to<%# Redundant? %> install the <%= vars.product_short %> CNAB and relocate images.
+Duffle is used to install the <%= vars.product_short %> CNAB and relocate images.
 
 <%# Do you ever use Duffle directly or is it just something that Dev Console needs and you never interact with again? %>
 
@@ -119,8 +118,8 @@ in GitHub.
     <p class="note">
       <strong>Note:</strong> By default, Duffle stores state on your local machine in the
       <code>$HOME/.duffle</code> directory.
-      This means that any later Duffle commands, such as <code>uninstall</code> should be run from the same
-      developer machine.
+      This means that any later Duffle commands, such as <code>uninstall</code> should be run from
+      the same developer machine.
     </p>
 
 ### <a id='relocate'></a> Relocate the Images
@@ -148,7 +147,7 @@ To relocate the images:
 
     This stores the mapping output in a file called `/tmp/mapping.json`.
 
-<%# A procedure requires a stem ending with a colon, as in "To do x:". %>1. Store `/tmp/mapping.json` somewhere safe: it is required to uninstall <%= vars.product_short %>.
+1. Store `/tmp/mapping.json` somewhere safe: it is required to uninstall <%= vars.product_short %>.
 
 ### <a id='install-cnab'></a> Install the CNAB
 
@@ -217,7 +216,8 @@ If you do not have an Early Access account, please email
     chmod +x pdc
     ```
 
-1. Move this <%= vars.product_abbr %> CLI tool to somewhere within your system path such as `/usr/local/bin/pdc`.
+1. Move this <%= vars.product_abbr %> CLI tool to somewhere within your system path such as
+`/usr/local/bin/pdc`.
 
 ## <a id="feedback"></a> Feedback
 
