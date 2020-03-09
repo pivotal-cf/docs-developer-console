@@ -1,4 +1,4 @@
-# Pivotal Developer Console
+# Developer Console
 
 ## Where is the book repo?
 https://github.com/pivotal-cf/docs-book-developer-console
