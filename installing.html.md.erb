@@ -84,60 +84,12 @@ this procedure.
 Where `CLIENT-PASSWORD` is a password of your choice. Keep this password safe: it is required
 when installing <%= vars.product_short %>.
 
-### <a id='create-cf-uaa-client'></a> Create a Cloud Foundry UAA Client
-
-<p class="note"><strong>Note:</strong> This step is only required if you want to bind service
-  instances to apps running in Cloud Foundry. It must be repeated for each Cloud Foundry deployment ]
-  you want to make available to <%= vars.product_short %>.
-
-To create the required UAA Client:
-
-<%# The following steps are generic and have been copied from https://docs.pivotal.io/pks/1-6/manage-users.html %>
-
-1. Retrieve the UAA management admin client secret:
-  a. In a web browser, navigate to the <%= vars.ops_manager %> Installation Dashboard and click the <%= vars.app_runtime_full %> tile.
-  b. Click the **Credentials** tab.
-  c. Click **Link to Credential** next to **Admin Client Credentials** and copy the `password` value.
-
-2. Target the Cloud Foundry UAA server by running:
-
-    ```
-    uaac target https://UAA-ENDPOINT --ca-cert CERTIFICATE-PATH
-    ```
-
-Where:
-
-* `UAA-ENDPOINT` is the URL of the Cloud Foundry UAA server.
-* `CERTIFICATE-PATH` is the path to your <%= vars.ops_manager %> root CA certificate.
-  * If you are logged in to the <%= vars.ops_manager %> VM, specify `/var/tempest/workspaces/default/root_ca_certificate` as the path.
-  * This is the default location of the root certificate on the <%= vars.ops_manager %> VM.
-  * If you downloaded the <%= vars.ops_manager %> root CA certificate to your local machine, specify the path where you stored the certificate.
-
-3. Authenticate with UAA by running:
-
-    ```
-    uaac token client get admin -s ADMIN-CLIENT-SECRET
-    ```
-
-Where `ADMIN-CLIENT-SECRET` is your UAA management admin client secret that you retrieved in a
-previous step. The client username is `admin`.
-
-<%# The following steps are specific %>
-
-4. Create an admin client for <%= vars.product_short %> by running:
-
-    ```
-    uaac client add developerconsole -s CLIENT_SECRET --authorized_grant_types client_credentials --authorities cloud_controller.admin
-    ```
-
-Where `CLIENT_SECRET` is a password of your choice. Keep this password safe as it is required when
-installing <%= developerconsole %>.
 
 ### <a id='install-duffle'></a> Install Duffle
 
 Duffle is a CLI that interacts with Cloud Native Application Bundles (CNABs) to package and unpackage
 distributed apps for deployment on cloud platforms and services.
-Duffle is used to install the <%= vars.product_short %> CNAB and relocate images.
+Duffle is used to<%# Redundant? %> install the <%= vars.product_short %> CNAB and relocate images.
 
 <%# Do you ever use Duffle directly or is it just something that Dev Console needs and you never interact with again? %>
 
@@ -196,7 +148,7 @@ To relocate the images:
 
     This stores the mapping output in a file called `/tmp/mapping.json`.
 
-1. Store `/tmp/mapping.json` somewhere safe: it is required to uninstall <%= vars.product_short %>.
+<%# A procedure requires a stem ending with a colon, as in "To do x:". %>1. Store `/tmp/mapping.json` somewhere safe: it is required to uninstall <%= vars.product_short %>.
 
 ### <a id='install-cnab'></a> Install the CNAB
 
