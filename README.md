@@ -39,8 +39,8 @@ We need to decide on product name short forms:
 |----------------------|-------|
 |Developer Console | `product_full`, the longest name |
 |Developer Console     | `product_short`, the short name, use on the page after the long name has been used |
-|PDC                   | `product_abbr`, use only where really necessary |
-|PDC CLI tool          | Name of the CLI tool, use instead of "`pdc` CLI tool"|
+|PDC                   | `product_abbr`, do not use until "PDC" is replaced per the rebrand  |
+|Developer Console CLI tool          | Name of the CLI tool |
 
 ## Pipelines
 
