@@ -10,7 +10,7 @@ This topic describes how to install and configure <%= vars.product_full %>.
 ## <a id='overview'></a> Overview
 
 <%= vars.product_short %> consists of a front end command line interface (CLI) named
-<%= vars.product_abbr %> and a backing set of custom resource definitions (CRDs) and custom
+<%= vars.product_short %> CLI and a backing set of custom resource definitions (CRDs) and custom
 controllers.
 
 ## <a id='prereqs'></a> Prerequisites
@@ -26,7 +26,7 @@ To install and configure <%= vars.product_short %>:
 * [Install Duffle](#install-duffle)
 * [Relocate the Images](#relocate)
 * [Install the CNAB](#install-cnab)
-* [Install the <%= vars.product_abbr %> CLI Tool](#install-cli), which is needed for operating
+* [Install the <%= vars.product_short %> CLI Tool](#install-cli), which is needed for operating
 <%= vars.product_short %>.
 
 ### <a id='create-cf-uaa-client'></a> Create a Cloud Foundry UAA Client
@@ -196,13 +196,13 @@ running:
 
     Where `VERSION` is the number in the filename.
 
-### <a id="install-cli"></a> Install the <%= vars.product_abbr %> CLI Tool
+### <a id="install-cli"></a> Install the <%= vars.product_short %> CLI Tool
 
-To install the <%= vars.product_abbr %> CLI tool:
+To install the <%= vars.product_short %> CLI tool:
 
 1. Log in to your Early Access user account on [Pivotal Network](https://login.run.pivotal.io/login).
 If you do not have an Early Access account, please email
-<a href="mailto:pdc-feedback@pivotal.io"><%= vars.product_abbr %> Feedback</a> to request one.
+<a href="mailto:pdc-feedback@pivotal.io"><%= vars.product_short %> Feedback</a> to request one.
 <%= vars.product_short %> is currently only available to Early Access users.
 
 1. Download the <%= vars.product_short %> tarball files from
@@ -210,13 +210,13 @@ If you do not have an Early Access account, please email
 
 1. Untar the `pdc` tarball and choose the appropriate binary CLI tool for your operating system.
 
-1. Make the chosen <%= vars.product_abbr %> CLI tool executable by running:
+1. Make the chosen <%= vars.product_short %> CLI tool executable by running:
 
     ```
     chmod +x pdc
     ```
 
-1. Move this <%= vars.product_abbr %> CLI tool to somewhere within your system path such as
+1. Move this <%= vars.product_short %> CLI tool to somewhere within your system path such as
 `/usr/local/bin/pdc`.
 
 ## <a id="feedback"></a> Feedback
