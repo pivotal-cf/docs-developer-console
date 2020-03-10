@@ -1,27 +1,32 @@
 ---
-title: Using Pivotal Developer Console to Provide Services
+title: Using Developer Console to Provide Services
 owner: Marketplace
 ---
 
 <strong><%= modified_date %></strong>
 
-This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>) to provide services to
-app teams and isolate different projects.
+This topic describes how to use <%= vars.product_full %> (<%= vars.product_abbr %>) to provide
+services to app teams, how to provide isolation of resources through projects, and how to register
+Cloud Foundry deployments.
 
 ## <a id='overview'></a> Overview
 
-A project is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_short %> service
-instances and bindings within a Kubernetes cluster.
+A project is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_short %>
+service instances and bindings within a Kubernetes cluster.
 Operators are then able to add or remove app team members to and from these projects as required.
 
 The entities in a project map can be any of the base Kubernetes entities -- users, groups, and
 ServiceAccounts.
 
-## <a id='config-projects'></a> Configuring Projects
+To enable app teams to bind service instances to apps that are running in Cloud Foundry, you must
+first register the Cloud Foundry deployment in <%= vars.product_short %>.
+
+## <a id='config-projects'></a> Configure a Project
 
 You can configure projects by posting YAML to the Kubernetes API of your cluster.
-This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is one of
-several means of communicating with the API.
+This topic explains how to do this using the Kubernetes command line interface (CLI) tool, kubectl.
+Kubectl is one of several ways to communicate with the API.
+
 To create a new project:
 
 1. Create a file called `project.yaml` anywhere on your local machine.
@@ -41,8 +46,8 @@ To create a new project:
     Where:
     * `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes namespace.
     * `TYPE` is a user or group.
-    * `NAME` is the name of the user or group that you want to give access to <%= vars.product_short %>
-    resources within the new project.
+    * `NAME` is the name of the user or group that you want to give access to
+    <%= vars.product_short %> resources within the new project.
 
 1. Replace the placeholders with real values and save the file.
 
@@ -57,10 +62,51 @@ To create a new project:
       kubectl create -f project.yaml
     ```
 
+## <a id='register-cfs'></a> Register a Cloud Foundry Deployment
+
+You can register a Cloud Foundry deployment by posting YAML to the Kubernetes API of your cluster.
+This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is
+one of several means of communicating with the API.
+
+<p class="note">
+  <strong>Note:</strong> You must have an admin client configured in the Cloud Foundry UAA to give
+  <%= vars.product_short %> permission to create and bind services in your Cloud Foundry deployment.
+  For more information, see
+  <a href="./installing.html#create-cf-uaa-client">Create Cloud Foundry UAA client</a>.
+</p>
+
+To register a new Cloud Foundry deployment:
+
+1. Create a file called `cf.yaml` anywhere on your local machine.
+1. Copy and paste the contents below into the file.
+
+    ```yaml
+    apiVersion: developerconsole.pivotal.io/v1alpha1
+    kind: CloudFoundry
+    metadata:
+      name: CLOUD-FOUNDRY-NAME
+    spec:
+      api: https://CLOUD-FOUNDRY-API
+    ```
+
+    Where:
+    * `CLOUD-FOUNDRY-NAME` is the name of the Cloud Foundry deployment you are registering. This can
+    be anything you like.
+    * `CLOUD-FOUNDRY-API` is the API endpoint of the Cloud Foundry deployment. The API endpoint must
+    be accessible over the network from your cluster.
+
+1. Replace the placeholders with real values and save the file.
+
+1. Apply the configuration by running:
+
+    ```
+      kubectl create -f cf.yaml
+    ```
+
 ## <a id='register-broker'></a> Register a Broker
 
-You can register any Open Service Broker API (OSBAPI)-compliant brokers with the <%= vars.product_abbr %> CLI
-tool.
+You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
+<%= vars.product_abbr %> CLI tool.
 
 1. Register the broker by running:
 
