@@ -1,5 +1,5 @@
 ---
-title: Installing and Configuring Pivotal Developer Console
+title: Installing and Configuring Developer Console
 owner: Marketplace
 ---
 
@@ -24,27 +24,31 @@ To install and configure <%= vars.product_short %>:
 
 * [Create a Cloud Foundry UAA client](#create-cf-uaa-client)
 * [Install Duffle](#install-duffle)
-* [Relocate images](#relocate)
+* [Relocate the Images](#relocate)
 * [Install the CNAB](#install-cnab)
-* [Install the <%= vars.product_abbr %> CLI tool](#install-cli), which is needed for operating <%= vars.product_short %>.
+* [Install the <%= vars.product_abbr %> CLI Tool](#install-cli), which is needed for operating
+<%= vars.product_short %>.
 
 ### <a id='create-cf-uaa-client'></a> Create a Cloud Foundry UAA Client
 
-<p class="note"><strong>Note:</strong> This step is only required if you want to bind service
+<p class="note">
+  <strong>Note:</strong> This procedure is only required if you want to bind service
   instances to apps running in Cloud Foundry. It must be repeated for each Cloud Foundry deployment
-  you want to make available to <%= vars.product_short %>.
+  that you want to make available to <%= vars.product_short %>.
 </p>
 
-To create the required UAA Client:
+To create the required User Account and Authentication (UAA) client:
 
 <%# The following steps are generic and have been copied from https://docs.pivotal.io/pks/1-6/manage-users.html %>
 
-1. Retrieve the UAA management admin client secret:
-  a. In a web browser, navigate to the <%= vars.ops_manager %> Installation Dashboard and click the <%= vars.app_runtime_full %> tile.
-  b. Click the **Credentials** tab.
-  c. Click **Link to Credential** next to **Admin Client Credentials** and copy the `password` value.
+1. In a web browser, navigate to the <%= vars.ops_manager %> Installation Dashboard and click the
+<%= vars.app_runtime_full %> tile.
 
-2. Target the Cloud Foundry UAA server by running:
+1. Click the **Credentials** tab.
+
+1. Click **Link to Credential** next to **Admin Client Credentials** and copy the `password` value.
+
+1. Target the Cloud Foundry UAA server by running:
 
     ```
     uaac target https://UAA-ENDPOINT --ca-cert CERTIFICATE-PATH
@@ -59,7 +63,7 @@ To create the required UAA Client:
     <%= vars.ops_manager %> root CA certificate to your local machine, specify the path where you
     stored the certificate.
 
-3. Authenticate with UAA by running:
+1. Authenticate with UAA by running:
 
     ```
     uaac token client get admin -s ADMIN-CLIENT-SECRET
@@ -70,10 +74,10 @@ To create the required UAA Client:
 
 <%# The following steps  are specific %>
 
-4. Create an admin client for <%= vars.product_short %> by running:
+1. Create an admin client for <%= vars.product_short %> by running:
 
     ```
-    uaac client add developerconsole -s CLIENT_SECRET --authorized_grant_types client_credentials --authorities cloud_controller.admin
+    uaac client add developerconsole -s CLIENT-PASSWORD --authorized_grant_types client_credentials --authorities cloud_controller.admin
     ```
 
     Where `CLIENT-PASSWORD` is a password of your choice. Keep this password safe: it is required
@@ -86,7 +90,7 @@ Duffle is a CLI that interacts with Cloud Native Application Bundles (CNABs) to 
 distributed apps for deployment on cloud platforms and services.
 Duffle is used to install the <%= vars.product_short %> CNAB and relocate images.
 
-<%# Do you ever use Duffle directly or is it just something that <%= vars.product_abbr %> needs and you never interact with again? %>
+<%# Do you ever use Duffle directly or is it just something that Dev Console needs and you never interact with again? %>
 
 To install Duffle:
 
@@ -118,11 +122,11 @@ in GitHub.
       the same developer machine.
     </p>
 
-### <a id='relocate'></a> Relocate Images
+### <a id='relocate'></a> Relocate the Images
 
 <%# What images does Alana relocate? From where and to where do they get relocated? Why is it necessary? %>
 
-To relocate images:
+To relocate the images:
 
 1. Log in to your private registry by running:
 
@@ -180,7 +184,8 @@ with the contents below.
         value: CF-ADMIN-CLIENT-SECRET # This is the secret you configured in the Create a Cloud Foundry UAA Client procedure above.
     ```
 
-1. Install the bundle, referencing the mapping file created in [Relocate Images](#relocate), by running:
+1. Install the bundle, referencing the mapping file created in [Relocate the Images](#relocate), by
+running:
 
     ```
     duffle install developer-console developer-console-VERSION.tgz \
