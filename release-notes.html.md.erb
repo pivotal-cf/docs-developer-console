@@ -16,14 +16,17 @@ These are release notes for <%= vars.product_full %>.
 
 New features and changes in this release:
 
-* It is now possible to register Cloud Foundry deployments with <%= vars.product_short %>.
-The registered Cloud Foundry deployments can then be retrieved with `pdc cloudfoundry list`.
+* You can register Cloud Foundry deployments with <%= vars.product_short %>.
+You can then retrieve the registered Cloud Foundry deployments by running `pdc cloudfoundry list`.
+For more information, see [Register a Cloud Foundry Deployment](./using-providing.html#register-cfs).
 
-* It is now possible to wire a service instance provisioned through <%= vars.product_short %>
-to an app in a registered Cloud Foundry deployment by passing in additional flag of the form
+* You can wire a service instance provisioned through <%= vars.product_short %>
+to an app in a registered Cloud Foundry deployment by passing an additional flag of the form
 `--app=CF-NAME/ORG-NAME/SPACE-NAME/APP-NAME` to `pdc binding create`.
+For more information, see
+[Bind a Service Instance to an App That Runs in Cloud Foundry](./using-provisioning.html#bind-instance-to-cf).
 
-* The Kubernetes API group for projects has been changed to projects.pivotal.io.
+* The Kubernetes API group for projects is now `projects.pivotal.io`.
 
 
 ### Known Issues
