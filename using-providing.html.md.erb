@@ -108,6 +108,12 @@ To register a new Cloud Foundry deployment:
 You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
 <%= vars.product_short %> CLI tool.
 
+<p class="note">
+  <strong>Note:</strong> Ensure your broker name is under 64 characters.
+  Service instances cannot be created for any brokers registered with a name longer than 63
+  characters.
+</p>
+
 1. Register the broker by running:
 
     ```
@@ -115,7 +121,7 @@ You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
     ```
 
     Where:
-    * `BROKER-NAME` is the name of the newly registered broker
+    * `BROKER-NAME` is the name of the newly registered broker. Make it shorter than 64 characters.
     * `BROKER-URL` is the location of the broker API endpoint
     * `BROKER-USERNAME` is the username by which <%= vars.product_short %> authenticates with the broker
     * `BROKER-PASSWORD` is the password by which <%= vars.product_short %> authenticates with the broker
