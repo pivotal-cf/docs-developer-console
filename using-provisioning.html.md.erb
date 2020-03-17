@@ -130,11 +130,6 @@ To access a service instance:
     * `BINDING-NAME` is the name you give the binding
     * `INSTANCE-NAME` is the name of the service instance you are binding
 
-    <p class="note">
-      <strong>Note:</strong> If the app name and the binding name combined have more than 49
-      characters, binding to a Cloud Foundry app fails.
-    </p>
-
 1. (Optional) List all bindings by running:
 
     ```
@@ -221,6 +216,11 @@ deployment in which your app is running. You need it when you create the binding
     * `ORG-NAME` is the name of the Cloud Foundry org your app is running in
     * `SPACE-NAME` is the name of the Cloud Foundry space your app is running in
     * `APP-NAME` is the name of your Cloud Foundry app
+
+    <p class="note">
+      <strong>Note:</strong> If the app name and the binding name combined have more than 49
+      characters, binding to a Cloud Foundry app fails.
+    </p>
 
 1. The binding credentials and connection information are now available to your Cloud Foundry app
 through the `VCAP_SERVICES` environment variable as a `user-provided` service.
