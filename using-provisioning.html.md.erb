@@ -177,53 +177,9 @@ To access a service instance:
 
     <p class="note">
       <strong>Note:</strong> Currently binding details are stored as Kubernetes secrets so that you
-      can also access them through the Kubernetes API and kubectl.
+      can also access them` through the Kubernetes API and kubectl.
     </p>
 
-## <a id='bind-instance-to-cf'></a> Bind a Service Instance to an App That Runs in Cloud Foundry
-
-To bind credentials and connection information for a service instance to an app that is running in
-Cloud Foundry:
-
-1. Check that the Cloud Foundry deployment has been registered with <%= vars.product_short %> by
-running:
-
-    ```
-    pdc cloudfoundry list
-    ```
-
-    For example:
-
-    <pre class="terminal">
-    $ pdc cloudfoundry list
-    NAME           API
-    my-cf          https://api.sys.my-cf.example.com
-    </pre>
-
-1. Record the <code>NAME</code> that corresponds to the <code>API</code> of the Cloud Foundry
-deployment in which your app is running. You need it when you create the binding.
-
-1. Create a binding between the instance and your Cloud Foundry app by running:
-
-    ```
-    pdc binding create --name=BINDING-NAME --instance=INSTANCE-NAME --app=CF-NAME/ORG-NAME/SPACE-NAME/APP-NAME
-    ```
-
-    Where:
-    * `BINDING-NAME` is the name you give the binding
-    * `INSTANCE-NAME` is the name of the service instance you are binding
-    * `CF-NAME` is the name of the Cloud Foundry deployment as identified earlier in the procedure
-    * `ORG-NAME` is the name of the Cloud Foundry org your app is running in
-    * `SPACE-NAME` is the name of the Cloud Foundry space your app is running in
-    * `APP-NAME` is the name of your Cloud Foundry app
-
-    <p class="note">
-      <strong>Note:</strong> If the app name and the binding name combined have more than 49
-      characters, binding to a Cloud Foundry app fails.
-    </p>
-
-1. The binding credentials and connection information are now available to your Cloud Foundry app
-through the `VCAP_SERVICES` environment variable as a `user-provided` service.
 
 ## <a id="feedback"></a> Feedback
 
