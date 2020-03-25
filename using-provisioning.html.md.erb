@@ -65,7 +65,7 @@ To create a service instance:
 1. Create an instance of a service by running:
 
     ```
-    pdc instance create --name=INSTANCE-NAME --service=SERVICE-NAME --plan=SERVICE-PLAN --broker=BROKER-NAME
+    pdc instance create --name=INSTANCE-NAME --service=SERVICE-NAME --plan=SERVICE-PLAN --broker=BROKER-NAME [--parameters=PARAMETERS-AS-JSON]
     ```
 
     Where:
@@ -73,6 +73,7 @@ To create a service instance:
     * `SERVICE-NAME` is the name of the service
     * `SERVICE-PLAN` is the plan that you use to configure your instance
     * `BROKER-NAME` is the name of the broker that provides the service
+    * `PARAMETERS-AS-JSON` are optional service-specific configuration parameters in a valid JSON object
 
 
 1. (Optional) See the current service instances by running:
