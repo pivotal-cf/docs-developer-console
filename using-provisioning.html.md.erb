@@ -124,12 +124,14 @@ To access a service instance:
 1. Create a binding for the instance by running:
 
     ```
-    pdc binding create --name=BINDING-NAME --instance=INSTANCE-NAME
+    pdc binding create --name=BINDING-NAME --instance=INSTANCE-NAME [--parameters=PARAMETERS-AS-JSON]
+
     ```
 
     Where:
     * `BINDING-NAME` is the name you give the binding
     * `INSTANCE-NAME` is the name of the service instance you are binding
+    * `PARAMETERS-AS-JSON` are optional service-specific configuration parameters in a valid JSON object
 
 1. (Optional) List all bindings by running:
 
@@ -207,7 +209,8 @@ deployment in which your app is running. You need it when you create the binding
 1. Create a binding between the instance and your Cloud Foundry app by running:
 
     ```
-    pdc binding create --name=BINDING-NAME --instance=INSTANCE-NAME --app=CF-NAME/ORG-NAME/SPACE-NAME/APP-NAME
+    pdc binding create --name=BINDING-NAME --instance=INSTANCE-NAME --app=CF-NAME/ORG-NAME/SPACE-NAME/APP-NAME [--parameters=PARAMETERS-AS-JSON]
+
     ```
 
     Where:
@@ -217,6 +220,7 @@ deployment in which your app is running. You need it when you create the binding
     * `ORG-NAME` is the name of the Cloud Foundry org your app is running in
     * `SPACE-NAME` is the name of the Cloud Foundry space your app is running in
     * `APP-NAME` is the name of your Cloud Foundry app
+    * `PARAMETERS-AS-JSON` are optional service-specific configuration parameters in a valid JSON object
 
     <p class="note">
       <strong>Note:</strong> If the app name and the binding name combined have more than 49
