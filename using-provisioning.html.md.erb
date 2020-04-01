@@ -92,7 +92,7 @@ To create a service instance:
 
 ## <a id='examine-broker'></a> Examine an Instance
 
-To examine a specific instance:
+To examine a specific instance and see its bindings:
 
 1. Run:
 
@@ -104,6 +104,8 @@ To examine a specific instance:
 
     <pre class="terminal">
     $ pdc instance get --name=my-instance
+    bindings:
+    - name: my-binding
     broker: my-broker
     createdAt: 2019-02-31 12:00:00 +0000 GMT
     name: my-instance
