@@ -81,7 +81,7 @@ To create the required User Account and Authentication (UAA) client:
     ```
 
     Where `CLIENT-PASSWORD` is a password of your choice. Keep this password safe. It is required
-    when installing <%= vars.product_short %>.
+    when using <%= vars.product_short %>.
 
 
 ### <a id='install-duffle'></a> Install Duffle
@@ -176,12 +176,6 @@ with the contents below.
     - name: registry_password
       source:
         value: REGISTRY-PASSWORD
-    - name: cf_admin_client
-      source:
-        value: CF-ADMIN-CLIENT # For example: developerconsole
-    - name: cf_admin_client_secret
-      source:
-        value: CF-ADMIN-CLIENT-SECRET # This is the secret you configured in the Create a Cloud Foundry UAA Client procedure above.
     ```
 
 1. Install the bundle, referencing the mapping file created in [Relocate the Images](#relocate), by
