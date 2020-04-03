@@ -76,7 +76,7 @@ To create a service instance:
     * `PARAMETERS-AS-JSON` are optional service-specific configuration parameters in a valid JSON object
 
 
-1. (Optional) See the current service instances by running:
+1. (Optional) See the current service instances and the number of bindings they have by running:
 
     ```
     pdc instance list
@@ -86,8 +86,8 @@ To create a service instance:
 
     <pre class="terminal">
     $ pdc instance list
-    NAME            SERVICE        PLAN           BROKER          STATUS    CREATED AT
-    my-instance     mysql          small          my-broker       created   2019-02-31 12:00:00 +0000 GMT
+    NAME            SERVICE        PLAN           BROKER          BINDINGS       STATUS    CREATED AT
+    my-instance     mysql          small          my-broker       3              created   2019-02-31 12:00:00 +0000 GMT
     </pre>
 
 ## <a id='examine-broker'></a> Examine an Instance
