@@ -62,21 +62,21 @@ To create a service instance:
 
     This command lists all available services with their brokers.
 
-1. Create an instance of a service by running:
+1. Create a service instance by running:
 
     ```
     pdc instance create --name=INSTANCE-NAME --service=SERVICE-NAME --plan=SERVICE-PLAN --broker=BROKER-NAME [--parameters=PARAMETERS-AS-JSON]
     ```
 
     Where:
-    * `INSTANCE-NAME` is the name of the service instance to be created
+    * `INSTANCE-NAME` is the name of the service instance you want to created
     * `SERVICE-NAME` is the name of the service
     * `SERVICE-PLAN` is the plan that you use to configure your instance
     * `BROKER-NAME` is the name of the broker that provides the service
     * `PARAMETERS-AS-JSON` are optional service-specific configuration parameters in a valid JSON object
 
 
-1. (Optional) See the current service instances and the number of bindings they have by running:
+1. (Optional) View existing service instances and their number of bindings by running:
 
     ```
     pdc instance list
