@@ -108,7 +108,7 @@ To register a new Cloud Foundry deployment:
       name: CLOUD-FOUNDRY-NAME
     spec:
       api: https://CLOUD-FOUNDRY-API
-      skipSSLValidation: false
+      skipSSLValidation: SKIP-SSL-VALIDATION
       secretRef:
         name: CLOUD-FOUNDRY-SECRET-NAME
         namespace: pdc-system
@@ -120,6 +120,8 @@ To register a new Cloud Foundry deployment:
     * `CLOUD-FOUNDRY-API` is the API endpoint of the Cloud Foundry deployment. The API endpoint must
     be accessible over the network from your cluster.
     * `CLOUD-FOUNDRY-SECRET-NAME` is the name of the secret as provided in the previous step.
+    * `SKIP-SSL-VALIDATION` is a boolean, default for `spec.skipSSLValidation` is `false`, set to `true`
+    to skip SSL validation when communicating with the Cloud Foundry deployment.
 
 1. Replace the placeholders with real values and save the file.
 1. Apply the configuration by running:
