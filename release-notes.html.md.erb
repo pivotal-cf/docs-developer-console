@@ -7,6 +7,55 @@ owner: Marketplace
 
 These are release notes for <%= vars.product_full %>.
 
+## <a id="0-3-1"></a> v0.3.1–alpha.3
+
+**Release Date:** April 15, 2020
+
+
+### Features
+
+New features and changes in this release:
+
+* You can register Cloud Foundry deployments with <%= vars.product_short %>.
+You can then retrieve the registered Cloud Foundry deployments by running `pdc cloudfoundry list`.<br>
+For more information, see [Register a Cloud Foundry Deployment](./using-providing.html#register-cfs).
+
+* You can wire a service instance provisioned through <%= vars.product_short %>
+to an app in a registered Cloud Foundry deployment by passing an additional flag of the form
+`--app=CF-NAME/ORG-NAME/SPACE-NAME/APP-NAME` to `pdc binding create`.<br>
+For more information, see
+[Bind a Service Instance to an App That Runs in Cloud Foundry](./using-provisioning.html#bind-instance-to-cf).
+
+* The Kubernetes API group for projects is now `projects.pivotal.io`.
+
+* You can provide optional service-specific parameters when creating a new service instance or binding by using the flag
+`--parameters=PARAMETERS-AS-JSON`.<br>
+For more information, see
+[Create a Service Instance](./using-provisioning.html#create-instance)
+or [Bind a Service Instance to an App That Runs in Cloud Foundry](./using-provisioning.html#bind-instance-to-cf).
+
+### Known Issues
+
+This release has the following issues:
+
+* The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a
+`$` character.
+
+* If you remove a user's last remaining group membership in a backing identity provider, such as
+Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
+not reflect this change.
+This can result in the UAA server generating tokens for users that grant permissions for groups that
+the users are not in anymore.
+This is a UAA issue.
+To prevent this issue, create a group that grants no permissions and assign a user to that group before
+removing the rest of that user's group memberships.
+
+* You cannot create service instances for a broker registered with a name of more than 63 characters.
+
+* Binding to a Cloud Foundry app fails if the app name and the binding name combined have more than 49
+characters.
+
+
 ## <a id="0-2-0"></a> v0.2.0–alpha.2
 
 **Release Date:** February 21, 2020
@@ -52,7 +101,7 @@ removing the rest of that user's group memberships.
 
 * You cannot create service instances for a broker registered with a name of more than 63 characters.
 
-## <a id="0.1.0-alpha.1"></a> v0.1.0–alpha.1
+## <a id="0-1-0"></a> v0.1.0–alpha.1
 
 **Release Date:** December 6, 2019
 
