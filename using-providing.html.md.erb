@@ -59,7 +59,7 @@ To create a new project:
 1. Apply the configuration by running:
 
     ```
-      kubectl create -f project.yaml
+    kubectl create -f project.yaml
     ```
 
 ## <a id='register-cfs'></a> Register a Cloud Foundry Deployment
@@ -144,7 +144,11 @@ You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
 1. Register the broker by running:
 
     ```
-      pdc broker register --name=BROKER-NAME --url=BROKER-URL --username=BROKER-USERNAME--password=BROKER-PASSWORD
+    pdc broker register \
+      --name=BROKER-NAME \
+      --url=BROKER-URL \
+      --username=BROKER-USERNAME \
+      --password=BROKER-PASSWORD
     ```
 
     Where:
@@ -156,7 +160,7 @@ You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
 1. Verify that the broker was registered by running:
 
     ```
-      pdc broker list
+    pdc broker list
     ```
 
     This returns a list of registered brokers, as in the example below:
@@ -174,7 +178,7 @@ To examine a specific broker:
 1. Run:
 
     ```
-      pdc broker get --name=BROKER-NAME
+    pdc broker get --name=BROKER-NAME
     ```
 
     For example:
