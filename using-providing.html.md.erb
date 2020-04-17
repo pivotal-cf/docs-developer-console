@@ -59,6 +59,77 @@ To create a new project:
     kubectl create -f project.yaml
     ```
 
+
+## <a id='register-cfs'></a> Register a Cloud Foundry Deployment
+
+You can register a Cloud Foundry deployment by posting YAML to the Kubernetes API of your cluster.
+This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is
+one of several ways to communicate with the API.
+
+<p class="note">
+  <strong>Note:</strong> You must have an admin client configured in the Cloud Foundry UAA to give
+  <%= vars.product_short %> permission to create and bind services in your Cloud Foundry deployment.
+  For more information, see
+  <a href="./installing.html#create-cf-uaa-client">Create Cloud Foundry UAA client</a>.
+</p>
+
+To register a new Cloud Foundry deployment:
+
+1. Create a file called `cf-secret.yaml` anywhere on your local machine.
+1. Copy and paste the contents below into the file.
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    type: kubernetes.io/opaque
+    metadata:
+      name: CLOUD-FOUNDRY-SECRET-NAME
+      namespace: pdc-system
+    data:
+      clientID: developerconsole
+      clientSecret: CLIENT-PASSWORD
+    ```
+
+    Where:
+    * `CLOUD-FOUNDRY-SECRET-NAME` is a name for the secret for the Cloud Foundry deployment you are registering. This can
+    be anything you like.
+    * `CLIENT-PASSWORD` is the password for the client configured in the Cloud Foundry UAA.
+
+1. Replace the placeholders with real values and save the file.
+1. Create a file called `cf.yaml` anywhere on your local machine.
+1. Copy and paste the contents below into the file.
+
+    ```yaml
+    apiVersion: developerconsole.pivotal.io/v1alpha1
+    kind: CloudFoundry
+    metadata:
+      name: CLOUD-FOUNDRY-NAME
+    spec:
+      api: https://CLOUD-FOUNDRY-API
+      skipSSLValidation: SKIP-SSL-VALIDATION
+      secretRef:
+        name: CLOUD-FOUNDRY-SECRET-NAME
+        namespace: pdc-system
+    ```
+
+    Where:
+    * `CLOUD-FOUNDRY-NAME` is the name of the Cloud Foundry deployment you are registering. This can
+    be anything you like.
+    * `CLOUD-FOUNDRY-API` is the API endpoint of the Cloud Foundry deployment. The API endpoint must
+    be accessible over the network from your cluster.
+    * `CLOUD-FOUNDRY-SECRET-NAME` is the name of the secret as provided in the previous step.
+    * `SKIP-SSL-VALIDATION` is a boolean, default for `spec.skipSSLValidation` is `false`, set to `true`
+    to skip SSL validation when communicating with the Cloud Foundry deployment.
+
+1. Replace the placeholders with real values and save the file.
+1. Apply the configuration by running:
+
+    ```
+      kubectl create -f cf-secret.yaml
+      kubectl create -f cf.yaml
+    ```
+
+
 ## <a id='register-broker'></a> Register a Broker
 
 You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
