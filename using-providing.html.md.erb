@@ -6,7 +6,8 @@ owner: Marketplace
 <strong><%= modified_date %></strong>
 
 This topic describes how to use <%= vars.product_full %> to provide
-services to app teams and how to provide isolation of resources through projects.
+services to app teams, how to provide isolation of resources through projects, and how to register
+Cloud Foundry deployments.
 
 ## <a id='overview'></a> Overview
 
@@ -17,8 +18,8 @@ Operators are then able to add or remove app team members to and from these proj
 The entities in a project map can be any of the base Kubernetes entities -- users, groups, and
 ServiceAccounts.
 
-To enable app teams to bind service instances to apps that are running in Cloud Foundry, you must first register the Cloud Foundry deployment in Developer Console.
-
+To enable app teams to bind service instances to apps that are running in Cloud Foundry, you must
+first register the Cloud Foundry deployment in <%= vars.product_short %>.
 
 ## <a id='config-projects'></a> Configure a Project
 
@@ -32,7 +33,7 @@ To create a new project:
 1. Copy and paste the contents below into the file.
 
     ```yaml
-    apiVersion: developerconsole.pivotal.io/v1alpha1
+    apiVersion: projects.pivotal.io/v1alpha1
     kind: Project
     metadata:
       name: PROJECT-NAME
@@ -60,7 +61,6 @@ To create a new project:
     ```
     kubectl create -f project.yaml
     ```
-
 
 ## <a id='register-cfs'></a> Register a Cloud Foundry Deployment
 
@@ -130,7 +130,6 @@ To register a new Cloud Foundry deployment:
       kubectl create -f cf-secret.yaml
       kubectl create -f cf.yaml
     ```
-
 
 ## <a id='register-broker'></a> Register a Broker
 
