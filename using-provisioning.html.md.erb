@@ -65,7 +65,7 @@ To create a service instance:
 1. Create an instance of a service by running:
 
     ```
-    pdc instance create --name=INSTANCE-NAME --service=SERVICE-NAME --plan=SERVICE-PLAN --broker=BROKER-NAME
+    pdc instance create --name=INSTANCE-NAME --service=SERVICE-NAME --plan=SERVICE-PLAN --broker=BROKER-NAME [--parameters=PARAMETERS-AS-JSON]
     ```
 
     Where:
@@ -73,9 +73,10 @@ To create a service instance:
     * `SERVICE-NAME` is the name of the service
     * `SERVICE-PLAN` is the plan that you use to configure your instance
     * `BROKER-NAME` is the name of the broker that provides the service
+    * `PARAMETERS-AS-JSON` are optional service-specific configuration parameters in a valid JSON object
 
 
-1. (Optional) See the current service instances by running:
+1. (Optional) See the current service instances and the number of bindings they have by running:
 
     ```
     pdc instance list
@@ -85,8 +86,8 @@ To create a service instance:
 
     <pre class="terminal">
     $ pdc instance list
-    NAME            SERVICE        PLAN           BROKER          STATUS    CREATED AT
-    my-instance     mysql          small          my-broker       created   2019-02-31 12:00:00 +0000 GMT
+    NAME            SERVICE        PLAN           BROKER          BINDINGS       STATUS    CREATED AT
+    my-instance     mysql          small          my-broker       3              created   2019-02-31 12:00:00 +0000 GMT
     </pre>
 
 ## <a id='examine-broker'></a> Examine an Instance
@@ -123,12 +124,13 @@ To access a service instance:
 1. Create a binding for the instance by running:
 
     ```
-    pdc binding create --name=BINDING-NAME --instance=INSTANCE-NAME
+    pdc binding create --name=BINDING-NAME --instance=INSTANCE-NAME [--parameters=PARAMETERS-AS-JSON]
     ```
 
     Where:
     * `BINDING-NAME` is the name you give the binding
     * `INSTANCE-NAME` is the name of the service instance you are binding
+    * `PARAMETERS-AS-JSON` are optional service-specific configuration parameters in a valid JSON object
 
 1. (Optional) List all bindings by running:
 
