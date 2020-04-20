@@ -75,7 +75,82 @@ removing the rest of that user's group memberships.
 * Binding to a Cloud Foundry app fails if the app name and the binding name combined have more than 49
 characters.
 
-## <a id="view"></a> View Release Notes for Another Version
 
-To view the release notes for another product version, select the version from the dropdown at the top
-of this page.
+## <a id="0-2-0"></a> v0.2.0–alpha.2
+
+**Release Date:** February 21, 2020
+
+
+### Features
+
+New features and changes in this release:
+
+* Adds the `pdc project list` command to enable app developers to view the projects that they have
+access to
+
+* Prevents the creation of projects with the same name as an existing namespace
+
+* Validates that the project exists when a user runs `pdc project use`
+
+* Renames `pdc broker delete` as `pdc broker deregister` to make it more consistent with other CLI command names
+
+
+### Resolved Issues
+
+This release has the following fix:
+
+* The Kubernetes API version for Project CRD (custom resource definition) is now correctly labelled
+v1alpha1, reflecting its alpha status.
+
+
+### Known Issues
+
+This release has the following issues:
+
+* The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a
+`$` character.
+
+* If you remove a user's last remaining group membership in a backing identity provider, such as
+Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
+not reflect this change.
+This can result in the UAA server generating tokens for users that grant permissions for groups that
+the users are not in anymore.
+This is a UAA issue.
+To prevent this issue, create a group that grants no permissions and assign a user to that group before
+removing the rest of that user's group memberships.
+
+* You cannot create service instances for a broker registered with a name of more than 63 characters.
+
+
+## <a id="0-1-0"></a> v0.1.0–alpha.1
+
+**Release Date:** December 6, 2019
+
+### Features
+
+The initial alpha release enables:
+
+* Registering of Open Service Broker API (OSBAPI) compliant service brokers
+* Assignment of app teams to projects for isolation purposes
+* Provisioning of instances within a project
+* Creation of bindings for instances and retrieval of the credentials
+
+### Known Issues
+
+This release has the following issues:
+
+* The Kubernetes API version for the Project custom resource definition (CRD) is v1.
+  However, the API might still be unstable.
+
+* The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a `$` character.
+
+* If you remove a user's last remaining group membership in a backing identity provider, such as
+Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
+not reflect this change.
+This can result in the UAA server generating tokens for users that grant permissions for groups that
+the users are not in anymore.
+This is a UAA issue.
+To prevent this issue, create a group that grants no permissions and assign a user to that group before
+removing the rest of that user's group memberships.
+
+* You cannot create service instances for a broker registered with a name of more than 63 characters.
