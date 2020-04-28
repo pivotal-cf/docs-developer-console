@@ -72,7 +72,7 @@ To create the required User Account and Authentication (UAA) client:
     Where `ADMIN-CLIENT-SECRET` is your UAA management admin client secret that you retrieved earlier
     in this procedure. `admin` is the client username.
 
-<%# The following steps  are specific %>
+<%# The following steps are specific %>
 
 1. Create an admin client for <%= vars.product_short %> by running:
 
@@ -137,13 +137,13 @@ To relocate the images:
 1. Relocate the images by running:
 
     ```
-    duffle relocate developer-console-VERSION.tgz \
+    duffle relocate developer-console-VERSION-NUMBER.tgz \
         --bundle-is-file  \
         --relocation-mapping /tmp/mapping.json \
         --repository-prefix harbor.example.com/your-project
     ```
 
-    Where `VERSION` is the number in the filename.
+    Where `VERSION-NUMBER` is the number in the filename.
 
     This stores the mapping output in a file called `/tmp/mapping.json`.
 
@@ -182,13 +182,13 @@ with the contents below.
 running:
 
     ```
-    duffle install developer-console developer-console-VERSION.tgz \
+    duffle install developer-console developer-console-VERSION-NUMBER.tgz \
         --bundle-is-file \
         --credentials developer-console-creds.yaml \
         --relocation-mapping /tmp/mapping.json
     ```
 
-    Where `VERSION` is the number in the filename.
+    Where `VERSION-NUMBER` is the number in the filename.
 
 ### <a id="install-cli"></a> Install the <%= vars.product_short %> CLI Tool
 
