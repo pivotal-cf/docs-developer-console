@@ -22,7 +22,7 @@ Always make changes you want carried forward in the master branch. This includes
 
 | Branch Name| Use for… |
 |------------| ---------|
-| master     | v0.3.2 (staged here: http://docs-pcf-staging.cfapps.io/developer-console/0-n/|
+| master     | v0.4.x (staged here: http://docs-pcf-staging.cfapps.io/developer-console/0-n/|
 | alpha      | v0.3.1 (staged here: http://docs.pivotal.io/developer-console/0-alpha/|
 
 When the latest alpha version is ready to publish, merge the master branch into the alpha branch.
