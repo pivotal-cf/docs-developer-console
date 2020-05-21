@@ -46,7 +46,7 @@ If the combined names are longer than 49 characters, the bind fails fast with a 
 
 This release has the following issues:
 
-* If your private container registry contains a `$` character, installing CNAB fails.
+* If `REGISTRY-PASSWORD` contains a `$` character, installing CNAB fails.
 For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
@@ -90,7 +90,7 @@ or [Bind a Service Instance to an App That Runs in Cloud Foundry](./using-provis
 
 This release has the following issues:
 
-* If your private container registry contains a `$` character, installing CNAB fails.
+* If `REGISTRY-PASSWORD` contains a `$` character, installing CNAB fails.
 For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
@@ -139,7 +139,7 @@ reflecting its alpha status.
 
 This release has the following issues:
 
-* If your private container registry contains a `$` character, installing CNAB fails.
+* If `REGISTRY-PASSWORD` contains a `$` character, installing CNAB fails.
 For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
@@ -174,7 +174,7 @@ This release has the following issues:
 * The Kubernetes API version for the Project custom resource definition (CRD) is v1.
   However, the API might still be unstable.
 
-* If your private container registry contains a `$` character, installing CNAB fails.
+* If `REGISTRY-PASSWORD` contains a `$` character, installing CNAB fails.
   For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
