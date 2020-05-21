@@ -88,13 +88,16 @@ To register a new Cloud Foundry deployment:
       name: CLOUD-FOUNDRY-SECRET-NAME
       namespace: pdc-system
     data:
-      clientID: developerconsole
-      clientSecret: CLIENT-PASSWORD
+      clientID: ENCODED-CLIENT-ID
+      clientSecret: ENCODED-CLIENT-SECRET
     ```
 
     Where:
     * `CLOUD-FOUNDRY-SECRET-NAME` is a name you give the secret for the Cloud Foundry deployment you are registering.
-    * `CLIENT-PASSWORD` is the password for the client configured in the Cloud Foundry UAA.
+    * `ENCODED-CLIENT-ID` is the id for the client configured in the Cloud Foundry UAA encoded into base64.
+    * `ENCODED-CLIENT-SECRET` is the secret for the client configured in the Cloud Foundry UAA encoded into base64.
+
+    Encoding into base64 can be achieved by running `echo "text-to-be-encoded" | base64` and copying the output.
 
 1. Replace the placeholders with real values and save the file.
 1. Create a file called `cf.yaml` anywhere on your local machine.
