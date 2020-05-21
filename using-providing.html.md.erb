@@ -30,7 +30,7 @@ Kubectl is one of several ways to communicate with the API.
 To create a new project:
 
 1. Create a file called `project.yaml` anywhere on your local machine.
-1. Copy and paste the contents below into the file.
+1. Add the code snippet below to the file:
 
     ```yaml
     apiVersion: projects.pivotal.io/v1alpha1
@@ -48,8 +48,6 @@ To create a new project:
     * `TYPE` is a user or group.
     * `NAME` is the name of the user or group that you want to give access to
     <%= vars.product_short %> resources within the new project.
-
-1. Replace the placeholders with real values and save the file.
 
     <p class="note">
       <strong>Note:</strong> In the project YAML format, <code>spec.access</code> is an array and
@@ -77,8 +75,22 @@ one of several ways to communicate with the API.
 
 To register a new Cloud Foundry deployment:
 
-1. Create a file called `cf-secret.yaml` anywhere on your local machine.
-1. Copy and paste the contents below into the file.
+1. Encode your Cloud Foundry UAA client and secret by running:
+
+    ```
+    echo "CLIENT-ID" | base64
+    echo "CLIENT-SECRET" | base64
+    ```
+    Where:
+    + `CLIENT-ID` is the UAA client ID you created in
+    [Create a Cloud Foundry UAA Client](/installing.html#create-cf-uaa-client).
+    + `CLIENT-SECRET` is the UAA client secret you created in
+    [Create a Cloud Foundry UAA Client](/installing.html#create-cf-uaa-client).
+
+    Record the output of the above commands.
+
+1. Create a file called `cf-secret.yaml` on your local machine.
+1. Add the code snippet below to the file:
 
     ```yaml
     apiVersion: v1
@@ -94,14 +106,11 @@ To register a new Cloud Foundry deployment:
 
     Where:
     * `CLOUD-FOUNDRY-SECRET-NAME` is a name you give the secret for the Cloud Foundry deployment you are registering.
-    * `ENCODED-CLIENT-ID` is the id for the client configured in the Cloud Foundry UAA encoded into base64.
-    * `ENCODED-CLIENT-SECRET` is the secret for the client configured in the Cloud Foundry UAA encoded into base64.
+    * `ENCODED-CLIENT-ID` is the base64-encoded client ID that you copied in the above step.
+    * `ENCODED-CLIENT-SECRET` is the base64-encoded client secret that you copied in the above step.
 
-    Encoding into base64 can be achieved by running `echo "text-to-be-encoded" | base64` and copying the output.
-
-1. Replace the placeholders with real values and save the file.
-1. Create a file called `cf.yaml` anywhere on your local machine.
-1. Copy and paste the contents below into the file.
+1. Create a file called `cf.yaml` on your local machine.
+1. Add the code snippet below to the file:
 
     ```yaml
     apiVersion: developerconsole.pivotal.io/v1alpha1
@@ -124,7 +133,6 @@ To register a new Cloud Foundry deployment:
     * `SKIP-SSL-VALIDATION` is a boolean value you can set to `true` to skip SSL validation when communicating
     with the Cloud Foundry deployment. The default value is `false`.
 
-1. Replace the placeholders with real values and save the file.
 1. Apply the configuration by running:
 
     ```
@@ -139,8 +147,8 @@ given explicit access to it via a Cloud Foundry space entitlement.
 
 To create a new Cloud Foundry space entitlement:
 
-1. Create a file called `cf-space-entitlement.yaml` anywhere on your local machine.
-1. Copy and paste the contents below into the file.
+1. Create a file called `cf-space-entitlement.yaml` on your local machine.
+1. Add the code snippet below to the file:
 
     ```yaml
     apiVersion: developerconsole.pivotal.io/v1alpha1
@@ -161,8 +169,6 @@ To create a new Cloud Foundry space entitlement:
     * `CLOUD-FOUNDRY-NAME` is the registered name of the Cloud Foundry that contains the space that you are granting access to.
     * `ORG` is the name of the Cloud Foundry org that contains the space that you are granting access to.
     * `SPACE` is the name of the Cloud Foundry space that you are granting access to.
-
-1. Replace the placeholders with real values and save the file.
 
 1. Apply the configuration by running:
 
