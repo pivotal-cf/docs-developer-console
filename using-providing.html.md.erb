@@ -149,7 +149,8 @@ To create a new Cloud Foundry space entitlement:
       name: CLOUD-FOUNDRY-SPACE-ENTITLEMENT-NAME
     spec:
       namespace: PROJECT-NAME
-      cloudFoundry: CLOUD-FOUNDRY-NAME
+      cloudFoundryAPIRef:
+        name: CLOUD-FOUNDRY-NAME
       org: ORG
       space: SPACE
     ```
