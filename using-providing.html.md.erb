@@ -129,6 +129,43 @@ To register a new Cloud Foundry deployment:
       kubectl create -f cf.yaml
     ```
 
+### <a id='grant-space-access'></a> Grant access to a Cloud Foundry space to a Project
+
+In order for members of a project to interact with resources within a Cloud Foundry space they must be
+given explicit access to it via a Cloud Foundry space entitlement.
+
+To create a new Cloud Foundry space entitlement:
+
+1. Create a file called `cf-space-entitlement.yaml` anywhere on your local machine.
+1. Copy and paste the contents below into the file.
+
+    ```yaml
+    apiVersion: developerconsole.pivotal.io/v1alpha1
+    kind: CloudFoundrySpaceEntitlement
+    metadata:
+      name: CLOUD-FOUNDRY-SPACE-ENTITLEMENT-NAME
+    spec:
+      namespace: PROJECT-NAME
+      cloudFoundry: CLOUD-FOUNDRY-NAME
+      org: ORG
+      space: SPACE
+    ```
+
+    Where:
+    * `CLOUD-FOUNDRY-SPACE-ENTITLEMENT-NAME` is a name of your choosing for the CloudFoundrySpaceEntitlement object.
+    * `PROJECT-NAME` is name of the Project which will have access to the space.
+    * `CLOUD-FOUNDRY-NAME` is the registered name of the Cloud Foundry that contains the space that you are granting access to.
+    * `ORG` is the name of the Cloud Foundry org that contains the space that you are granting access to.
+    * `SPACE` is the name of the Cloud Foundry space that you are granting access to.
+
+1. Replace the placeholders with real values and save the file.
+
+1. Apply the configuration by running:
+
+    ```
+      kubectl create -f cf-space-entitlement.yaml
+    ```
+
 ## <a id='register-broker'></a> Register a Broker
 
 You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
