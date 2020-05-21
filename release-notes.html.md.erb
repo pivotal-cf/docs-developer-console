@@ -11,9 +11,12 @@ These are release notes for <%= vars.product_full %>.
 
 **Release Date:** MONTH DAY, 2020
 
-### Breaking Change
-
-* The custom resource definition CloudFoundry has been renamed to CloudFoundryAPI.
+<p class="note breaking"><strong>Breaking Change:</strong>
+  The custom resource definition (CRD) <code>CloudFoundry</code>
+  has been renamed to <code>CloudFoundryAPI</code>.
+  You must ensure that your <code>cf.yaml</code> file references <code>CloudFoundryAPI</code>.
+  For more information, see <a href="./using-providing.html#register-cfs">Register a Cloud Foundry Deployment</a>.
+</p>
 
 ### Features
 
@@ -23,29 +26,31 @@ New features and changes in this release:
 and access must now be granted explicitly. For more information, see
 [Grant access to a Cloud Foundry space to a Project](./using-providing.html#grant-space-access).
 
-* Added improved output to various pdc commands to propagate status to the application developer and
-make it clear which cf app a given binding is wiring to, if any.
+* **Improved output for `pdc` commands:**
+The `pdc binding list` and `pdc instance get` commands return the bound app for a binding.
 
 ### Resolved issues
 
 This release has the following fixes:
 
-* There is a validaiton of broker name length on registration that prevents creation of brokers with names
-longer than 63 characters. This resolves the issue where it was not possible to create service instances
-for a broker registered with a name of more than 63 characters.
+* **Broker names are validated:**
+<%= vars.product_short %> now prevents the creation of brokers with names longer than 63 characters.
+  You cannot create service instances for a broker registered with a name longer than 63 characters.
 
-* There is a validation on creating a binding to a Cloud Foundry app that checks if the app name and the
-binding name combined have more than 49 characters and fails fast with a descriptive message.
+* **App and binding names are validated:**
+When you create a binding, <%= vars.product_short %> now verifies if the app and binding names combined
+are longer than 49 characters.
+If the combined names are longer than 49 characters, the bind fails fast with a descriptive message.
 
 ### Known Issues
 
 This release has the following issues:
 
-* The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a
-`$` character.
+* If your private container registry contains a `$` character, installing CNAB fails.
+For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
-Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
+LDAP, the User Account and Authentication (UAA) server does
 not reflect this change.
 This can result in the UAA server generating tokens for users that grant permissions for groups that
 the users are not in anymore.
@@ -85,11 +90,11 @@ or [Bind a Service Instance to an App That Runs in Cloud Foundry](./using-provis
 
 This release has the following issues:
 
-* The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a
-`$` character.
+* If your private container registry contains a `$` character, installing CNAB fails.
+For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
-Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
+LDAP, the User Account and Authentication (UAA) server does
 not reflect this change.
 This can result in the UAA server generating tokens for users that grant permissions for groups that
 the users are not in anymore.
@@ -134,11 +139,11 @@ reflecting its alpha status.
 
 This release has the following issues:
 
-* The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a
-`$` character.
+* If your private container registry contains a `$` character, installing CNAB fails.
+For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
-Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
+LDAP, the User Account and Authentication (UAA) server does
 not reflect this change.
 This can result in the UAA server generating tokens for users that grant permissions for groups that
 the users are not in anymore.
@@ -169,10 +174,11 @@ This release has the following issues:
 * The Kubernetes API version for the Project custom resource definition (CRD) is v1.
   However, the API might still be unstable.
 
-* The [Install the CNAB](installing.html#install-cnab) steps fail if `REGISTRY-PASSWORD` contains a `$` character.
+* If your private container registry contains a `$` character, installing CNAB fails.
+  For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
-Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
+LDAP, the User Account and Authentication (UAA) server does
 not reflect this change.
 This can result in the UAA server generating tokens for users that grant permissions for groups that
 the users are not in anymore.
