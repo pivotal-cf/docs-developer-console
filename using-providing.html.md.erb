@@ -78,13 +78,10 @@ To register a new Cloud Foundry deployment:
 1. Encode your Cloud Foundry UAA client and secret by running:
 
     ```
-    echo "CLIENT-ID" | base64
+    echo "developerconsole" | base64
     echo "CLIENT-SECRET" | base64
     ```
-    Where:
-    + `CLIENT-ID` is the UAA client ID you created in
-    [Create a Cloud Foundry UAA Client](./installing.html#create-cf-uaa-client).
-    + `CLIENT-SECRET` is the UAA client secret you created in
+    Where CLIENT-SECRET` is the UAA client secret you created in
     [Create a Cloud Foundry UAA Client](./installing.html#create-cf-uaa-client).
 
     Record the output of the above commands.
