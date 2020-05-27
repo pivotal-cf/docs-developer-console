@@ -24,7 +24,7 @@ first register the Cloud Foundry deployment in <%= vars.product_short %>.
 ## <a id='config-projects'></a> Configure a Project
 
 You can configure projects by posting YAML to the Kubernetes API of your cluster.
-This topic explains how to do this using the Kubernetes command line interface (CLI) tool, kubectl.
+This topic explains how to do this using the Kubernetes command line interface tool (kubectl).
 Kubectl is one of several ways to communicate with the API.
 
 To create a new project:
@@ -63,8 +63,7 @@ To create a new project:
 ## <a id='register-cfs'></a> Register a Cloud Foundry Deployment
 
 You can register a Cloud Foundry deployment by posting YAML to the Kubernetes API of your cluster.
-This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is
-one of several ways to communicate with the API.
+This topic demonstrates this with kubectl, which is one of several ways to communicate with the API.
 
 <p class="note">
   <strong>Note:</strong> You must have an admin client configured in the Cloud Foundry
@@ -141,10 +140,9 @@ To register a new Cloud Foundry deployment:
       kubectl create -f cf.yaml
     ```
 
-### <a id='grant-space-access'></a> Grant access to a Cloud Foundry space to a Project
+### <a id='grant-space-access'></a> Grant a Cloud Foundry Space Access to a Project
 
-In order for members of a project to interact with resources within a Cloud Foundry space they must be
-given explicit access to it via a Cloud Foundry space entitlement.
+To interact with resources within a Cloud Foundry space, members of a project must receive explicit access through a Cloud Foundry space entitlement.
 
 To create a new Cloud Foundry space entitlement:
 
@@ -160,16 +158,16 @@ To create a new Cloud Foundry space entitlement:
       namespace: PROJECT-NAME
       cloudFoundryAPIRef:
         name: CLOUD-FOUNDRY-NAME
-      org: ORG
-      space: SPACE
+      org: ORG-NAME
+      space: SPACE-NAME
     ```
 
     Where:
     * `CLOUD-FOUNDRY-SPACE-ENTITLEMENT-NAME` is a name of your choosing for the CloudFoundrySpaceEntitlement object.
-    * `PROJECT-NAME` is name of the Project which will have access to the space.
-    * `CLOUD-FOUNDRY-NAME` is the registered name of the Cloud Foundry that contains the space that you are granting access to.
-    * `ORG` is the name of the Cloud Foundry org that contains the space that you are granting access to.
-    * `SPACE` is the name of the Cloud Foundry space that you are granting access to.
+    * `PROJECT-NAME` is the name of the project receiving access to the space.
+    * `CLOUD-FOUNDRY-NAME` is the registered name of the Cloud Foundry that contains the space receiving access.
+    * `ORG-NAME` is the name of the Cloud Foundry org that contains the space receiving access
+    * `SPACE-NAME` is the name of the Cloud Foundry space receiving access.
 
 1. Apply the configuration by running:
 

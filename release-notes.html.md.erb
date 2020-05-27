@@ -1,5 +1,5 @@
 ---
-title: Release Notes for Developer Console
+title: Release Notes for Developer Console<%# Use <%= vars.product_short %>
 owner: Marketplace
 ---
 
@@ -13,7 +13,7 @@ These are release notes for <%= vars.product_full %>.
 
 <p class="note breaking"><strong>Breaking Change:</strong>
   The custom resource definition (CRD) <code>CloudFoundry</code>
-  has been renamed to <code>CloudFoundryAPI</code>.
+  has been renamed as <code>CloudFoundryAPI</code>.
   You must ensure that your <code>cf.yaml</code> file references <code>CloudFoundryAPI</code>.
   For more information, see <a href="./using-providing.html#register-cfs">Register a Cloud Foundry Deployment</a>.
 </p>
@@ -22,14 +22,14 @@ These are release notes for <%= vars.product_full %>.
 
 New features and changes in this release:
 
-* Access to resources within registered Cloud Foundries is now controlled at a space-level
-and access must now be granted explicitly. For more information, see
-[Grant access to a Cloud Foundry space to a Project](./using-providing.html#grant-space-access).
+* Access to resources within registered Cloud Foundries is now controlled at a space level and access must now
+be granted explicitly. For more information, see
+[Grant a Cloud Foundry Space Access to a Project](./using-providing.html#grant-space-access).
 
 * **Improved output for `pdc` commands:**
 The `pdc binding list` and `pdc instance get` commands return the bound app for a binding.
 
-### Resolved issues
+### Resolved Issues
 
 This release has the following fixes:
 
@@ -131,7 +131,7 @@ access to
 
 This release has the following fix:
 
-* The Kubernetes API version for Project CRD (custom resource definition) is now correctly labelled v1alpha1,
+* The Kubernetes API version for Project CRD is now correctly labelled v1alpha1,
 reflecting its alpha status.
 
 
