@@ -77,10 +77,10 @@ To create the required User Account and Authentication (UAA) client:
 1. Create an admin client for <%= vars.product_short %> by running:
 
     ```
-    uaac client add developerconsole -s CLIENT-PASSWORD --authorized_grant_types client_credentials --authorities cloud_controller.admin
+    uaac client add developerconsole -s CLIENT-SECRET --authorized_grant_types client_credentials --authorities cloud_controller.admin
     ```
 
-    Where `CLIENT-PASSWORD` is a password of your choice. Keep this password safe. It is required
+    Where `CLIENT-SECRET` is a secret of your choice. Keep this secret safe. It is required
     when using <%= vars.product_short %>.
 
 
