@@ -137,9 +137,10 @@ To register a new Cloud Foundry deployment:
       kubectl create -f cf.yaml
     ```
 
-### <a id='grant-space-access'></a> Grant a Cloud Foundry Space Access to a Project
+### <a id='space-entitlement'></a> Create a Space Entitlement
 
-To interact with resources within a Cloud Foundry space, members of a project must receive explicit access through a Cloud Foundry space entitlement.
+To interact with resources within a Cloud Foundry space, project members must receive explicit access
+through a Cloud Foundry space entitlement.
 
 To create a new Cloud Foundry space entitlement:
 
@@ -160,11 +161,11 @@ To create a new Cloud Foundry space entitlement:
     ```
 
     Where:
-    * `CLOUD-FOUNDRY-SPACE-ENTITLEMENT-NAME` is a name of your choosing for the CloudFoundrySpaceEntitlement object.
+    * `CLOUD-FOUNDRY-SPACE-ENTITLEMENT-NAME` is a name you choose for the `CloudFoundrySpaceEntitlement` object.
     * `PROJECT-NAME` is the name of the project receiving access to the space.
-    * `CLOUD-FOUNDRY-NAME` is the registered name of the Cloud Foundry that contains the space receiving access.
-    * `ORG-NAME` is the name of the Cloud Foundry org that contains the space receiving access
-    * `SPACE-NAME` is the name of the Cloud Foundry space receiving access.
+    * `CLOUD-FOUNDRY-NAME` is the name of the Cloud Foundry deployment that contains the space to which you are granting access.
+    * `ORG-NAME` is the name of the org that contains the space to which you are granting access.
+    * `SPACE-NAME` is the name of the space to which you are granting access.
 
 1. Apply the configuration by running:
 
@@ -194,9 +195,9 @@ You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
 
     Where:
     * `BROKER-NAME` is the name of the newly registered broker. Make it shorter than 64 characters.
-    * `BROKER-URL` is the location of the broker API endpoint
-    * `BROKER-USERNAME` is the username by which <%= vars.product_short %> authenticates with the broker
-    * `BROKER-PASSWORD` is the password by which <%= vars.product_short %> authenticates with the broker
+    * `BROKER-URL` is the location of the broker API endpoint.
+    * `BROKER-USERNAME` is the username by which <%= vars.product_short %> authenticates with the broker.
+    * `BROKER-PASSWORD` is the password by which <%= vars.product_short %> authenticates with the broker.
 
 1. Verify that the broker was registered by running:
 
