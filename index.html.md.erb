@@ -77,14 +77,14 @@ The following table provides version information about <%= vars.product_short %>
 
 ## <a id="reqs"></a> Requirements
 
-To use <%= vars.product_short %>, you must:
+To use <%= vars.product_short %>, you must have:
 
-* Be signed up to the <%= vars.product_short %> Early Adopter Program
-* Have a Kubernetes cluster configured with RBAC [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
-In order to leverage groups the cluster must be configured with a backing identity provider that supports them such as OpenID Connect (OIDC),
+* Access to the <%= vars.product_short %> Early Adopter Program.
+* A Kubernetes cluster configured with RBAC. To configure your Kubernetes cluster with RBAC, see [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
+To use groups, configure the cluster with a backing identity provider. For more information, 
 see [Authentication strategies](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies).
-* Have a sandbox environment for testing
-* Have a Docker image registry to which you can relocate images
+* A sandbox environment for testing.
+* A Docker image registry for image relocation.
 
 ## <a id="limitations"></a> Limitations
 
