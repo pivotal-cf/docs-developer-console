@@ -55,11 +55,11 @@ The following table provides version information about <%= vars.product_short %>
     <th>Details</th>
     <tr>
         <td><%= vars.product_short %> CNAB version</td>
-        <td>v0.3.1</td>
+        <td>v0.4.0</td>
     </tr>
     <tr>
         <td>Release date</td>
-        <td>April 15, 2020</td>
+        <td>June 6, 2020</td>
     </tr>
     <tr>
         <td>Service Catalog Helm chart version</td>
@@ -77,13 +77,14 @@ The following table provides version information about <%= vars.product_short %>
 
 ## <a id="reqs"></a> Requirements
 
-To use <%= vars.product_short %>, you must:
+To use <%= vars.product_short %>, you must have:
 
-* Be signed up to the <%= vars.product_short %> Early Adopter Program
-* Have an <%= vars.k8s_runtime_full %> Kubernetes cluster configured in OpenID Connect (OIDC).
-For more information, see [Grant Cluster Access to a User](https://docs.pivotal.io/pks/manage-cluster-permissions.html#cluster-access-user).
-* Have a sandbox environment for testing
-* Have a Docker image registry to which you can relocate images
+* Access to the <%= vars.product_short %> Early Adopter Program.
+* A Kubernetes cluster configured with RBAC. To configure your Kubernetes cluster with RBAC, see [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
+To use groups, configure the cluster with a backing identity provider such as OpenID Connect (OIDC). For more information,
+see [Authentication strategies](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies).
+* A sandbox environment for testing.
+* A Docker image registry for image relocation.
 
 ## <a id="limitations"></a> Limitations
 
@@ -92,7 +93,8 @@ For more information, see [Grant Cluster Access to a User](https://docs.pivotal.
 * This product is in alpha. The structure of the product is subject to change in later versions.
 * This product is intended to be used with any Kubernetes distribution. However, given the number of
 Kubernetes vendors, versions, and configurations, not all of them have been tested with
-<%= vars.product_short %>.
+<%= vars.product_short %>. The versions that have been succesfully tested at least once are v1.12-v1.17.
+As of now v1.18+ is not yet supported.
 * Product upgrades are currently not supported. To test a newer version, delete the previous version
 first.
 

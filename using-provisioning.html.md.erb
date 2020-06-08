@@ -92,7 +92,7 @@ To create a service instance:
 
 ## <a id='examine-broker'></a> Examine an Instance
 
-To examine a specific instance:
+To examine a specific instance and its bindings:
 
 1. Run:
 
@@ -104,6 +104,9 @@ To examine a specific instance:
 
     <pre class="terminal">
     $ pdc instance get --name=my-instance
+    bindings:
+    <span>-</span> name: my-binding
+      cfApp: my-cf/my-org/my-space/my-app
     broker: my-broker
     createdAt: 2019-02-31 12:00:00 +0000 GMT
     name: my-instance
@@ -142,8 +145,8 @@ To access a service instance:
 
     <pre class="terminal">
     $ pdc binding list
-    NAME           INSTANCE            STATUS    CREATED AT
-    my-binding     my-instance         created   2019-02-31 12:00:00 +0000 GMT
+    NAME           INSTANCE            STATUS    CREATED AT                       APP
+    my-binding     my-instance         created   2019-02-31 12:00:00 +0000 GMT    my-cf/my-org/my-space/my-app
     </pre>
 
 1. Get the credentials from the binding that are needed to access the service instance:

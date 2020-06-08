@@ -24,7 +24,7 @@ first register the Cloud Foundry deployment in <%= vars.product_short %>.
 ## <a id='config-projects'></a> Configure a Project
 
 You can configure projects by posting YAML to the Kubernetes API of your cluster.
-This topic explains how to do this using the Kubernetes command line interface (CLI) tool, kubectl.
+This topic explains how to do this using the Kubernetes command line interface tool (kubectl).
 Kubectl is one of several ways to communicate with the API.
 
 To create a new project:
@@ -63,8 +63,7 @@ To create a new project:
 ## <a id='register-cfs'></a> Register a Cloud Foundry Deployment
 
 You can register a Cloud Foundry deployment by posting YAML to the Kubernetes API of your cluster.
-This topic demonstrates this with the Kubernetes command line interface (CLI) tool, kubectl, which is
-one of several ways to communicate with the API.
+This topic demonstrates this with kubectl, which is one of several ways to communicate with the API.
 
 <p class="note">
   <strong>Note:</strong> You must have an admin client configured in the Cloud Foundry
@@ -112,7 +111,7 @@ To register a new Cloud Foundry deployment:
 
     ```yaml
     apiVersion: developerconsole.pivotal.io/v1alpha1
-    kind: CloudFoundry
+    kind: CloudFoundryAPI
     metadata:
       name: CLOUD-FOUNDRY-NAME
     spec:
@@ -138,6 +137,42 @@ To register a new Cloud Foundry deployment:
       kubectl create -f cf.yaml
     ```
 
+### <a id='space-entitlement'></a> Create a Space Entitlement
+
+To interact with resources within a Cloud Foundry space, project members must receive explicit access
+through a Cloud Foundry space entitlement.
+
+To create a new Cloud Foundry space entitlement:
+
+1. Create a file called `cf-space-entitlement.yaml` on your local machine.
+1. Add the code snippet below to the file:
+
+    ```yaml
+    apiVersion: developerconsole.pivotal.io/v1alpha1
+    kind: CloudFoundrySpaceEntitlement
+    metadata:
+      name: CLOUD-FOUNDRY-SPACE-ENTITLEMENT-NAME
+    spec:
+      namespace: PROJECT-NAME
+      cloudFoundryAPIRef:
+        name: CLOUD-FOUNDRY-NAME
+      org: ORG-NAME
+      space: SPACE-NAME
+    ```
+
+    Where:
+    * `CLOUD-FOUNDRY-SPACE-ENTITLEMENT-NAME` is a name you choose for the `CloudFoundrySpaceEntitlement` object.
+    * `PROJECT-NAME` is the name of the project receiving access to the space.
+    * `CLOUD-FOUNDRY-NAME` is the name of the Cloud Foundry deployment that contains the space to which you are granting access.
+    * `ORG-NAME` is the name of the org that contains the space to which you are granting access.
+    * `SPACE-NAME` is the name of the space to which you are granting access.
+
+1. Apply the configuration by running:
+
+    ```
+      kubectl create -f cf-space-entitlement.yaml
+    ```
+
 ## <a id='register-broker'></a> Register a Broker
 
 You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
@@ -160,9 +195,9 @@ You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
 
     Where:
     * `BROKER-NAME` is the name of the newly registered broker. Make it shorter than 64 characters.
-    * `BROKER-URL` is the location of the broker API endpoint
-    * `BROKER-USERNAME` is the username by which <%= vars.product_short %> authenticates with the broker
-    * `BROKER-PASSWORD` is the password by which <%= vars.product_short %> authenticates with the broker
+    * `BROKER-URL` is the location of the broker API endpoint.
+    * `BROKER-USERNAME` is the username by which <%= vars.product_short %> authenticates with the broker.
+    * `BROKER-PASSWORD` is the password by which <%= vars.product_short %> authenticates with the broker.
 
 1. Verify that the broker was registered by running:
 
