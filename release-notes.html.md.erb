@@ -7,9 +7,40 @@ owner: Marketplace
 
 These are release notes for <%= vars.product_full %>.
 
-## <a id="0-4-0"></a> v0.4.0–alpha.4
+## <a id="0-5-0"></a> v0.5.x–alpha.5
 
 **Release Date:** MONTH DAY, 2020
+
+### Features
+
+New features and changes in this release:
+
+
+### Resolved Issues
+
+This release has the following fixes:
+
+
+### Known Issues
+
+This release has the following issues:
+
+* If `REGISTRY-PASSWORD` contains a `$` character, installing CNAB fails.
+For more information, see [Install the CNAB](installing.html#install-cnab).
+
+* If you remove a user's last remaining group membership in a backing identity provider, such as
+LDAP, the User Account and Authentication (UAA) server does
+not reflect this change.
+This can result in the UAA server generating tokens for users that grant permissions for groups that
+the users are not in anymore.
+This is a UAA issue.
+To prevent this issue, create a group that grants no permissions and assign a user to that group before
+removing the rest of that user's group memberships.
+
+
+## <a id="0-4-0"></a> v0.4.0–alpha.4
+
+**Release Date:** June 8, 2020
 
 <p class="note breaking"><strong>Breaking Change:</strong>
   The custom resource definition (CRD) <code>CloudFoundry</code>
@@ -95,7 +126,7 @@ This release has the following issues:
 For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
-LDAP, the User Account and Authentication (UAA) server does
+Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
 not reflect this change.
 This can result in the UAA server generating tokens for users that grant permissions for groups that
 the users are not in anymore.
@@ -144,7 +175,7 @@ This release has the following issues:
 For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
-LDAP, the User Account and Authentication (UAA) server does
+Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
 not reflect this change.
 This can result in the UAA server generating tokens for users that grant permissions for groups that
 the users are not in anymore.
@@ -179,7 +210,7 @@ This release has the following issues:
   For more information, see [Install the CNAB](installing.html#install-cnab).
 
 * If you remove a user's last remaining group membership in a backing identity provider, such as
-LDAP, the User Account and Authentication (UAA) server does
+Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
 not reflect this change.
 This can result in the UAA server generating tokens for users that grant permissions for groups that
 the users are not in anymore.
