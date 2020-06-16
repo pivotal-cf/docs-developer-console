@@ -47,17 +47,8 @@ If the combined names are longer than 49 characters, the bind fails fast with a 
 
 This release has the following issues:
 
-* If `REGISTRY-PASSWORD` contains a `$` character, installing CNAB fails.
-For more information, see [Install the CNAB](installing.html#install-cnab).
-
-* If you remove a user's last remaining group membership in a backing identity provider, such as
-LDAP, the User Account and Authentication (UAA) server does
-not reflect this change.
-This can result in the UAA server generating tokens for users that grant permissions for groups that
-the users are not in anymore.
-This is a UAA issue.
-To prevent this issue, create a group that grants no permissions and assign a user to that group before
-removing the rest of that user's group memberships.
+<%= partial vars.path_to_partials + "/developer-console/ki-registry-password" %>
+<%= partial vars.path_to_partials + "/developer-console/ki-uaa-permissions" %>
 
 
 ## <a id="0-3-1"></a> v0.3.1–alpha.3
@@ -91,22 +82,10 @@ or [Bind a Service Instance to an App That Runs in Cloud Foundry](./using-provis
 
 This release has the following issues:
 
-* If `REGISTRY-PASSWORD` contains a `$` character, installing CNAB fails.
-For more information, see [Install the CNAB](installing.html#install-cnab).
-
-* If you remove a user's last remaining group membership in a backing identity provider, such as
-Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
-not reflect this change.
-This can result in the UAA server generating tokens for users that grant permissions for groups that
-the users are not in anymore.
-This is a UAA issue.
-To prevent this issue, create a group that grants no permissions and assign a user to that group before
-removing the rest of that user's group memberships.
-
-* You cannot create service instances for a broker registered with a name of more than 63 characters.
-
-* Binding to a Cloud Foundry app fails if the app name and the binding name combined have more than 49
-characters.
+<%= partial vars.path_to_partials + "/developer-console/ki-registry-password" %>
+<%= partial vars.path_to_partials + "/developer-console/ki-uaa-permissions" %>
+<%= partial vars.path_to_partials + "/developer-console/ki-long-si-names" %>
+<%= partial vars.path_to_partials + "/developer-console/ki-app-and-binding-names" %>
 
 
 ## <a id="0-2-0"></a> v0.2.0–alpha.2
@@ -140,19 +119,9 @@ reflecting its alpha status.
 
 This release has the following issues:
 
-* If `REGISTRY-PASSWORD` contains a `$` character, installing CNAB fails.
-For more information, see [Install the CNAB](installing.html#install-cnab).
-
-* If you remove a user's last remaining group membership in a backing identity provider, such as
-Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
-not reflect this change.
-This can result in the UAA server generating tokens for users that grant permissions for groups that
-the users are not in anymore.
-This is a UAA issue.
-To prevent this issue, create a group that grants no permissions and assign a user to that group before
-removing the rest of that user's group memberships.
-
-* You cannot create service instances for a broker registered with a name of more than 63 characters.
+<%= partial vars.path_to_partials + "/developer-console/ki-registry-password" %>
+<%= partial vars.path_to_partials + "/developer-console/ki-uaa-permissions" %>
+<%= partial vars.path_to_partials + "/developer-console/ki-long-si-names" %>
 
 
 ## <a id="0-1-0"></a> v0.1.0–alpha.1
@@ -172,19 +141,7 @@ The initial alpha release enables:
 
 This release has the following issues:
 
-* The Kubernetes API version for the Project custom resource definition (CRD) is v1.
-  However, the API might still be unstable.
-
-* If `REGISTRY-PASSWORD` contains a `$` character, installing CNAB fails.
-  For more information, see [Install the CNAB](installing.html#install-cnab).
-
-* If you remove a user's last remaining group membership in a backing identity provider, such as
-Lightweight Directory Access Protocol (LDAP), the User Account and Authentication (UAA) server does
-not reflect this change.
-This can result in the UAA server generating tokens for users that grant permissions for groups that
-the users are not in anymore.
-This is a UAA issue.
-To prevent this issue, create a group that grants no permissions and assign a user to that group before
-removing the rest of that user's group memberships.
-
-* You cannot create service instances for a broker registered with a name of more than 63 characters.
+<%= partial vars.path_to_partials + "/developer-console/ki-unstable-api" %>
+<%= partial vars.path_to_partials + "/developer-console/ki-registry-password" %>
+<%= partial vars.path_to_partials + "/developer-console/ki-uaa-permissions" %>
+<%= partial vars.path_to_partials + "/developer-console/ki-long-si-names" %>
