@@ -28,10 +28,11 @@ This alpha version of <%= vars.product_short %> enables platform teams to regist
 Service Broker API (OSBAPI) compliant service brokers, running anywhere, from a single centralized
 location.
 
-App teams can then use these brokers to provision services and retrieve credentials
-through the <%= vars.product_short %> command line interface (CLI) tool.
+App teams can then use these brokers to provision services and retrieve credentials through the
+<%= vars.product_short %> command line interface (CLI) tool.
 The apps use these credentials to access the service instances, even if the apps exist across multiple
-runtime environments, such as <%= vars.app_runtime_full %> and <%= vars.k8s_runtime_full %>.
+runtime environments, such as <%= vars.app_runtime_full %>, <%= vars.app_runtime_k8s_full %>, and
+<%= vars.k8s_runtime_full %>.
 
 <p class="note">
     <strong>Note:</strong> The <%= vars.product_short %> team is especially keen for user feedback on
@@ -84,9 +85,11 @@ The following table provides version information about <%= vars.product_short %>
 To use <%= vars.product_short %>, you must have:
 
 * Access to the <%= vars.product_short %> Early Adopter Program.
-* A Kubernetes cluster configured with RBAC. To configure your Kubernetes cluster with RBAC, see [Using RBAC Authorization](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
-To use groups, configure the cluster with a backing identity provider such as OpenID Connect (OIDC). For more information,
-see [Authentication strategies](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies).
+* A Kubernetes cluster configured with RBAC. To configure your Kubernetes cluster with RBAC, see the
+[Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/).
+To use groups, configure the cluster with a backing identity provider such as OpenID Connect (OIDC).
+For more information, see the
+[Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/authentication/#authentication-strategies).
 * A sandbox environment for testing.
 * A Docker image registry for image relocation.
 
@@ -94,12 +97,12 @@ see [Authentication strategies](https://kubernetes.io/docs/reference/access-auth
 
 <%= vars.product_short %> has the following general limitations:
 
-* <%= vars.product_short %> is in alpha. The product may change in later versions.
+* <%= vars.product_short %> is in alpha. The product might change in later versions.
 * You can use <%= vars.product_short %> with any Kubernetes distribution. Given the number of
 Kubernetes vendors, versions, and configurations, not all distributions are tested with
-<%= vars.product_short %>. Succesfully tested versions include Kubernetes v1.12 through v1.17.
-* <%= vars.product_short %> upgrades are currently not supported. To test a newer version, delete the previous version
-first.
+<%= vars.product_short %>. Successfully tested versions include Kubernetes v1.12 through v1.17.
+* <%= vars.product_short %> upgrades are currently not supported. To test a newer version, delete
+the previous version first.
 
 ## <a id="feedback"></a> Feedback
 
