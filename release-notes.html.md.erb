@@ -15,17 +15,18 @@ These are release notes for <%= vars.product_full %>.
 
 New features and changes in this release:
 
+* Switch to a Helm Chart as the primary method for installation.
 
 ### Resolved Issues
 
 This release has the following fixes:
 
+* Due to removal of CNAB there is no longer an issue when `REGISTRY-PASSWORD` contains a `$` character.
 
 ### Known Issues
 
 This release has the following issues:
 
-<%= partial vars.path_to_partials + "/developer-console/ki-registry-password" %>
 <%= partial vars.path_to_partials + "/developer-console/ki-uaa-permissions" %>
 
 

@@ -15,19 +15,43 @@ controllers.
 
 ## <a id='prereqs'></a> Prerequisites
 
-* Private internal registry, such as Harbor
-* Docker
+* **kubectl:** For installation instructions, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+* **The Docker CLI:** For installation instructions, see the [Docker documentation](https://docs.docker.com/install/).
+* **The Helm CLI:** For installation instructions, see the [Helm documentation](https://helm.sh/docs/intro/install/).
+* Access to the <%= vars.product_network %> image registry: For more information, see [Verify Your Access
+to the <%= vars.product_network %> Image Registry](#helm-verify-docker-access) below.
 
 ## <a id='install'></a> Install and Configure <%= vars.product_short %>
 
 To install and configure <%= vars.product_short %>:
 
 * [Create a Cloud Foundry UAA Client](#create-cf-uaa-client)
-* [Install Duffle](#install-duffle)
-* [Relocate the Images](#relocate)
-* [Install the CNAB](#install-cnab)
+* [Install the Helm Chart](#install-helm)
 * [Install the <%= vars.product_short %> CLI Tool](#install-cli), which is needed for operating
 <%= vars.product_short %>.
+
+### <a id='helm-verify-docker-access'></a> Verify That You Can Access the <%= vars.product_network %> Image Registry
+
+To verify that you have access to the <%= vars.product_network %> registry:
+
+1. Log in to the Docker registry by running:
+
+    ```
+    docker login registry.pivotal.io
+    ```
+
+1. At the username prompt, enter the email address associated with your <%= vars.product_network %> account.
+
+1. At the password prompt, enter your <%= vars.product_network %> account password.
+
+1. Pull the registry by running:
+
+    ```
+    docker pull registry.pivotal.io/developer-console/cf-service-bridge:CF-SERVICE-BRIDGE-VERSION
+    ```
+
+    Where `CF-SERVICE-BRIDGE-VERSION` is the image version in <%= vars.product_network %>.
+    For example, `0.2.0-build.1`.<br><br>
 
 ### <a id='create-cf-uaa-client'></a> Create a Cloud Foundry UAA Client
 
@@ -83,109 +107,49 @@ To create the required User Account and Authentication (UAA) client:
     Where `CLIENT-SECRET` is a secret of your choice. Keep this secret safe. It is required
     when using <%= vars.product_short %>.
 
+### <a id='install-helm'></a> Install the Helm Chart
 
-### <a id='install-duffle'></a> Install Duffle
+To install the Helm Chart:
 
-Duffle is a CLI that interacts with Cloud Native Application Bundles (CNABs) to package and unpackage
-distributed apps for deployment on cloud platforms and services.
-Duffle is used to install the <%= vars.product_short %> CNAB and relocate images.
-
-<%# Do you ever use Duffle directly or is it just something that Dev Console needs and you never interact with again? %>
-
-To install Duffle:
-
-1. Download the most recent Duffle binary from [duffle](https://github.com/deislabs/duffle/releases)
-in GitHub.
-
-1. Make the binary executable by running:
+1. Create a file called `values.yaml` anywhere on your local machine with the contents below:
 
     ```
-    chmod +x ~/Downloads/duffle-darwin
+    cf-service-bridge:
+      imagePullSecrets:
+      - name: REGISTRY-SECRET-NAME
+    projects-operator:
+      imagePullSecrets:
+      - name: REGISTRY-SECRET-NAME
     ```
 
-1. Move the binary to your path by running:
+    Where REGISTRY-SECRET-NAME is the name of a kubernetes secret containing the container registry credentials.
+
+    If you have relocated the images then you must also append this section to the same `values.yaml`:
 
     ```
-    mv ~/Downloads/duffle-darwin /usr/local/bin/duffle
+    global:
+      imageRegistry: REGISTRY-HOST
+      imageNamespace: REGISTRY-NAMESPACE
+
+    catalog:
+      image: REGISTRY-HOST/REGISTRY-NAMESPACE/service-catalalog:v0.3.0
     ```
 
-1. Verify that Duffle works by running:
+    Where:
+    * REGISTRY-HOST is the host of the container registry that the images were relocated to
+    * REGISTRY-NAMESPACE is the namespace of the container registry that the images were relocated to
+    Note: this assumes that all images were relocated to the same namespace.
+
+1. Create a namespace for the installation:
 
     ```
-    duffle --help
+    kubectl create namespace pdc-system
     ```
 
-    <p class="note">
-      <strong>Note:</strong> By default, Duffle stores state on your local machine in the
-      <code>$HOME/.duffle</code> directory.
-      This means that any later Duffle commands, such as <code>uninstall</code> should be run from
-      the same developer machine.
-    </p>
-
-### <a id='relocate'></a> Relocate the Images
-
-<%# What images does Alana relocate? From where and to where do they get relocated? Why is it necessary? %>
-
-To relocate the images:
-
-1. Log in to your private registry by running:
+1. Install the helm chart using the `values.yaml` file created above:
 
     ```
-    docker login harbor.example.com
-    ```
-
-1. Relocate the images by running:
-
-    ```
-    duffle relocate developer-console-VERSION-NUMBER.tgz \
-        --bundle-is-file  \
-        --relocation-mapping /tmp/mapping.json \
-        --repository-prefix harbor.example.com/your-project
-    ```
-
-    Where `VERSION-NUMBER` is the number in the filename.
-
-    This stores the mapping output in a file called `/tmp/mapping.json`.
-
-1. Store `/tmp/mapping.json` somewhere safe: it is required to uninstall <%= vars.product_short %>.
-
-### <a id='install-cnab'></a> Install the CNAB
-
-<%# What is in the CNAB bundle and what does it do? %>
-
-To install the CNAB:
-
-1. Create a credentials file called `developer-console-creds.yaml` anywhere on your local machine
-with the contents below.
-
-    ```
-    name: developer-console-creds
-    credentials:
-    - name: kubeconfig
-      source:
-        path: PATH-TO-KUBECONFIG # For example: /Users/pivotal/.kube/config
-    - name: registry_url
-      source:
-        value: REGISTRY-URL # For example: https://harbor.example.com/my-project
-    - name: registry_email
-      source:
-        value: REGISTRY-ACCOUNT-EMAIL
-    - name: registry_username
-      source:
-        value: REGISTRY-USERNAME
-    - name: registry_password
-      source:
-        value: REGISTRY-PASSWORD
-    ```
-
-1. Install the bundle, referencing the mapping file created in [Relocate the Images](#relocate), by
-running:
-
-    ```
-    duffle install developer-console developer-console-VERSION-NUMBER.tgz \
-        --bundle-is-file \
-        --credentials developer-console-creds.yaml \
-        --relocation-mapping /tmp/mapping.json
+    helm install developer-console developer-console-VERSION-NUMBER.tgz -n pdc-system -f values.yaml
     ```
 
     Where `VERSION-NUMBER` is the number in the filename.
