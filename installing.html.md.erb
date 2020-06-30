@@ -1,5 +1,5 @@
 ---
-title: Installing and Configuring Developer Console
+title: Installing and Configuring <%= vars.product_short %>
 owner: Marketplace
 ---
 
@@ -18,8 +18,8 @@ controllers.
 * **kubectl:** For installation instructions, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 * **The Docker CLI:** For installation instructions, see the [Docker documentation](https://docs.docker.com/install/).
 * **The Helm CLI:** For installation instructions, see the [Helm documentation](https://helm.sh/docs/intro/install/).
-* Access to the <%= vars.product_network %> image registry: For more information, see [Verify Your Access
-to the <%= vars.product_network %> Image Registry](#helm-verify-docker-access) below.
+* Access to the Tanzu Network Registry: For more information, see
+[Verify Your Access to the Tanzu Network Registry](#helm-verify-docker-access) below.
 
 ## <a id='install'></a> Install and Configure <%= vars.product_short %>
 
@@ -30,17 +30,18 @@ To install and configure <%= vars.product_short %>:
 * [Install the <%= vars.product_short %> CLI Tool](#install-cli), which is needed for operating
 <%= vars.product_short %>.
 
-### <a id='helm-verify-docker-access'></a> Verify That You Can Access the <%= vars.product_network %> Image Registry
+### <a id='helm-verify-docker-access'></a> Verify That You Can Access the Tanzu Network Registry
 
-To verify that you have access to the <%= vars.product_network %> registry:
+To verify that you have access to the Tanzu Network registry:
 
-1. Log in to the Docker registry by running:
+1. Log in to the registry by running:
 
     ```
     docker login registry.pivotal.io
     ```
 
-1. At the username prompt, enter the email address associated with your <%= vars.product_network %> account.
+1. At the username prompt, enter the email address associated with your <%= vars.product_network %>
+account.
 
 1. At the password prompt, enter your <%= vars.product_network %> account password.
 
@@ -56,9 +57,9 @@ To verify that you have access to the <%= vars.product_network %> registry:
 ### <a id='create-cf-uaa-client'></a> Create a Cloud Foundry UAA Client
 
 <p class="note">
-  <strong>Note:</strong> This procedure is only required if you want to bind service
-  instances to apps running in Cloud Foundry. It must be repeated for each Cloud Foundry deployment
-  that you want to make available to <%= vars.product_short %>.
+  <strong>Note:</strong> This procedure is only required if you want to bind service instances to
+  apps running in Cloud Foundry. It must be repeated for each Cloud Foundry deployment that you want
+  to make available to <%= vars.product_short %>.
 </p>
 
 To create the required User Account and Authentication (UAA) client:
@@ -109,7 +110,7 @@ To create the required User Account and Authentication (UAA) client:
 
 ### <a id='install-helm'></a> Install the Helm Chart
 
-To install the Helm Chart:
+To install the Helm chart:
 
 1. Create a file called `values.yaml` anywhere on your local machine with the contents below:
 
@@ -122,9 +123,9 @@ To install the Helm Chart:
       - name: REGISTRY-SECRET-NAME
     ```
 
-    Where REGISTRY-SECRET-NAME is the name of a kubernetes secret containing the container registry credentials.
+    Where `REGISTRY-SECRET-NAME` is the name of a Kubernetes secret containing the registry credentials.
 
-    If you have relocated the images then you must also append this section to the same `values.yaml`:
+1. If you have relocated the images, append the snippet below to `values.yaml`:
 
     ```
     global:
@@ -136,9 +137,13 @@ To install the Helm Chart:
     ```
 
     Where:
-    * REGISTRY-HOST is the host of the container registry that the images were relocated to
-    * REGISTRY-NAMESPACE is the namespace of the container registry that the images were relocated to
-    Note: this assumes that all images were relocated to the same namespace.
+    * `REGISTRY-HOST` is the host of the registry that the images were relocated to
+    * `REGISTRY-NAMESPACE` is the namespace of the registry that the images were relocated to
+
+    <p class="note">
+      <strong>Note:</strong> This step assumes that all the images were relocated to the same
+      namespace.
+    </p>
 
 1. Create a namespace for the installation:
 
@@ -146,7 +151,7 @@ To install the Helm Chart:
     kubectl create namespace pdc-system
     ```
 
-1. Install the helm chart using the `values.yaml` file created above:
+1. Install the Helm chart using the `values.yaml` file created above:
 
     ```
     helm install developer-console developer-console-VERSION-NUMBER.tgz -n pdc-system -f values.yaml
