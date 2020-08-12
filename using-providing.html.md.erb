@@ -33,7 +33,7 @@ To create a new project:
 1. Add the code snippet below to the file:
 
     ```yaml
-    apiVersion: projects.pivotal.io/v1alpha1
+    apiVersion: projects.vmware.com/v1alpha1
     kind: Project
     metadata:
       name: PROJECT-NAME
@@ -41,12 +41,14 @@ To create a new project:
       access:
       - kind: TYPE
         name: NAME
+        namespace: NAMESPACE
     ```
 
     Where:
     * `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes namespace.
-    * `TYPE` is a user or group.
-    * `NAME` is the name of the user or group that you want to give access to
+    * `TYPE` is a User, Group or ServiceAccount.
+    * `NAME` is the name of the user, group or service account that you want to give access to.
+    * `NAMESPACE` required only when using ServiceAccount. The namespace of the ServiceAccount.
     <%= vars.product_short %> resources within the new project.
 
     <p class="note">
@@ -110,7 +112,7 @@ To register a new Cloud Foundry deployment:
 1. Add the code snippet below to the file:
 
     ```yaml
-    apiVersion: developerconsole.pivotal.io/v1alpha1
+    apiVersion: developerconsole.vmware.com/v1alpha1
     kind: CloudFoundryAPI
     metadata:
       name: CLOUD-FOUNDRY-NAME
@@ -148,7 +150,7 @@ To create a new Cloud Foundry space entitlement:
 1. Add the code snippet below to the file:
 
     ```yaml
-    apiVersion: developerconsole.pivotal.io/v1alpha1
+    apiVersion: developerconsole.vmware.com/v1alpha1
     kind: CloudFoundrySpaceEntitlement
     metadata:
       name: CLOUD-FOUNDRY-SPACE-ENTITLEMENT-NAME
