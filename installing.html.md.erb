@@ -16,9 +16,9 @@ controllers.
 To install and configure <%= vars.product_short %>:
 
 1. Meet the [Prerequisites](#prereqs)
-1. [Verify That You Can Access the Tanzu Network Registry](#helm-verify-docker-access)
+1. [Verify That You Can Access the Tanzu Network Registry](#verify-docker-access)
 1. [Create a Cloud Foundry UAA Client](#create-cf-uaa-client)
-1. [Install the Helm Chart](#install-helm)
+1. [Install the <%= vars.product_short %>](#install-developer-console)
 1. [Install the <%= vars.product_short %> CLI Tool](#install-cli), which is needed for operating
 <%= vars.product_short %>.
 
@@ -26,11 +26,13 @@ To install and configure <%= vars.product_short %>:
 
 * **kubectl:** For installation instructions, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
 * **The Docker CLI:** For installation instructions, see the [Docker documentation](https://docs.docker.com/install/).
-* **The Helm CLI:** For installation instructions, see the [Helm documentation](https://helm.sh/docs/intro/install/).
+* **ytt** For templating, see the [ytt documentation](https://get-ytt.io/)
+* **kapp** For deploying the <%= vars.product_short %>, see the [kapp documentation](https://get-kapp.io/)
+* **kbld** For image orchestration and registry operations, see the [kbld documentation](https://get-kbld.io/)
 * Access to the Tanzu Network Registry: For more information, see
-[Verify Your Access to the Tanzu Network Registry](#helm-verify-docker-access) below.
+[Verify Your Access to the Tanzu Network Registry](#verify-docker-access) below.
 
-## <a id='helm-verify-docker-access'></a> Verify That You Can Access the Tanzu Network Registry
+## <a id='verify-docker-access'></a> Verify That You Can Access the Tanzu Network Registry
 
 To verify that you have access to the Tanzu Network registry:
 
@@ -108,9 +110,9 @@ To create the required User Account and Authentication (UAA) client:
     Where `CLIENT-SECRET` is a secret of your choice. Keep this secret safe. It is required
     when using <%= vars.product_short %>.
 
-## <a id='install-helm'></a> Install the Helm Chart
+## <a id='install-developer-console'></a> Install the <%= vars.product_short %>
 
-To install the Helm chart:
+To install the <%= vars.product_short %>:
 
 1. Create a file called `values.yaml` anywhere on your local machine with the contents below:
 
@@ -151,13 +153,25 @@ To install the Helm chart:
     kubectl create namespace pdc-system
     ```
 
-1. Install the Helm chart using the `values.yaml` file created above:
+1. Install the <%= vars.product_short %>
 
-    ```
-    helm install developer-console developer-console-VERSION-NUMBER.tgz -n pdc-system -f values.yaml
-    ```
+If the cluster you are deploying to doesn't have access to the default registry
+then the images used will need to be relocated to the custom registry. This can be
+done by setting the following env vars:
 
-    Where `VERSION-NUMBER` is the number in the filename.
+```
+REGISTRY_HOSTNAME # e.g. "gcr.io", "my.harbor.com", etc
+REGISTRY_PROJECT  # e.g. "dev", "my-team-project", etc
+REGISTRY_USERNAME
+REGISTRY_PASSWORD
+PDC_BROKER_USERNAME
+PDC_BROKER_PASSWORD
+```
+
+```
+./scripts/kbld-custom-relocate
+CUSTOM_KBLD_FLAGS="-f ./build/relocation.lock.copied" ./scripts/kapp-deploy
+```
 
 ## <a id="install-cli"></a> Install the <%= vars.product_short %> CLI Tool
 
