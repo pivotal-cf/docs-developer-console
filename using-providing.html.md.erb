@@ -24,7 +24,7 @@ first register the Cloud Foundry deployment in <%= vars.product_short %>.
 ## <a id='config-projects'></a> Configure a Project
 
 You can configure projects by posting YAML to the Kubernetes API of your cluster.
-This topic explains how to do this using the Kubernetes command line interface tool (kubectl).
+This topic explains how to do this using the Kubernetes command line tool (kubectl).
 Kubectl is one of several ways to communicate with the API.
 
 To create a new project:
@@ -46,9 +46,10 @@ To create a new project:
 
     Where:
     * `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes namespace.
-    * `TYPE` is a User, Group or ServiceAccount.
-    * `NAME` is the name of the user, group or service account that you want to give access to.
-    * `NAMESPACE` required only when using ServiceAccount. The namespace of the ServiceAccount.
+    * `TYPE` is a `User`, `Group`, or `ServiceAccount`.
+    * `NAME` is the name of the user, group, or service account that you want to give access to.
+    * `NAMESPACE` is the namespace required only when using ServiceAccount.
+
     <%= vars.product_short %> resources within the new project.
 
     <p class="note">
