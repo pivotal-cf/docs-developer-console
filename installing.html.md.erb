@@ -50,16 +50,16 @@ account.
 1. Pull the registry by running:
 
     ```
-    docker pull registry.pivotal.io/developer-console/cf-service-bridge:CF-SERVICE-BRIDGE-VERSION
+    docker pull registry.pivotal.io/developer-console/cf-service-bridge:CF-SERVICE-BRIDGE-VERSION-NUMBER
     ```
 
-    Where `CF-SERVICE-BRIDGE-VERSION` is the image version in <%= vars.product_network %>.
+    Where `CF-SERVICE-BRIDGE-VERSION-NUMBER` is the image version in <%= vars.product_network %>.
     For example, `0.2.0-build.1`.<br><br>
 
 ## <a id='create-cf-uaa-client'></a> Create a Cloud Foundry UAA Client
 
 <p class="note">
-  <strong>Note:</strong> This procedure is only required if you want to bind service instances to
+  <strong>Note:</strong> This procedure is only required to bind service instances to
   apps running in Cloud Foundry. It must be repeated for each Cloud Foundry deployment that you want
   to make available to <%= vars.product_short %>.
 </p>
@@ -156,8 +156,7 @@ To install the <%= vars.product_short %>:
 1. Install the <%= vars.product_short %>
 
 If the cluster you are deploying to does not have access to the default registry
-then the images used will need to be relocated to the custom registry. This can be
-done by setting the following env vars:
+then the images used need to be relocated to the custom registry. Do so by setting the following environment vars:
 
 ```
 REGISTRY_HOSTNAME # e.g. "gcr.io", "my.harbor.com", etc
