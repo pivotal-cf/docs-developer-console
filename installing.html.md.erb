@@ -107,8 +107,8 @@ To create the required User Account and Authentication (UAA) client:
     uaac client add developerconsole -s CLIENT-SECRET --authorized_grant_types client_credentials --authorities cloud_controller.admin
     ```
 
-    Where `CLIENT-SECRET` is a secret of your choice. Keep this secret safe. It is required
-    when using <%= vars.product_short %>.
+    Where `CLIENT-SECRET` is a secret of your choice. Keep this secret safe.
+    It is required when using <%= vars.product_short %>.
 
 ## <a id='install-developer-console'></a> Install the <%= vars.product_short %>
 
@@ -143,8 +143,8 @@ To install the <%= vars.product_short %>:
     * `REGISTRY-NAMESPACE` is the namespace of the registry that the images were relocated to
 
     <p class="note">
-      <strong>Note:</strong> This step assumes that all the <%= vars.product_short %> images were relocated to the
-      same namespace.
+      <strong>Note:</strong> This step assumes that all the <%= vars.product_short %> images were
+      relocated to the same namespace.
     </p>
 
 1. Create a namespace for the installation:
@@ -155,12 +155,13 @@ To install the <%= vars.product_short %>:
 
 1. Install the <%= vars.product_short %>
 
-If the cluster you are deploying to does not have access to the default registry
-then the images used need to be relocated to the custom registry. Do so by setting the following environment vars:
+If the cluster you are deploying to does not have access to the default registry then the images
+used need to be relocated to the custom registry.
+Do so by setting the following environment variables:
 
 ```
-REGISTRY_HOSTNAME # e.g. "gcr.io", "my.harbor.com", etc
-REGISTRY_PROJECT  # e.g. "dev", "my-team-project", etc
+REGISTRY_HOSTNAME # For example, "gcr.io", "my.harbor.com", etc
+REGISTRY_PROJECT  # For example, "dev", "my-team-project", etc
 REGISTRY_USERNAME
 REGISTRY_PASSWORD
 PDC_BROKER_USERNAME
