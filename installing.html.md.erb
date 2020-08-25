@@ -133,37 +133,37 @@ To install the <%= vars.product_short %>:
   used images to the custom registry by setting the following environment variables:
   <%# Where and how? Are these key-value pairs for values.yaml? kapp-deploy? We could do with an example. %>
 
-      ```
-      REGISTRY_HOSTNAME # For example, "gcr.io" or "my.harbor.com". <%# Is it really HOSTNAME, not HOST? %>
-      REGISTRY_PROJECT  # For example, "dev" or "my-team-project".
-      REGISTRY_USERNAME
-      REGISTRY_PASSWORD
-      PDC_BROKER_USERNAME
-      PDC_BROKER_PASSWORD
-      ```
+    ```
+    REGISTRY_HOSTNAME # For example, "gcr.io" or "my.harbor.com". <%# Is it really HOSTNAME, not HOST? %>
+    REGISTRY_PROJECT  # For example, "dev" or "my-team-project".
+    REGISTRY_USERNAME
+    REGISTRY_PASSWORD
+    PDC_BROKER_USERNAME
+    PDC_BROKER_PASSWORD
+    ```
 
   1. Apply the environment variables by running:
 
-      ``` <%# Where and when do you run this? %>
-      ./scripts/kbld-custom-relocate
-      CUSTOM_KBLD_FLAGS="-f ./build/relocation.lock.copied" ./scripts/kapp-deploy
-      ```
+    ``` <%# Where and when do you run this? %>
+    ./scripts/kbld-custom-relocate
+    CUSTOM_KBLD_FLAGS="-f ./build/relocation.lock.copied" ./scripts/kapp-deploy
+    ```
 
   1. If you have relocated the <%= vars.product_short %> images, append the snippet below to
   `values.yaml`:
 
-      ```
-      global:
-        imageRegistry: REGISTRY-HOST
-        imageNamespace: REGISTRY-NAMESPACE
+    ```
+    global:
+      imageRegistry: REGISTRY-HOST
+      imageNamespace: REGISTRY-NAMESPACE
 
-      catalog:
-        image: REGISTRY-HOST/REGISTRY-NAMESPACE/service-catalalog:v0.3.0
-      ```
+    catalog:
+      image: REGISTRY-HOST/REGISTRY-NAMESPACE/service-catalalog:v0.3.0
+    ```
 
-      Where:
-      * `REGISTRY-HOST` is the host of the registry that the images were relocated to
-      * `REGISTRY-NAMESPACE` is the namespace of the registry that the images were relocated to
+    Where:
+    * `REGISTRY-HOST` is the host of the registry that the images were relocated to
+    * `REGISTRY-NAMESPACE` is the namespace of the registry that the images were relocated to
 
   <p class="note">
     <strong>Note:</strong> This step assumes that all the <%= vars.product_short %> images were
