@@ -16,6 +16,7 @@ These are release notes for <%= vars.product_full %>.
 New features and changes in this release:
 
 * Switch to K14s tooling as the primary method for installation.
+For more information about k14s, see the [k14s](https://github.com/k14s) repository in GitHub.
 
 ### Resolved Issues
 
@@ -37,9 +38,10 @@ This release has the following issues:
 
 <p class="note breaking"><strong>Breaking Change:</strong>
   The custom resource definition (CRD) <code>CloudFoundry</code>
-  has been renamed as <code>CloudFoundryAPI</code>.
+  is renamed <code>CloudFoundryAPI</code>.
   You must ensure that your <code>cf.yaml</code> file references <code>CloudFoundryAPI</code>.
-  For more information, see <a href="./using-providing.html#register-cfs">Register a Cloud Foundry Deployment</a>.
+  For more information, see
+  <a href="./using-providing.html#register-cfs">Register a Cloud Foundry Deployment</a>.
 </p>
 
 ### Features
@@ -47,8 +49,8 @@ This release has the following issues:
 New features and changes in this release:
 
 * **Resource access is granted at space-level:**
-Access to resources within registered Cloud Foundry deployments is controlled at a space level and access
-must be granted explicitly. For more information, see
+Access to resources within registered Cloud Foundry deployments is controlled at a space level and
+access must be granted explicitly. For more information, see
 [Create a Space Entitlement](./using-providing.html#space-entitlement).
 
 * **Improved output for `pdc` commands:**
@@ -88,19 +90,20 @@ New features and changes in this release:
 You can then retrieve the registered Cloud Foundry deployments by running `pdc cloudfoundry list`.<br>
 For more information, see [Register a Cloud Foundry Deployment](./using-providing.html#register-cfs).
 
-* You can bind a service instance provisioned through <%= vars.product_short %>
-to an app in a registered Cloud Foundry deployment by passing an additional flag of the form
+* You can bind a service instance provisioned through <%= vars.product_short %> to an app in a
+registered Cloud Foundry deployment by passing an additional flag of the form
 `--app=CF-NAME/ORG-NAME/SPACE-NAME/APP-NAME` to `pdc binding create`.<br>
 For more information, see
 [Bind a Service Instance to an App That Runs in Cloud Foundry](./using-provisioning.html#bind-instance-to-cf).
 
 * The Kubernetes API group for projects is now `projects.pivotal.io`.
 
-* You can provide optional service-specific parameters when creating a new service instance or binding by using the flag
+* You can provide optional service-specific parameters when creating a new service instance or
+binding by using the flag
 `--parameters=PARAMETERS-AS-JSON`.<br>
 For more information, see
-[Create a Service Instance](./using-provisioning.html#create-instance)
-or [Bind a Service Instance to an App That Runs in Cloud Foundry](./using-provisioning.html#bind-instance-to-cf).
+[Create a Service Instance](./using-provisioning.html#create-instance) or
+[Bind a Service Instance to an App That Runs in Cloud Foundry](./using-provisioning.html#bind-instance-to-cf).
 
 ### Known Issues
 
@@ -128,7 +131,8 @@ access to
 
 * Validates that the project exists when a user runs `pdc project use`
 
-* Renames `pdc broker delete` as `pdc broker deregister` to make it more consistent with other CLI command names
+* Renames `pdc broker delete` as `pdc broker deregister` to make it more consistent with other CLI
+command names
 
 
 ### Resolved Issues

@@ -59,9 +59,9 @@ account.
 ## <a id='create-cf-uaa-client'></a> Create a Cloud Foundry UAA Client
 
 <p class="note">
-  <strong>Note:</strong> This procedure is only required to bind service instances to
-  apps running in Cloud Foundry. It must be repeated for each Cloud Foundry deployment that you want
-  to make available to <%= vars.product_short %>.
+  <strong>Note:</strong> This procedure is only required to bind service instances to apps running
+  in Cloud Foundry. It must be repeated for each Cloud Foundry deployment that you want to make
+  available to <%= vars.product_short %>.
 </p>
 
 To create the required User Account and Authentication (UAA) client:
@@ -85,8 +85,8 @@ To create the required User Account and Authentication (UAA) client:
     * `UAA-ENDPOINT` is the URL of the Cloud Foundry UAA server.
     * `CERTIFICATE-PATH` is the path to your <%= vars.ops_manager %> root Certificate Authority (CA)
     certificate. If you are logged in to the <%= vars.ops_manager %> VM, specify
-    `/var/tempest/workspaces/default/root_ca_certificate` as the path. This is the default location of
-    the root certificate on the <%= vars.ops_manager %> VM. If you downloaded the
+    `/var/tempest/workspaces/default/root_ca_certificate` as the path. This is the default location
+    of the root certificate on the <%= vars.ops_manager %> VM. If you downloaded the
     <%= vars.ops_manager %> root CA certificate to your local machine, specify the path where you
     stored the certificate.
 
@@ -127,7 +127,30 @@ To install the <%= vars.product_short %>:
 
     Where `REGISTRY-SECRET-NAME` is the name of a Kubernetes secret containing the registry credentials.
 
-1. If you have relocated the <%= vars.product_short %> images, append the snippet below to `values.yaml`:
+1. **Ensure the <%= vars.product_short %> images are accessible:**
+
+  1. If the cluster you are deploying to does not have access to the default registry, relocate the
+  used images to the custom registry by setting the following environment variables:
+  <%# Where and how? Are these key-value pairs for values.yaml? kapp-deploy? We could do with an example. %>
+
+    ```
+    REGISTRY_HOSTNAME # For example, "gcr.io" or "my.harbor.com". <%# Is it really HOSTNAME, not HOST? %>
+    REGISTRY_PROJECT  # For example, "dev" or "my-team-project".
+    REGISTRY_USERNAME
+    REGISTRY_PASSWORD
+    PDC_BROKER_USERNAME
+    PDC_BROKER_PASSWORD
+    ```
+
+  1. Apply the environment variables by running:
+
+    ``` <%# Where and when do you run this? %>
+    ./scripts/kbld-custom-relocate
+    CUSTOM_KBLD_FLAGS="-f ./build/relocation.lock.copied" ./scripts/kapp-deploy
+    ```
+
+  1. If you have relocated the <%= vars.product_short %> images, append the snippet below to
+  `values.yaml`:
 
     ```
     global:
@@ -142,10 +165,10 @@ To install the <%= vars.product_short %>:
     * `REGISTRY-HOST` is the host of the registry that the images were relocated to
     * `REGISTRY-NAMESPACE` is the namespace of the registry that the images were relocated to
 
-    <p class="note">
-      <strong>Note:</strong> This step assumes that all the <%= vars.product_short %> images were
-      relocated to the same namespace.
-    </p>
+  <p class="note">
+    <strong>Note:</strong> This step assumes that all the <%= vars.product_short %> images were
+    relocated to the same namespace.
+  </p>
 
 1. Create a namespace for the installation:
 
@@ -155,23 +178,6 @@ To install the <%= vars.product_short %>:
 
 1. Install the <%= vars.product_short %>
 
-If the cluster you are deploying to does not have access to the default registry then the images
-used need to be relocated to the custom registry.
-Do so by setting the following environment variables:
-
-```
-REGISTRY_HOSTNAME # For example, "gcr.io", "my.harbor.com", etc
-REGISTRY_PROJECT  # For example, "dev", "my-team-project", etc
-REGISTRY_USERNAME
-REGISTRY_PASSWORD
-PDC_BROKER_USERNAME
-PDC_BROKER_PASSWORD
-```
-
-```
-./scripts/kbld-custom-relocate
-CUSTOM_KBLD_FLAGS="-f ./build/relocation.lock.copied" ./scripts/kapp-deploy
-```
 
 ## <a id="install-cli"></a> Install the <%= vars.product_short %> CLI Tool
 
@@ -185,10 +191,13 @@ If you do not have an Early Access account, please email
 1. Download the <%= vars.product_short %> tarball files to your working directory from
 [<%= vars.product_network %>](https://network.pivotal.io/products/developer-console/).
 
-<%# Ask the engineers if the journey I just took through login.run.pivotal.io/login is what a customer sees who is not an early adopter.
-Regular customers (non-early adopters) need to find it obvious that they aren't early adopters and cannot access the tarball files. %>
+<%# Ask the engineers if the journey I just took through login.run.pivotal.io/login is what a
+customer sees who is not an early adopter.
+Regular customers (non-early adopters) need to find it obvious that they aren't early adopters and
+cannot access the tarball files. %>
 
-<%# Get a direct link to the tarball files at some point. It will only work for early adopters, though, for the foreseeable future. %>
+<%# Get a direct link to the tarball files at some point. It will only work for early adopters,
+though, for the foreseeable future. %>
 
 1. Untar the `pdc` tarball and choose the appropriate binary CLI tool for your operating system.
 
