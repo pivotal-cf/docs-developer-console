@@ -66,7 +66,7 @@ account.
 
 To create the required User Account and Authentication (UAA) client:
 
-<%# The following steps are generic and have been copied from https://docs.pivotal.io/pks/1-6/manage-users.html %>
+<%# The following steps are generic and have been copied from https://docs.pivotal.io/pks/1-6/manage-users.html // What's the question/sugestion?%>
 
 1. In a web browser, navigate to the **<%= vars.ops_manager %> Installation Dashboard** and click the
 **<%= vars.app_runtime_full %>** tile.
@@ -99,7 +99,7 @@ To create the required User Account and Authentication (UAA) client:
     Where `ADMIN-CLIENT-SECRET` is your UAA management admin client secret that you retrieved earlier
     in this procedure. `admin` is the client username.
 
-<%# The following steps are specific %>
+<%# The following steps are specific // What's the question/sugestion ?%>
 
 1. Create an admin client for <%= vars.product_short %> by running:
 
@@ -130,21 +130,22 @@ To install the <%= vars.product_short %>:
 1. **Ensure the <%= vars.product_short %> images are accessible:**
 
   1. If the cluster you are deploying to does not have access to the default registry, relocate the
-  used images to the custom registry by setting the following environment variables:
-  <%# Where and how? Are these key-value pairs for values.yaml? kapp-deploy? We could do with an example. %>
+  used images to the custom registry by setting the following environment variables, which will be used by kapp-deploy:
+  <%# Where and how? Are these key-value pairs for values.yaml? kapp-deploy? We could do with an example.  // Changed to add some examples %>
 
         ```
-        REGISTRY_HOSTNAME # For example, "gcr.io" or "my.harbor.com". <%# Is it really HOSTNAME, not HOST? %>
-        REGISTRY_PROJECT  # For example, "dev" or "my-team-project".
-        REGISTRY_USERNAME
-        REGISTRY_PASSWORD
-        PDC_BROKER_USERNAME
-        PDC_BROKER_PASSWORD
+        export REGISTRY_HOSTNAME="YOUR_REGISTRY_HOST" # For example, "gcr.io" or "my.harbor.com". <%# Is it really HOSTNAME, not HOST? in the code we see that this is HOSTNAME%>
+        export REGISTRY_PROJECT="YOUR_REGISTRY_PROJECT_NAME"  # For example, "dev" or "my-team-project".
+        export REGISTRY_USERNAME="YOUR_REGISTRY_USERNAME"
+        export REGISTRY_PASSWORD="YOUR_REGISTRY_PASSWORD"
+        export PDC_BROKER_USERNAME="YOUR_PDC_BROKER_USERNAME"
+        export PDC_BROKER_PASSWORD="YOUR_PDC_BROKER_PASSWORD"
         ```
 
-  1. Apply the environment variables by running:
+  1. Apply the environment variables by running the following commands from your untarred `developer-console` directory:
 
-        ``` <%# Where and when do you run this? %>
+        ``` <%# Where and when do you run this? you run this if the cluster you are deploying to does not have access to the default registry %>
+        cd <developer-console-VERSION>
         ./scripts/kbld-custom-relocate
         CUSTOM_KBLD_FLAGS="-f ./build/relocation.lock.copied" ./scripts/kapp-deploy
         ```
@@ -194,10 +195,11 @@ If you do not have an Early Access account, please email
 <%# Ask the engineers if the journey I just took through login.run.pivotal.io/login is what a
 customer sees who is not an early adopter.
 Regular customers (non-early adopters) need to find it obvious that they aren't early adopters and
-cannot access the tarball files. %>
+cannot access the tarball files. // That's a great question. We only see "User
+Groups only" in Pivnet. Not sure how Pivnet handles that presentation.%>
 
 <%# Get a direct link to the tarball files at some point. It will only work for early adopters,
-though, for the foreseeable future. %>
+  though, for the foreseeable future. // Is this a sugestion? %>
 
 1. Untar the `pdc` tarball and choose the appropriate binary CLI tool for your operating system.
 
