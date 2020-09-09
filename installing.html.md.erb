@@ -110,69 +110,6 @@ To create the required User Account and Authentication (UAA) client:
 
 To install the <%= vars.product_short %>:
 
-1. Create a file called `values.yaml` anywhere on your local machine with the contents below:
-
-    ```
-    cf-service-bridge:
-      imagePullSecrets:
-      - name: REGISTRY-SECRET-NAME
-    projects-operator:
-      imagePullSecrets:
-      - name: REGISTRY-SECRET-NAME
-    ```
-    Where `REGISTRY-SECRET-NAME` is the name of a Kubernetes secret containing the registry credentials.
-
-1. **Ensure the <%= vars.product_short %> images are accessible:**
-
-  1. If the cluster you are deploying to does not have access to the default registry, relocate the
-  used images to the custom registry by setting the following environment variables, which kapp-deploy
-  uses:
-
-        ```
-        export REGISTRY_HOSTNAME="YOUR-REGISTRY-HOST"
-        export REGISTRY_PROJECT="YOUR-REGISTRY-PROJECT-NAME"
-        export REGISTRY_USERNAME="YOUR-REGISTRY-USERNAME"
-        export REGISTRY_PASSWORD="YOUR-REGISTRY-PASSWORD"
-        export PDC_BROKER_USERNAME="YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME"
-        export PDC_BROKER_PASSWORD="YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD"
-        ```
-        Where:
-        * `YOUR-REGISTRY-HOST` is a registry host, such as `gcr.io` or `my.harbor.com`.
-        * `YOUR-REGISTRY-PROJECT-NAME` is a project name, such as `dev` or `my-team-project`
-        * `YOUR-REGISTRY-USERNAME` is your registry username
-        * `YOUR-REGISTRY-PASSWORD` is your registry password
-        * `YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME` is your <%= vars.product_short %> username
-        * `YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD` is your <%= vars.product_short %> password
-
-
-  1. From your uncompressed `developer-console` directory, apply the environment variables by running:
-
-        ```
-        cd developer-console-VERSION-NUMBER
-        ./scripts/kbld-custom-relocate
-        CUSTOM_KBLD_FLAGS="-f ./build/relocation.lock.copied" ./scripts/kapp-deploy
-        ```
-        Where `VERSION-NUMBER` is the <%= vars.product_short %> version number.
-
-  1. If you have relocated the <%= vars.product_short %> images, append the snippet below to
-  `values.yaml`:
-
-        ```
-        global:
-          imageRegistry: REGISTRY-HOST
-          imageNamespace: REGISTRY-NAMESPACE
-
-        catalog:
-          image: REGISTRY-HOST/REGISTRY-NAMESPACE/service-catalalog:v0.3.0
-        ```
-        Where:
-        * `REGISTRY-HOST` is the host of the registry that the images were relocated to
-        * `REGISTRY-NAMESPACE` is the namespace of the registry that the images were relocated to
-
-        <p class="note">
-          <strong>Note:</strong> This step assumes that all the <%= vars.product_short %> images were
-          relocated to the same namespace.
-        </p>
 
 1. Create a namespace for the installation:
 
@@ -180,8 +117,58 @@ To install the <%= vars.product_short %>:
     kubectl create namespace pdc-system
     ```
 
-1. Install the <%= vars.product_short %>
+1. Option A: Install the <%= vars.product_short %> using the Tanzu Network registry
+    If the cluster you are installing  <%= vars.product_short %> to has accesss to Tanzu Network registry
+    then you can carry out a standard install.
 
+    Set the following environment variables which `kapp-deploy` uses:
+    ```
+    export REGISTRY_USERNAME="YOUR-REGISTRY-USERNAME"
+    export REGISTRY_PASSWORD="YOUR-REGISTRY-PASSWORD"
+    export PDC_BROKER_USERNAME="YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME"
+    export PDC_BROKER_PASSWORD="YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD"
+    ```
+    Where:
+    * `YOUR-REGISTRY-USERNAME` is your Tanzu Network registry username
+    * `YOUR-REGISTRY-PASSWORD` is your Tanzu Network registry password
+    * `YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME` is the username for the <%= vars.product_short %> broker
+    * `YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD` is the password for the <%= vars.product_short %> broker
+
+    Then from your uncompressed `developer-console` directory, run:
+    ```
+    cd developer-console-VERSION-NUMBER
+    ./scripts/kapp-deploy
+    ```
+    Where `VERSION-NUMBER` is the <%= vars.product_short %> version number.
+
+1. Option B: Install the <%= vars.product_short %> using a custom registry
+    If the cluster you are deploying to does not have access to the Tanzu Network registry, relocate the
+    used images to the custom registry by setting the following environment variables, which kapp-deploy
+    uses:
+    ```
+    export REGISTRY_HOSTNAME="YOUR-REGISTRY-HOST"
+    export REGISTRY_PROJECT="YOUR-REGISTRY-PROJECT-NAME"
+    export REGISTRY_USERNAME="YOUR-REGISTRY-USERNAME"
+    export REGISTRY_PASSWORD="YOUR-REGISTRY-PASSWORD"
+    export PDC_BROKER_USERNAME="YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME"
+    export PDC_BROKER_PASSWORD="YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD"
+    ```
+    Where:
+    * `YOUR-REGISTRY-HOST` is your registry host, such as `gcr.io` or `my.harbor.com`.
+    * `YOUR-REGISTRY-PROJECT-NAME` is your registry project name, such as `dev` or `my-team-project`
+    * `YOUR-REGISTRY-USERNAME` is your registry username
+    * `YOUR-REGISTRY-PASSWORD` is your registry password
+    * `YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME` is the username for the <%= vars.product_short %> broker
+    * `YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD` is the password for the <%= vars.product_short %> broker
+
+
+    From your uncompressed `developer-console` directory run:
+    ```
+    cd developer-console-VERSION-NUMBER
+    ./scripts/kbld-custom-relocate
+    CUSTOM_KBLD_FLAGS="-f ./build/relocation.lock.copied" ./scripts/kapp-deploy
+    ```
+    Where `VERSION-NUMBER` is the <%= vars.product_short %> version number.
 
 ## <a id="install-cli"></a> Install the <%= vars.product_short %> CLI Tool
 
