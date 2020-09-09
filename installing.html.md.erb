@@ -52,7 +52,6 @@ account.
     ```
     docker pull registry.pivotal.io/developer-console/cf-service-bridge:CF-SERVICE-BRIDGE-VERSION-NUMBER
     ```
-
     Where `CF-SERVICE-BRIDGE-VERSION-NUMBER` is the image version in <%= vars.product_network %>.
     For example, `0.2.0-build.1`.<br><br>
 
@@ -66,7 +65,7 @@ account.
 
 To create the required User Account and Authentication (UAA) client:
 
-<%# The following steps are generic and have been copied from https://docs.pivotal.io/pks/1-6/manage-users.html // What's the question/sugestion?%>
+<%# The following steps are generic and have been copied from https://docs.pivotal.io/pks/1-6/manage-users.html %>
 
 1. In a web browser, navigate to the **<%= vars.ops_manager %> Installation Dashboard** and click the
 **<%= vars.app_runtime_full %>** tile.
@@ -80,7 +79,6 @@ To create the required User Account and Authentication (UAA) client:
     ```
     uaac target https://UAA-ENDPOINT --ca-cert CERTIFICATE-PATH
     ```
-
     Where:
     * `UAA-ENDPOINT` is the URL of the Cloud Foundry UAA server.
     * `CERTIFICATE-PATH` is the path to your <%= vars.ops_manager %> root Certificate Authority (CA)
@@ -95,18 +93,16 @@ To create the required User Account and Authentication (UAA) client:
     ```
     uaac token client get admin -s ADMIN-CLIENT-SECRET
     ```
-
     Where `ADMIN-CLIENT-SECRET` is your UAA management admin client secret that you retrieved earlier
     in this procedure. `admin` is the client username.
 
-<%# The following steps are specific // What's the question/sugestion ?%>
+<%# The following steps are specific %>
 
 1. Create an admin client for <%= vars.product_short %> by running:
 
     ```
     uaac client add developerconsole -s CLIENT-SECRET --authorized_grant_types client_credentials --authorities cloud_controller.admin
     ```
-
     Where `CLIENT-SECRET` is a secret of your choice. Keep this secret safe.
     It is required when using <%= vars.product_short %>.
 
@@ -124,31 +120,39 @@ To install the <%= vars.product_short %>:
       imagePullSecrets:
       - name: REGISTRY-SECRET-NAME
     ```
-
     Where `REGISTRY-SECRET-NAME` is the name of a Kubernetes secret containing the registry credentials.
 
 1. **Ensure the <%= vars.product_short %> images are accessible:**
 
   1. If the cluster you are deploying to does not have access to the default registry, relocate the
-  used images to the custom registry by setting the following environment variables, which will be used by kapp-deploy:
-  <%# Where and how? Are these key-value pairs for values.yaml? kapp-deploy? We could do with an example.  // Changed to add some examples %>
+  used images to the custom registry by setting the following environment variables, which kapp-deploy
+  uses:
 
         ```
-        export REGISTRY_HOSTNAME="YOUR_REGISTRY_HOST" # For example, "gcr.io" or "my.harbor.com". <%# Is it really HOSTNAME, not HOST? in the code we see that this is HOSTNAME%>
-        export REGISTRY_PROJECT="YOUR_REGISTRY_PROJECT_NAME"  # For example, "dev" or "my-team-project".
-        export REGISTRY_USERNAME="YOUR_REGISTRY_USERNAME"
-        export REGISTRY_PASSWORD="YOUR_REGISTRY_PASSWORD"
-        export PDC_BROKER_USERNAME="YOUR_PDC_BROKER_USERNAME"
-        export PDC_BROKER_PASSWORD="YOUR_PDC_BROKER_PASSWORD"
+        export REGISTRY_HOSTNAME="YOUR-REGISTRY-HOST"
+        export REGISTRY_PROJECT="YOUR-REGISTRY-PROJECT-NAME"
+        export REGISTRY_USERNAME="YOUR-REGISTRY-USERNAME"
+        export REGISTRY_PASSWORD="YOUR-REGISTRY-PASSWORD"
+        export PDC_BROKER_USERNAME="YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME"
+        export PDC_BROKER_PASSWORD="YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD"
         ```
+        Where:
+        * `YOUR-REGISTRY-HOST` is a registry host, such as `gcr.io` or `my.harbor.com`.
+        * `YOUR-REGISTRY-PROJECT-NAME` is a project name, such as `dev` or `my-team-project`
+        * `YOUR-REGISTRY-USERNAME` is your registry username
+        * `YOUR-REGISTRY-PASSWORD` is your registry password
+        * `YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME` is your <%= vars.product_short %> username
+        * `YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD` is your <%= vars.product_short %> password
 
-  1. Apply the environment variables by running the following commands from your untarred `developer-console` directory:
 
-        ``` <%# Where and when do you run this? you run this if the cluster you are deploying to does not have access to the default registry %>
-        cd <developer-console-VERSION>
+  1. From your uncompressed `developer-console` directory, apply the environment variables by running:
+
+        ```
+        cd developer-console-VERSION-NUMBER
         ./scripts/kbld-custom-relocate
         CUSTOM_KBLD_FLAGS="-f ./build/relocation.lock.copied" ./scripts/kapp-deploy
         ```
+        Where `VERSION-NUMBER` is the <%= vars.product_short %> version number.
 
   1. If you have relocated the <%= vars.product_short %> images, append the snippet below to
   `values.yaml`:
@@ -161,7 +165,6 @@ To install the <%= vars.product_short %>:
         catalog:
           image: REGISTRY-HOST/REGISTRY-NAMESPACE/service-catalalog:v0.3.0
         ```
-
         Where:
         * `REGISTRY-HOST` is the host of the registry that the images were relocated to
         * `REGISTRY-NAMESPACE` is the namespace of the registry that the images were relocated to
@@ -184,7 +187,8 @@ To install the <%= vars.product_short %>:
 
 To install the <%= vars.product_short %> CLI tool:
 
-1. Log in to your Early Access user account on [<%= vars.product_network %>](https://login.run.pivotal.io/login).
+1. Log in to your Early Access user account on
+[<%= vars.product_network %>](https://login.run.pivotal.io/login).
 If you do not have an Early Access account, please email
 <a href="mailto:pdc-feedback@pivotal.io"><%= vars.product_short %> Feedback</a> to request one.
 <%= vars.product_short %> is currently only available to Early Access users.
@@ -199,7 +203,7 @@ cannot access the tarball files. // That's a great question. We only see "User
 Groups only" in Pivnet. Not sure how Pivnet handles that presentation.%>
 
 <%# Get a direct link to the tarball files at some point. It will only work for early adopters,
-  though, for the foreseeable future. // Is this a sugestion? %>
+  though, for the foreseeable future. %>
 
 1. Untar the `pdc` tarball and choose the appropriate binary CLI tool for your operating system.
 
