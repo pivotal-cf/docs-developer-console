@@ -116,7 +116,21 @@ To create the required User Account and Authentication (UAA) client:
 
 ## <a id='install-developer-console'></a> Install the <%= vars.product_short %>
 
-To install the <%= vars.product_short %>:
+There are two options for installing <%= vars.product_short %>:
+
+1. [Option A: Install the <%= vars.product_short %> Using the Tanzu Network Registry](#tanzu-network-registry).
+Use if the cluster you are installing <%= vars.product_short %> to has access to Tanzu Network
+registry.
+1. [Option B: Install the <%= vars.product_short %> Using a Custom Registry](#custom-registry).
+Use if the cluster you are deploying <%= vars.product_short %> to does not have access to the Tanzu Network registry
+
+
+### <a id='tanzu-network-registry'></a> Option A: Install the <%= vars.product_short %> Using the Tanzu Network Registry
+
+If the cluster you are installing  <%= vars.product_short %> to has access to Tanzu Network
+registry then you can carry out a standard install.
+
+To install the <%= vars.product_short %> using the Tanzu Network Registry:
 
 1. Create a namespace for the installation:
 
@@ -124,11 +138,7 @@ To install the <%= vars.product_short %>:
     kubectl create namespace pdc-system
     ```
 
-1. Option A: Install the <%= vars.product_short %> using the Tanzu Network registry
-    If the cluster you are installing  <%= vars.product_short %> to has access to Tanzu Network
-    registry then you can carry out a standard install.
-
-    Set the following environment variables which `kapp-deploy` uses:
+1. Set the following environment variables which `kapp-deploy` uses:
 
     ```
     export REGISTRY_USERNAME="YOUR-REGISTRY-USERNAME"
@@ -144,7 +154,7 @@ To install the <%= vars.product_short %>:
     * `YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD` is the password for the <%= vars.product_short %>
     broker
 
-    Then from your uncompressed `developer-console` directory, run:
+1. From your uncompressed `developer-console` directory, run:
 
     ```
     cd developer-console-VERSION-NUMBER
@@ -152,10 +162,20 @@ To install the <%= vars.product_short %>:
     ```
     Where `VERSION-NUMBER` is the <%= vars.product_short %> version number.
 
-1. Option B: Install the <%= vars.product_short %> using a custom registry
-    If the cluster you are deploying to does not have access to the Tanzu Network registry, relocate
-    the used images to the custom registry by setting the following environment variables, which
-    kapp-deploy uses:
+### <a id='custom-registry'></a> Option B: Install the <%= vars.product_short %> Using a Custom Registry
+
+If the cluster you are deploying <%= vars.product_short %> to does not have access
+to the Tanzu Network registry, relocate the used images to the custom registry.
+
+To install the <%= vars.product_short %> using a custom registy:
+
+1. Create a namespace for the installation:
+
+    ```
+    kubectl create namespace pdc-system
+    ```
+
+1. Set the following environment variables, which `kapp-deploy` uses:
 
     ```
     export REGISTRY_HOSTNAME="YOUR-REGISTRY-HOST"
@@ -175,7 +195,7 @@ To install the <%= vars.product_short %>:
     * `YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD` is the password for the <%= vars.product_short %>
     broker
 
-    From your uncompressed `developer-console` directory run:
+1. From your uncompressed `developer-console` directory, run:
 
     ```
     cd developer-console-VERSION-NUMBER
