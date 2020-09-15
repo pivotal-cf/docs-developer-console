@@ -9,6 +9,7 @@ This topic describes how to use <%= vars.product_full %> to provide
 services to app teams, how to provide isolation of resources through projects, and how to register
 Cloud Foundry deployments.
 
+
 ## <a id='overview'></a> Overview
 
 A project is a Kubernetes custom resource definition (CRD) that isolates <%= vars.product_short %>
@@ -20,6 +21,7 @@ ServiceAccounts.
 
 To enable app teams to bind service instances to apps that are running in Cloud Foundry, you must
 first register the Cloud Foundry deployment in <%= vars.product_short %>.
+
 
 ## <a id='config-projects'></a> Configure a Project
 
@@ -43,12 +45,12 @@ To create a new project:
         name: NAME
         namespace: NAMESPACE
     ```
-
     Where:
-    * `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes namespace.
+    * `PROJECT-NAME` is the name of the new project. This must not match an existing Kubernetes
+    namespace.
     * `TYPE` is either `User`, `Group`, or `ServiceAccount`.
     * `NAME` is the name of the user, group, or service account that you want to give access to.
-    * `NAMESPACE` is the namespace required only when using ServiceAccount.
+    * `NAMESPACE` is the namespace required only when using `ServiceAccount`.
 
     <%= vars.product_short %> resources within the new project.
 
@@ -62,6 +64,7 @@ To create a new project:
     ```
     kubectl create -f project.yaml
     ```
+
 
 ## <a id='register-cfs'></a> Register a Cloud Foundry Deployment
 
@@ -103,9 +106,9 @@ To register a new Cloud Foundry deployment:
       clientID: ENCODED-CLIENT-ID
       clientSecret: ENCODED-CLIENT-SECRET
     ```
-
     Where:
-    * `CLOUD-FOUNDRY-SECRET-NAME` is a name you give the secret for the Cloud Foundry deployment you are registering.
+    * `CLOUD-FOUNDRY-SECRET-NAME` is a name you give the secret for the Cloud Foundry deployment you
+    are registering.
     * `ENCODED-CLIENT-ID` is the base64-encoded client ID that you copied in the above step.
     * `ENCODED-CLIENT-SECRET` is the base64-encoded client secret that you copied in the above step.
 
@@ -124,21 +127,21 @@ To register a new Cloud Foundry deployment:
         name: CLOUD-FOUNDRY-SECRET-NAME
         namespace: pdc-system
     ```
-
     Where:
     * `CLOUD-FOUNDRY-NAME` is the name of the Cloud Foundry deployment you are registering.
     * `CLOUD-FOUNDRY-API` is the API endpoint of the Cloud Foundry deployment. The API endpoint must
     be accessible over the network from your cluster.
     * `CLOUD-FOUNDRY-SECRET-NAME` is the name of the secret as provided in the previous step.
-    * `SKIP-SSL-VALIDATION` is a boolean value you can set to `true` to skip SSL validation when communicating
-    with the Cloud Foundry deployment. The default value is `false`.
+    * `SKIP-SSL-VALIDATION` is a boolean value you can set to `true` to skip SSL validation when
+    communicating with the Cloud Foundry deployment. The default value is `false`.
 
 1. Apply the configuration by running:
 
     ```
-      kubectl create -f cf-secret.yaml
-      kubectl create -f cf.yaml
+    kubectl create -f cf-secret.yaml
+    kubectl create -f cf.yaml
     ```
+
 
 ### <a id='space-entitlement'></a> Create a Space Entitlement
 
@@ -162,19 +165,20 @@ To create a new Cloud Foundry space entitlement:
       org: ORG-NAME
       space: SPACE-NAME
     ```
-
     Where:
     * `CLOUD-FOUNDRY-SPACE-ENTITLEMENT-NAME` is a name you choose for the `CloudFoundrySpaceEntitlement` object.
     * `PROJECT-NAME` is the name of the project receiving access to the space.
-    * `CLOUD-FOUNDRY-NAME` is the name of the Cloud Foundry deployment that contains the space to which you are granting access.
+    * `CLOUD-FOUNDRY-NAME` is the name of the Cloud Foundry deployment that contains the space to
+    which you are granting access.
     * `ORG-NAME` is the name of the org that contains the space to which you are granting access.
     * `SPACE-NAME` is the name of the space to which you are granting access.
 
 1. Apply the configuration by running:
 
     ```
-      kubectl create -f cf-space-entitlement.yaml
+    kubectl create -f cf-space-entitlement.yaml
     ```
+
 
 ## <a id='register-broker'></a> Register a Broker
 
@@ -195,12 +199,13 @@ You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
       --username=BROKER-USERNAME \
       --password=BROKER-PASSWORD
     ```
-
     Where:
     * `BROKER-NAME` is the name of the newly registered broker. Make it shorter than 64 characters.
     * `BROKER-URL` is the location of the broker API endpoint.
-    * `BROKER-USERNAME` is the username by which <%= vars.product_short %> authenticates with the broker.
-    * `BROKER-PASSWORD` is the password by which <%= vars.product_short %> authenticates with the broker.
+    * `BROKER-USERNAME` is the username by which <%= vars.product_short %> authenticates with the
+    broker.
+    * `BROKER-PASSWORD` is the password by which <%= vars.product_short %> authenticates with the
+    broker.
 
 1. Verify that the broker was registered by running:
 
@@ -215,6 +220,7 @@ You can register any Open Service Broker API (OSBAPI)-compliant brokers with the
     NAME          URL          STATUS    CREATED AT
     BROKER-NAME   BROKER-URL   created   2019-02-31 12:00:00 +0000 GMT
     </pre>
+
 
 ## <a id='examine-broker'></a> (Optional) Examine a Broker
 
@@ -236,6 +242,7 @@ To examine a specific broker:
       message: Successfully fetched catalog entries from broker.
       state: created
     </pre>
+
 
 ## <a id="feedback"></a> Feedback
 
