@@ -7,6 +7,7 @@ owner: Marketplace
 
 This topic describes how to install and configure <%= vars.product_full %>.
 
+
 ## <a id='overview'></a> Overview
 
 <%= vars.product_short %> consists of a front end command line interface (CLI) named
@@ -24,13 +25,18 @@ To install and configure <%= vars.product_short %>:
 
 ## <a id='prereqs'></a> Prerequisites
 
-* **kubectl:** For installation instructions, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
-* **The Docker CLI:** For installation instructions, see the [Docker documentation](https://docs.docker.com/install/).
+* **kubectl:** For installation instructions, see the
+[Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/install-kubectl/).
+* **The Docker CLI:** For installation instructions, see the
+[Docker documentation](https://docs.docker.com/install/).
 * **ytt** For templating, see the [ytt documentation](https://get-ytt.io/)
-* **kapp** For deploying the <%= vars.product_short %>, see the [kapp documentation](https://get-kapp.io/)
-* **kbld** For image orchestration and registry operations, see the [kbld documentation](https://get-kbld.io/)
+* **kapp** For deploying the <%= vars.product_short %>, see the
+[kapp documentation](https://get-kapp.io/)
+* **kbld** For image orchestration and registry operations, see the
+[kbld documentation](https://get-kbld.io/)
 * Access to the Tanzu Network Registry: For more information, see
 [Verify Your Access to the Tanzu Network Registry](#verify-docker-access) below.
+
 
 ## <a id='verify-docker-access'></a> Verify That You Can Access the Tanzu Network Registry
 
@@ -54,6 +60,7 @@ account.
     ```
     Where `CF-SERVICE-BRIDGE-VERSION-NUMBER` is the image version in <%= vars.product_network %>.
     For example, `0.2.0-build.1`.<br><br>
+
 
 ## <a id='create-cf-uaa-client'></a> Create a Cloud Foundry UAA Client
 
@@ -106,6 +113,7 @@ To create the required User Account and Authentication (UAA) client:
     Where `CLIENT-SECRET` is a secret of your choice. Keep this secret safe.
     It is required when using <%= vars.product_short %>.
 
+
 ## <a id='install-developer-console'></a> Install the <%= vars.product_short %>
 
 To install the <%= vars.product_short %>:
@@ -117,10 +125,11 @@ To install the <%= vars.product_short %>:
     ```
 
 1. Option A: Install the <%= vars.product_short %> using the Tanzu Network registry
-    If the cluster you are installing  <%= vars.product_short %> to has access to Tanzu Network registry
-    then you can carry out a standard install.
+    If the cluster you are installing  <%= vars.product_short %> to has access to Tanzu Network
+    registry then you can carry out a standard install.
 
     Set the following environment variables which `kapp-deploy` uses:
+
     ```
     export REGISTRY_USERNAME="YOUR-REGISTRY-USERNAME"
     export REGISTRY_PASSWORD="YOUR-REGISTRY-PASSWORD"
@@ -130,10 +139,13 @@ To install the <%= vars.product_short %>:
     Where:
     * `YOUR-REGISTRY-USERNAME` is your Tanzu Network registry username
     * `YOUR-REGISTRY-PASSWORD` is your Tanzu Network registry password
-    * `YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME` is the username for the <%= vars.product_short %> broker
-    * `YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD` is the password for the <%= vars.product_short %> broker
+    * `YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME` is the username for the <%= vars.product_short %>
+    broker
+    * `YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD` is the password for the <%= vars.product_short %>
+    broker
 
     Then from your uncompressed `developer-console` directory, run:
+
     ```
     cd developer-console-VERSION-NUMBER
     ./scripts/kapp-deploy
@@ -141,9 +153,10 @@ To install the <%= vars.product_short %>:
     Where `VERSION-NUMBER` is the <%= vars.product_short %> version number.
 
 1. Option B: Install the <%= vars.product_short %> using a custom registry
-    If the cluster you are deploying to does not have access to the Tanzu Network registry, relocate the
-    used images to the custom registry by setting the following environment variables, which kapp-deploy
-    uses:
+    If the cluster you are deploying to does not have access to the Tanzu Network registry, relocate
+    the used images to the custom registry by setting the following environment variables, which
+    kapp-deploy uses:
+
     ```
     export REGISTRY_HOSTNAME="YOUR-REGISTRY-HOST"
     export REGISTRY_PROJECT="YOUR-REGISTRY-PROJECT-NAME"
@@ -157,17 +170,20 @@ To install the <%= vars.product_short %>:
     * `YOUR-REGISTRY-PROJECT-NAME` is your registry project name, such as `dev` or `my-team-project`
     * `YOUR-REGISTRY-USERNAME` is your registry username
     * `YOUR-REGISTRY-PASSWORD` is your registry password
-    * `YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME` is the username for the <%= vars.product_short %> broker
-    * `YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD` is the password for the <%= vars.product_short %> broker
-
+    * `YOUR-DEVELOPER-CONSOLE-BROKER-USERNAME` is the username for the <%= vars.product_short %>
+    broker
+    * `YOUR-DEVELOPER-CONSOLE-BROKER-PASSWORD` is the password for the <%= vars.product_short %>
+    broker
 
     From your uncompressed `developer-console` directory run:
+
     ```
     cd developer-console-VERSION-NUMBER
     ./scripts/kbld-custom-relocate
     CUSTOM_KBLD_FLAGS="-f ./build/relocation.lock.copied" ./scripts/kapp-deploy
     ```
     Where `VERSION-NUMBER` is the <%= vars.product_short %> version number, such as `0.5.0-build.38`.
+
 
 ## <a id="install-cli"></a> Install the <%= vars.product_short %> CLI Tool
 
@@ -201,6 +217,7 @@ Groups only" in Pivnet. Not sure how Pivnet handles that presentation.%>
 
 1. Move this <%= vars.product_short %> CLI tool to somewhere within your system path such as
 `/usr/local/bin/pdc`.
+
 
 ## <a id="feedback"></a> Feedback
 
