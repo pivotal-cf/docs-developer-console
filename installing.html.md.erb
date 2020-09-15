@@ -138,7 +138,7 @@ To install the <%= vars.product_short %> using the Tanzu Network Registry:
     kubectl create namespace pdc-system
     ```
 
-1. Set the following environment variables which `kapp-deploy` uses:
+1. Set the following environment variables, which `kapp-deploy` uses:
 
     ```
     export REGISTRY_USERNAME="YOUR-REGISTRY-USERNAME"
@@ -160,7 +160,7 @@ To install the <%= vars.product_short %> using the Tanzu Network Registry:
     cd developer-console-VERSION-NUMBER
     ./scripts/kapp-deploy
     ```
-    Where `VERSION-NUMBER` is the <%= vars.product_short %> version number.
+    Where `VERSION-NUMBER` is the <%= vars.product_short %> version number, such as `0.5.0-build.38`.
 
 ### <a id='custom-registry'></a> Option B: Install the <%= vars.product_short %> Using a Custom Registry
 
